@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="{{message.tags}}">{{message}}</div>
+    {% endfor %}
+    {% endif %}
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <input name="teamName" type="text" required>
+        <br>
+        <label>
+            <input name="leaderName" type="text" required>
+            Leader name
+        </label>
+        <br>
+        <label>
+            <input name="leaderRollNo" type="number" required>
+            Leader roll no
+        </label>
+        <br>
+        <label>
+            <input name="leaderEmail" type="email" required>
+            Leader email
+        </label>
+        <br>
+        <label>
+            <input name="leaderDiscord" type="text" required>
+            Leader discord
+        </label>
+        <br>
+        <label>
+            <input name="m1Name" type="text" required>
+            M1 name
+        </label>
+        <br>
+        <label>
+            <input name="m1RollNo" type="number" required>
+            m1 roll no
+        </label>
+        <br>
+        <label>
+            <input name="m1Email" type="email" required>
+            m1 email
+        </label>
+        <br>
+        <label>
+            <input name="m1Discord" type="text" required>
+            m1 discord
+        </label>
+        <br>
+        <label>
+            <input name="m2Name" type="text">
+            M2 name
+        </label>
+        <br>
+        <label>
+            <input name="m2RollNo" type="number">
+            m2 roll no
+        </label>
+        <br>
+        <label>
+            <input name="m2Email" type="email">
+            m2 email
+        </label>
+        <br>
+        <label>
+            <input name="m2Discord" type="text">
+            m2 discord
+        </label>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
