@@ -1,25 +1,4 @@
-/*.flex-form {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
 
-h2 {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-}
-
-.flex-horizontal {
-  display: flex;
-  gap: 2rem;
-}
-
-.button {
-  display: inline-block;
-  width: 10rem;
-  height: 3rem;
-}*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body{
