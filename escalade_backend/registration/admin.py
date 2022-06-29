@@ -2,6 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from .models import Participant, Team
+from django.contrib.sessions.models import Session
 
 # Register your models here.
 
@@ -30,11 +31,16 @@ class ParticipantResource(resources.ModelResource):
 
 class ParticipantAdmin(ImportExportModelAdmin):
     resource_class = ParticipantResource
-    list_display = ('id', 'name', 'email', 'rollno', 'team')
+    list_display = ('id', 'name', 'email', 'rollno', 'phoneno', 'team')
     list_display_links = ('id', 'name')
     list_filter = ('team',)
-    search_fields = ('name', 'email', 'rollno', 'team')
+    search_fields = ('name', 'email', 'rollno', 'discord_ID', 'phoneno', 'team')
     list_per_page = 25
 
 admin.site.register(Participant, ParticipantAdmin)
 
+##Session##
+class SessionAdmin(admin.ModelAdmin):
+    list_display = ['session_key', 'expire_date']
+
+admin.site.register(Session, SessionAdmin)

@@ -12,30 +12,8 @@
     <div class="{{message.tags}}">{{message}}</div>
     {% endfor %}
     {% endif %}
-    <form action="{% url 'register' %}" method="POST">
+    <form action="{% url 'membersRegister' %}" method="POST">
         {% csrf_token %}
-        <input name="teamName" type="text" required>
-        <br>
-        <label>
-            <input name="leaderName" type="text" required>
-            Leader name
-        </label>
-        <br>
-        <label>
-            <input name="leaderRollNo" type="number" required>
-            Leader roll no
-        </label>
-        <br>
-        <label>
-            <input name="leaderEmail" type="email" required>
-            Leader email
-        </label>
-        <br>
-        <label>
-            <input name="leaderDiscord" type="text" required>
-            Leader discord
-        </label>
-        <br>
         <label>
             <input name="m1Name" type="text" required>
             M1 name
@@ -44,6 +22,11 @@
         <label>
             <input name="m1RollNo" type="number" required>
             m1 roll no
+        </label>
+        <br>
+        <label>
+            <input name="m1PhoneNo" type="number" required>
+            m1 phone no
         </label>
         <br>
         <label>
@@ -64,6 +47,11 @@
         <label>
             <input name="m2RollNo" type="number">
             m2 roll no
+        </label>
+        <br>
+        <label>
+            <input name="m2PhoneNo" type="number">
+            m2 phone no
         </label>
         <br>
         <label>

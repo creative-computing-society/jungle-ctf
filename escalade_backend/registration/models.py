@@ -10,6 +10,7 @@ from django.core.validators import RegexValidator
 DISCORD_REGEX = "^.{2,32}#[0-9]{4}$"
 EMAIL_REGEX = "^[A-Za-z0-9._~+-]+@thapar\.edu$"
 ROLLNO_REGEX = "^[0-9]{9}$"
+PHONENO_REGEX = "^[0-9]{10}$"
 
 class Team(AbstractBaseUser):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -51,7 +52,9 @@ class Team(AbstractBaseUser):
 
 class Participant(models.Model):
     name = models.CharField(max_length=50)
-    rollno = models.CharField(max_length=9,
+    
+    rollno = models.CharField(
+        max_length=9,
         unique=True,
         validators=[
             RegexValidator(
@@ -61,8 +64,21 @@ class Participant(models.Model):
             )
         ],
     )
+
+    phoneno = models.CharField(
+        max_length=10,
+        unique=True,
+        validators=[
+            RegexValidator(
+                regex=PHONENO_REGEX,
+                message='Invalid Phone Number',
+                code='invalid_phoneno'
+            )
+        ],
+    )
     
-    email = models.EmailField(unique=True,
+    email = models.EmailField(
+        unique=True,
         validators=[
             RegexValidator(
                 regex=EMAIL_REGEX,
@@ -74,6 +90,7 @@ class Participant(models.Model):
     
     discord_ID = models.CharField(
         max_length=255,
+        unique=True,
         validators=[
             RegexValidator(
                 regex=DISCORD_REGEX,
@@ -81,8 +98,6 @@ class Participant(models.Model):
                 code="invalid"
             )
         ],
-        default="",
-        unique=True
     )
     
     team = models.ForeignKey(Team, on_delete=models.CASCADE, blank=True)

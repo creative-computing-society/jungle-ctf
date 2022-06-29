@@ -1,5 +1,6 @@
 import random
 import string
+from django.forms import ValidationError
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -7,17 +8,25 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.contrib.auth.decorators import login_required
 
 from registration.forms import ParticipantForm, TeamForm
 
 
 # Create your views here.
 
+#TODO: Handle form validation errors(display properly in front-end)
+
 def index(request):
     return HttpResponse("homepage")
 
-def register(request):
+@login_required(login_url="/admin/login/")
+def deleteExpiredSession(request):
+    request.session.flush()
+    request.session.clear_expired()
+    return HttpResponse('Expired Sessions Deleted')
 
+def teamRegister(request):
     if request.method=="POST":
         
         #generate password
@@ -31,66 +40,101 @@ def register(request):
         form = TeamForm(teamData)
         if not form.is_valid():
             messages.error(request, "Team name taken")
-            return redirect("/register")
-        
-        #validating leader details
+            return redirect("/team-register")
+
         leaderData = {
             'name': request.POST["leaderName"],
             'email': request.POST["leaderEmail"],
             'rollno': request.POST["leaderRollNo"],
+            'phoneno': request.POST["leaderPhoneNo"],
             'discord_ID': request.POST["leaderDiscord"],
         }
         leaderForm = ParticipantForm(leaderData)
         if not leaderForm.is_valid():
             for key in leaderForm.errors:
                 messages.error(request, f"{strip_tags(leaderForm.errors[key])} for Team Leader")
-            return redirect("/register")
+            return redirect("/team-register")
         
-        #validating memeber 1 details
+        request.session['team'] = {
+            'teamData': teamData,
+            'leaderData': leaderData
+        }
+        request.session.set_expiry(3600)
+
+        return redirect('/members-register')
+
+    if request.session.get('team', False):
+        del request.session['team']
+    return render(request, 'registration/teamRegister.html')
+
+
+def membersRegister(request):
+    
+    if request.method=='POST':
+        teamData = request.session['team']['teamData']
+        leaderData = request.session['team']['leaderData']
+
+        form = TeamForm(teamData)
+        if not form.is_valid():
+            messages.error(request, "Team name taken")
+            return redirect("/team-register")
+        
+        leaderForm = ParticipantForm(leaderData)
+        if not leaderForm.is_valid():
+            for key in leaderForm.errors:
+                messages.error(request, f"{strip_tags(leaderForm.errors[key])} for Team Leader")
+            return redirect("/team-register")
+
         m1Data = {
             'name': request.POST["m1Name"],
             'email': request.POST["m1Email"],
             'rollno': request.POST["m1RollNo"],
+            'phoneno': request.POST["m1PhoneNo"],
             'discord_ID': request.POST["m1Discord"],
         }
         m1Form = ParticipantForm(m1Data)
         if not m1Form.is_valid():
             for key in m1Form.errors:
-                messages.error(request, m1Form.errors[key])
-            return redirect("/register")
+                messages.error(request, f"{strip_tags(m1Form.errors[key])} for member 1")
+            return redirect("/members-register")
         
-        if request.POST["m2Email"]!="":
+        m2present = request.POST["m2Name"]!="" and request.POST["m2Email"]!="" and request.POST["m2Discord"]!="" and request.POST["m2RollNo"]!="" and request.POST["m2PhoneNo"]!=""
+                    
+        if m2present:
             #validating member2 details if present
             m2Data = {
                 'name': request.POST["m2Name"],
                 'email': request.POST["m2Email"],
                 'rollno': request.POST["m2RollNo"],
+                'phoneno': request.POST["m2PhoneNo"],
                 'discord_ID': request.POST["m2Discord"],
             }
             m2Form = ParticipantForm(m2Data)
             if not m2Form.is_valid():
                 for key in m2Form.errors:
-                    messages.error(request, m2Form.errors[key])
-                return redirect("/register")
-        
-        to_list = [request.POST['leaderEmail'], request.POST['m1Email']]
+                    messages.error(request, f"{strip_tags(m1Form.errors[key])} for member 1")
+                return redirect("/members-register")
 
-        #add leader email to team
-        teamData['email'] = request.POST['leaderEmail']
-        team = TeamForm(teamData).save()   #save team
+        request.session.flush()
         
-        leaderData['team'] = team
-        ParticipantForm(leaderData).save()  #save leader
-        
-        m1Data['team'] = team
-        ParticipantForm(m1Data).save()  #save member1
-        
-        if request.POST["m2Email"]!="":
-            to_list.append(request.POST["m2Email"])
-            m2Data['team'] = team
-            ParticipantForm(m2Data).save()  #save member2
+        try:
+            teamData['email'] = leaderData['email']
+            team = TeamForm(teamData).save()   #save team
+            
+            leaderData['team'] = team
+            ParticipantForm(leaderData).save()  #save leader
+            
+            m1Data['team'] = team
+            ParticipantForm(m1Data).save()  #save member1
 
-        #TODO: send emails
+            if m2present:
+                m2Data['team'] = team
+                ParticipantForm(m2Data).save()  #save member2
+        except ValidationError:
+            messages.error(request, "Something went wrong. Please try again.")
+            return redirect("/team-register")
+        
+        #TODO: Send mails
         # subject = "Thank you for registering!"
         # password={'OTP':password,'Team_Name': teamData['teamName']} #password dict to be passed to email template
         # html_message = render_to_string('registration/registrationsuccessful.html', password) #html rendered message
@@ -98,7 +142,12 @@ def register(request):
         # from_email = settings.EMAIL_HOST_USER
         # send_mail(subject, message, from_email, to_list, html_message=html_message, fail_silently=False)
         
-        
         return HttpResponse("success")
+    
+    sessionData = request.session.get('team', False)
+    if sessionData:
+        if sessionData.get('teamData', False) and sessionData.get('leaderData', False):
+            return render(request, 'registration/membersRegister.html')
+    
+    return redirect("/team-register")
 
-    return render(request, "registration/register.html")

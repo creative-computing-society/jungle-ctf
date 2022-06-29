@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="{{message.tags}}">{{message}}</div>
+    {% endfor %}
+    {% endif %}
+    <form action="{% url 'teamRegister' %}" method="POST">
+        {% csrf_token %}
+        <label>
+            <input name="teamName" type="text" required>
+            team name
+        </label>
+        <br>
+        <label>
+            <input name="leaderName" type="text" required>
+            Leader name
+        </label>
+        <br>
+        <label>
+            <input name="leaderRollNo" type="number" required>
+            Leader roll no
+        </label>
+        <br>
+        <label>
+            <input name="leaderPhoneNo" type="number" required>
+            Leader phone no
+        </label>
+        <br>
+        <label>
+            <input name="leaderEmail" type="email" required>
+            Leader email
+        </label>
+        <br>
+        <label>
+            <input name="leaderDiscord" type="text" required>
+            Leader discord
+        </label>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

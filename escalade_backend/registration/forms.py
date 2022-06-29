@@ -15,4 +15,4 @@ class TeamForm(forms.ModelForm):
 class ParticipantForm(forms.ModelForm):
     class Meta:
         model = Participant
-        fields = ['name', 'email', 'rollno','discord_ID', 'team']
+        fields = ['name', 'email', 'rollno', 'phoneno','discord_ID', 'team']
