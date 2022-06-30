@@ -16,11 +16,13 @@ class TeamResource(resources.ModelResource):
 
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
-    list_display = ('uuid','teamName', 'points', 'position', 'board')
+    list_display = ('uuid','teamName', 'points', 'position', 'board', 'members')
     list_display_links = ('uuid', 'teamName')
     list_filter = ('position',)
     search_fields = ('uuid','teamName', 'position')
     list_per_page = 25
+    def members(self, obj):
+        return (obj.participant_set.count())
 
 admin.site.register(Team, TeamAdmin)
 

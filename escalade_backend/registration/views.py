@@ -1,7 +1,5 @@
-from email import message
 import random
 import string
-from django.forms import ValidationError
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -102,6 +100,21 @@ def membersRegister(request):
             for key in m1Form.errors:
                 messages.error(request, strip_tags(m1Form.errors[key]), extra_tags=f"{key}1")
             return redirect("/members-register")
+        duplicate_entry = False
+        if m1Data['email']==leaderData['email']:
+            messages.error(request, "Member 1 email is same as Leader email", extra_tags="email1")
+            duplicate_entry = True
+        if m1Data['rollno']==leaderData['rollno']:
+            messages.error(request, "Member 1 Roll Number is same as Leader Roll Number", extra_tags="rollno1")
+            duplicate_entry = True
+        if m1Data['phoneno']==leaderData['phoneno']:
+            messages.error(request, "Member 1 Phone Number is same as Leader Phone Number", extra_tags="phoneno1")
+            duplicate_entry = True
+        if m1Data['discord_ID']==leaderData['discord_ID']:
+            messages.error(request, "Member 1 Discord ID is same as Leader Discord ID", extra_tags="discord_ID1")
+            duplicate_entry = True
+        if duplicate_entry:
+            return redirect("/members-register")
         
         m2present = request.POST["m2Name"]!="" and request.POST["m2Email"]!="" and request.POST["m2Discord"]!="" and request.POST["m2RollNo"]!="" and request.POST["m2PhoneNo"]!=""
                     
@@ -118,6 +131,34 @@ def membersRegister(request):
             if not m2Form.is_valid():
                 for key in m2Form.errors:
                     messages.error(request, strip_tags(m2Form.errors[key]), extra_tags=f"{key}2")
+                return redirect("/members-register")
+            
+            duplicate_entry = False
+            if m2Data['email']==leaderData['email']:
+                messages.error(request, "Member 2 email is same as Leader email", extra_tags="email2")
+                duplicate_entry = True
+            if m2Data['rollno']==leaderData['rollno']:
+                messages.error(request, "Member 2 Roll Number is same as Leader Roll Number", extra_tags="rollno2")
+                duplicate_entry = True
+            if m2Data['phoneno']==leaderData['phoneno']:
+                messages.error(request, "Member 2 Phone Number is same as Leader Phone Number", extra_tags="phoneno2")
+                duplicate_entry = True
+            if m2Data['discord_ID']==leaderData['discord_ID']:
+                messages.error(request, "Member 2 Discord ID is same as Leader Discord ID", extra_tags="discord_ID2")
+                duplicate_entry = True
+            if m2Data['email']==m1Data['email']:
+                messages.error(request, "Member 2 email is same as Member 1 email", extra_tags="email2")
+                duplicate_entry = True
+            if m2Data['rollno']==m1Data['rollno']:
+                messages.error(request, "Member 2 Roll Number is same as Member 1 Roll Number", extra_tags="rollno2")
+                duplicate_entry = True
+            if m2Data['phoneno']==m1Data['phoneno']:
+                messages.error(request, "Member 2 Phone Number is same as Member 1 Phone Number", extra_tags="phoneno2")
+                duplicate_entry = True
+            if m2Data['discord_ID']==m1Data['discord_ID']:
+                messages.error(request, "Member 2 Discord ID is same as Member 1 Discord ID", extra_tags="discord_ID2")
+                duplicate_entry = True
+            if duplicate_entry:
                 return redirect("/members-register")
 
         request.session.flush()
