@@ -7,16 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    {% if messages %}
-    {% for message in messages %}
-    <div class="{{message.tags}}">{{message}}</div>
-    {% endfor %}
-    {% endif %}
     <form action="{% url 'teamRegister' %}" method="POST">
         {% csrf_token %}
         <label>
             <input name="teamName" type="text" required>
             team name
+            {{teamName_error}}
         </label>
         <br>
         <label>
@@ -27,21 +23,25 @@
         <label>
             <input name="leaderRollNo" type="number" required>
             Leader roll no
+            {{rollno_error}}
         </label>
         <br>
         <label>
             <input name="leaderPhoneNo" type="number" required>
             Leader phone no
+            {{phoneno_error}}
         </label>
         <br>
         <label>
             <input name="leaderEmail" type="email" required>
             Leader email
+            {{email_error}}
         </label>
         <br>
         <label>
             <input name="leaderDiscord" type="text" required>
             Leader discord
+            {{discord_ID_error}}
         </label>
         <br>
         <button type="submit">Submit</button>
