@@ -194,7 +194,7 @@ def membersRegister(request):
         except:
             messages.error(request, "Something went wrong.")
         
-        #TODO: Send mails
+        #TODO: add raw img source to <img src:> in register.html
         subj = "Thank you for registering!"
         credentials={'OTP':teamData['password'],'Team_Name': teamData['teamName']} #password dict to be passed to email template
         html_message = render_to_string('registration/register.html', credentials) #html rendered message
