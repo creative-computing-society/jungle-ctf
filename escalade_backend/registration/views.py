@@ -195,12 +195,16 @@ def membersRegister(request):
             messages.error(request, "Something went wrong.")
         
         #TODO: Send mails
-        # subject = "Thank you for registering!"
-        # password={'OTP':password,'Team_Name': teamData['teamName']} #password dict to be passed to email template
-        # html_message = render_to_string('registration/registrationsuccessful.html', password) #html rendered message
-        # message = strip_tags(html_message) #incase html render fails
-        # from_email = settings.EMAIL_HOST_USER
-        # send_mail(subject, message, from_email, to_list, html_message=html_message, fail_silently=False)
+        subj = "Thank you for registering!"
+        credentials={'OTP':teamData['password'],'Team_Name': teamData['teamName']} #password dict to be passed to email template
+        html_message = render_to_string('registration/register.html', credentials) #html rendered message
+        message = strip_tags(html_message) #incase html render fails
+        from_email = settings.EMAIL_HOST_USER
+        
+        print(from_email)
+        to_list=[leaderData['email']]
+        
+        send_mail(subj, message, from_email, to_list, html_message=html_message, fail_silently=False)
         
         messages.success(request, "Form filled successfully")
         return redirect("/team-register")
