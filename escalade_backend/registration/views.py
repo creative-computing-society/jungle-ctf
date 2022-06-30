@@ -1,6 +1,5 @@
 import random
 import string
-from django.forms import ValidationError
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -15,14 +14,11 @@ from registration.forms import ParticipantForm, TeamForm
 
 # Create your views here.
 
-#TODO: Handle form validation errors(display properly in front-end)
-
 def index(request):
     return HttpResponse("homepage")
 
 @login_required(login_url="/admin/login/")
 def deleteExpiredSession(request):
-    request.session.flush()
     request.session.clear_expired()
     return HttpResponse('Expired Sessions Deleted')
 
@@ -39,8 +35,8 @@ def teamRegister(request):
         }
         form = TeamForm(teamData)
         if not form.is_valid():
-            messages.error(request, "Team name taken")
-            return redirect("/team-register")
+            messages.error(request, "Team name taken", extra_tags="teamName")
+            return redirect('/team-register')
 
         leaderData = {
             'name': request.POST["leaderName"],
@@ -52,7 +48,7 @@ def teamRegister(request):
         leaderForm = ParticipantForm(leaderData)
         if not leaderForm.is_valid():
             for key in leaderForm.errors:
-                messages.error(request, f"{strip_tags(leaderForm.errors[key])} for Team Leader")
+                messages.error(request, strip_tags(leaderForm.errors[key]), extra_tags=key)
             return redirect("/team-register")
         
         request.session['team'] = {
@@ -65,7 +61,14 @@ def teamRegister(request):
 
     if request.session.get('team', False):
         del request.session['team']
-    return render(request, 'registration/teamRegister.html')
+    
+    context = {}
+    msgs = messages.get_messages(request)
+    if msgs:
+        for msg in msgs:
+            context[msg.tags.replace(" ", "_")] = str(msg)
+        msgs.used = True
+    return render(request, 'registration/teamRegister.html', context=context)
 
 
 def membersRegister(request):
@@ -76,13 +79,13 @@ def membersRegister(request):
 
         form = TeamForm(teamData)
         if not form.is_valid():
-            messages.error(request, "Team name taken")
-            return redirect("/team-register")
+            messages.error(request, "Team name taken", extra_tags="teamName")
+            return redirect('/team-register')
         
         leaderForm = ParticipantForm(leaderData)
         if not leaderForm.is_valid():
             for key in leaderForm.errors:
-                messages.error(request, f"{strip_tags(leaderForm.errors[key])} for Team Leader")
+                messages.error(request, strip_tags(leaderForm.errors[key]), extra_tags=key)
             return redirect("/team-register")
 
         m1Data = {
@@ -95,7 +98,22 @@ def membersRegister(request):
         m1Form = ParticipantForm(m1Data)
         if not m1Form.is_valid():
             for key in m1Form.errors:
-                messages.error(request, f"{strip_tags(m1Form.errors[key])} for member 1")
+                messages.error(request, strip_tags(m1Form.errors[key]), extra_tags=f"{key}1")
+            return redirect("/members-register")
+        duplicate_entry = False
+        if m1Data['email']==leaderData['email']:
+            messages.error(request, "Member 1 email is same as Leader email", extra_tags="email1")
+            duplicate_entry = True
+        if m1Data['rollno']==leaderData['rollno']:
+            messages.error(request, "Member 1 Roll Number is same as Leader Roll Number", extra_tags="rollno1")
+            duplicate_entry = True
+        if m1Data['phoneno']==leaderData['phoneno']:
+            messages.error(request, "Member 1 Phone Number is same as Leader Phone Number", extra_tags="phoneno1")
+            duplicate_entry = True
+        if m1Data['discord_ID']==leaderData['discord_ID']:
+            messages.error(request, "Member 1 Discord ID is same as Leader Discord ID", extra_tags="discord_ID1")
+            duplicate_entry = True
+        if duplicate_entry:
             return redirect("/members-register")
         
         m2present = request.POST["m2Name"]!="" and request.POST["m2Email"]!="" and request.POST["m2Discord"]!="" and request.POST["m2RollNo"]!="" and request.POST["m2PhoneNo"]!=""
@@ -112,27 +130,51 @@ def membersRegister(request):
             m2Form = ParticipantForm(m2Data)
             if not m2Form.is_valid():
                 for key in m2Form.errors:
-                    messages.error(request, f"{strip_tags(m1Form.errors[key])} for member 1")
+                    messages.error(request, strip_tags(m2Form.errors[key]), extra_tags=f"{key}2")
+                return redirect("/members-register")
+            
+            duplicate_entry = False
+            if m2Data['email']==leaderData['email']:
+                messages.error(request, "Member 2 email is same as Leader email", extra_tags="email2")
+                duplicate_entry = True
+            if m2Data['rollno']==leaderData['rollno']:
+                messages.error(request, "Member 2 Roll Number is same as Leader Roll Number", extra_tags="rollno2")
+                duplicate_entry = True
+            if m2Data['phoneno']==leaderData['phoneno']:
+                messages.error(request, "Member 2 Phone Number is same as Leader Phone Number", extra_tags="phoneno2")
+                duplicate_entry = True
+            if m2Data['discord_ID']==leaderData['discord_ID']:
+                messages.error(request, "Member 2 Discord ID is same as Leader Discord ID", extra_tags="discord_ID2")
+                duplicate_entry = True
+            if m2Data['email']==m1Data['email']:
+                messages.error(request, "Member 2 email is same as Member 1 email", extra_tags="email2")
+                duplicate_entry = True
+            if m2Data['rollno']==m1Data['rollno']:
+                messages.error(request, "Member 2 Roll Number is same as Member 1 Roll Number", extra_tags="rollno2")
+                duplicate_entry = True
+            if m2Data['phoneno']==m1Data['phoneno']:
+                messages.error(request, "Member 2 Phone Number is same as Member 1 Phone Number", extra_tags="phoneno2")
+                duplicate_entry = True
+            if m2Data['discord_ID']==m1Data['discord_ID']:
+                messages.error(request, "Member 2 Discord ID is same as Member 1 Discord ID", extra_tags="discord_ID2")
+                duplicate_entry = True
+            if duplicate_entry:
                 return redirect("/members-register")
 
         request.session.flush()
         
-        try:
-            teamData['email'] = leaderData['email']
-            team = TeamForm(teamData).save()   #save team
-            
-            leaderData['team'] = team
-            ParticipantForm(leaderData).save()  #save leader
-            
-            m1Data['team'] = team
-            ParticipantForm(m1Data).save()  #save member1
+        teamData['email'] = leaderData['email']
+        team = TeamForm(teamData).save()   #save team
+        
+        leaderData['team'] = team
+        ParticipantForm(leaderData).save()  #save leader
+        
+        m1Data['team'] = team
+        ParticipantForm(m1Data).save()  #save member1
 
-            if m2present:
-                m2Data['team'] = team
-                ParticipantForm(m2Data).save()  #save member2
-        except ValidationError:
-            messages.error(request, "Something went wrong. Please try again.")
-            return redirect("/team-register")
+        if m2present:
+            m2Data['team'] = team
+            ParticipantForm(m2Data).save()  #save member2
         
         #TODO: Send mails
         # subject = "Thank you for registering!"
@@ -147,7 +189,12 @@ def membersRegister(request):
     sessionData = request.session.get('team', False)
     if sessionData:
         if sessionData.get('teamData', False) and sessionData.get('leaderData', False):
-            return render(request, 'registration/membersRegister.html')
+            context = {}
+            msgs = messages.get_messages(request)
+            for msg in msgs:
+                context[msg.tags.replace(" ", "_")] = str(msg)
+            msgs.used = True
+            return render(request, 'registration/membersRegister.html', context=context)
     
     return redirect("/team-register")
 
