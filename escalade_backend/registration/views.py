@@ -35,8 +35,10 @@ def teamRegister(request):
         }
         form = TeamForm(teamData)
         if not form.is_valid():
-            messages.error(request, "Team name taken", extra_tags="teamName")
-            return redirect('/team-register')
+            context = {
+                'teamName_error': "Team name taken"
+            }
+            return render(request, 'registration/teamRegister.html', context=context)
 
         leaderData = {
             'name': request.POST["leaderName"],
@@ -47,9 +49,10 @@ def teamRegister(request):
         }
         leaderForm = ParticipantForm(leaderData)
         if not leaderForm.is_valid():
+            context = {}
             for key in leaderForm.errors:
-                messages.error(request, strip_tags(leaderForm.errors[key]), extra_tags=key)
-            return redirect("/team-register")
+                context[f"{key}_error"] = strip_tags(leaderForm.errors[key])
+            return render(request, 'registration/teamRegister.html', context=context)
         
         request.session['team'] = {
             'teamData': teamData,
@@ -62,13 +65,7 @@ def teamRegister(request):
     if request.session.get('team', False):
         del request.session['team']
     
-    context = {}
-    msgs = messages.get_messages(request)
-    if msgs:
-        for msg in msgs:
-            context[msg.tags.replace(" ", "_")] = str(msg)
-        msgs.used = True
-    return render(request, 'registration/teamRegister.html', context=context)
+    return render(request, 'registration/teamRegister.html')
 
 
 def membersRegister(request):
@@ -77,16 +74,18 @@ def membersRegister(request):
         teamData = request.session['team']['teamData']
         leaderData = request.session['team']['leaderData']
 
+        context = {}
+
         form = TeamForm(teamData)
         if not form.is_valid():
-            messages.error(request, "Team name taken", extra_tags="teamName")
-            return redirect('/team-register')
+            context['teamName_error'] = "Team name taken"
+            return render(request, 'registration/teamRegister.html', context=context)
         
         leaderForm = ParticipantForm(leaderData)
         if not leaderForm.is_valid():
             for key in leaderForm.errors:
-                messages.error(request, strip_tags(leaderForm.errors[key]), extra_tags=key)
-            return redirect("/team-register")
+                context[f"{key}_error"] = strip_tags(leaderForm.errors[key])
+            return render(request, 'registration/teamRegister.html', context=context)
 
         m1Data = {
             'name': request.POST["m1Name"],
@@ -98,23 +97,29 @@ def membersRegister(request):
         m1Form = ParticipantForm(m1Data)
         if not m1Form.is_valid():
             for key in m1Form.errors:
-                messages.error(request, strip_tags(m1Form.errors[key]), extra_tags=f"{key}1")
-            return redirect("/members-register")
+                context[f"{key}1_error"] = strip_tags(m1Form.errors[key])
+            return render(request, 'registration/membersRegister.html', context=context)
+        
         duplicate_entry = False
+        
         if m1Data['email']==leaderData['email']:
-            messages.error(request, "Member 1 email is same as Leader email", extra_tags="email1")
+            context["email1_error"] = "Member 1 email is same as Leader email"
             duplicate_entry = True
+        
         if m1Data['rollno']==leaderData['rollno']:
-            messages.error(request, "Member 1 Roll Number is same as Leader Roll Number", extra_tags="rollno1")
+            context["rollno1_error"] = "Member 1 Roll Number is same as Leader Roll Number"
             duplicate_entry = True
+        
         if m1Data['phoneno']==leaderData['phoneno']:
-            messages.error(request, "Member 1 Phone Number is same as Leader Phone Number", extra_tags="phoneno1")
+            context["phoneno1_error"] = "Member 1 Phone Number is same as Leader Phone Number"
             duplicate_entry = True
+        
         if m1Data['discord_ID']==leaderData['discord_ID']:
-            messages.error(request, "Member 1 Discord ID is same as Leader Discord ID", extra_tags="discord_ID1")
+            context["discord_ID1_error"] = "Member 1 Discord ID is same as Leader Discord ID"
             duplicate_entry = True
+        
         if duplicate_entry:
-            return redirect("/members-register")
+            return render(request, 'registration/membersRegister.html', context=context)
         
         m2present = request.POST["m2Name"]!="" and request.POST["m2Email"]!="" and request.POST["m2Discord"]!="" and request.POST["m2RollNo"]!="" and request.POST["m2PhoneNo"]!=""
                     
@@ -130,51 +135,64 @@ def membersRegister(request):
             m2Form = ParticipantForm(m2Data)
             if not m2Form.is_valid():
                 for key in m2Form.errors:
-                    messages.error(request, strip_tags(m2Form.errors[key]), extra_tags=f"{key}2")
-                return redirect("/members-register")
+                    context[f"{key}2_error"] = strip_tags(m2Form.errors[key])
+                return render(request, 'registration/membersRegister.html', context=context)
             
+            #checking duplicate entries
             duplicate_entry = False
+            
             if m2Data['email']==leaderData['email']:
-                messages.error(request, "Member 2 email is same as Leader email", extra_tags="email2")
+                context["email2_error"] = "Member 2 email is same as Leader email"
                 duplicate_entry = True
+            
             if m2Data['rollno']==leaderData['rollno']:
-                messages.error(request, "Member 2 Roll Number is same as Leader Roll Number", extra_tags="rollno2")
+                context["rollno2_error"] = "Member 2 Roll Number is same as Leader Roll Number"
                 duplicate_entry = True
+            
             if m2Data['phoneno']==leaderData['phoneno']:
-                messages.error(request, "Member 2 Phone Number is same as Leader Phone Number", extra_tags="phoneno2")
+                context["phoneno2_error"] = "Member 2 Phone Number is same as Leader Phone Number"
                 duplicate_entry = True
+            
             if m2Data['discord_ID']==leaderData['discord_ID']:
-                messages.error(request, "Member 2 Discord ID is same as Leader Discord ID", extra_tags="discord_ID2")
+                context["discord_ID2_error"] = "Member 2 Discord ID is same as Leader Discord ID"
                 duplicate_entry = True
+            
             if m2Data['email']==m1Data['email']:
-                messages.error(request, "Member 2 email is same as Member 1 email", extra_tags="email2")
+                context["email2_error"] = "Member 2 email is same as Member 1 email"
                 duplicate_entry = True
+            
             if m2Data['rollno']==m1Data['rollno']:
-                messages.error(request, "Member 2 Roll Number is same as Member 1 Roll Number", extra_tags="rollno2")
+                context["rollno2_error"] = "Member 2 Roll Number is same as Member 1 Roll Number"
                 duplicate_entry = True
+            
             if m2Data['phoneno']==m1Data['phoneno']:
-                messages.error(request, "Member 2 Phone Number is same as Member 1 Phone Number", extra_tags="phoneno2")
+                context["phoneno2_error"] = "Member 2 Phone Number is same as Member 1 Phone Number"
                 duplicate_entry = True
+            
             if m2Data['discord_ID']==m1Data['discord_ID']:
-                messages.error(request, "Member 2 Discord ID is same as Member 1 Discord ID", extra_tags="discord_ID2")
+                context["discord_ID2_error"] = "Member 2 Discord ID is same as Member 1 Discord ID"
                 duplicate_entry = True
+            
             if duplicate_entry:
-                return redirect("/members-register")
+                return render(request, 'registration/membersRegister.html', context=context)
 
         request.session.flush()
         
-        teamData['email'] = leaderData['email']
-        team = TeamForm(teamData).save()   #save team
-        
-        leaderData['team'] = team
-        ParticipantForm(leaderData).save()  #save leader
-        
-        m1Data['team'] = team
-        ParticipantForm(m1Data).save()  #save member1
+        try:
+            teamData['email'] = leaderData['email']
+            team = TeamForm(teamData).save()   #save team
+            
+            leaderData['team'] = team
+            ParticipantForm(leaderData).save()  #save leader
+            
+            m1Data['team'] = team
+            ParticipantForm(m1Data).save()  #save member1
 
-        if m2present:
-            m2Data['team'] = team
-            ParticipantForm(m2Data).save()  #save member2
+            if m2present:
+                m2Data['team'] = team
+                ParticipantForm(m2Data).save()  #save member2
+        except:
+            messages.error(request, "Something went wrong.")
         
         #TODO: Send mails
         # subject = "Thank you for registering!"
@@ -184,17 +202,13 @@ def membersRegister(request):
         # from_email = settings.EMAIL_HOST_USER
         # send_mail(subject, message, from_email, to_list, html_message=html_message, fail_silently=False)
         
-        return HttpResponse("success")
+        messages.success(request, "Form filled successfully")
+        return redirect("/team-register")
     
     sessionData = request.session.get('team', False)
     if sessionData:
         if sessionData.get('teamData', False) and sessionData.get('leaderData', False):
-            context = {}
-            msgs = messages.get_messages(request)
-            for msg in msgs:
-                context[msg.tags.replace(" ", "_")] = str(msg)
-            msgs.used = True
-            return render(request, 'registration/membersRegister.html', context=context)
+            return render(request, 'registration/membersRegister.html')
     
     return redirect("/team-register")
 
