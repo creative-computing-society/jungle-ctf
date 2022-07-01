@@ -67,3 +67,88 @@ html {
 .hidden {
   display: none;
 }
+
+@media only screen and (max-width: 800px) {
+  .heading-primary {
+    font-size: 6rem;
+  }
+
+  .btn:hover,
+  .btn:active {
+    /* color: black; */
+    font-size: 2.2rem;
+  }
+
+  .heading-container {
+    margin-top: 12rem;
+  }
+
+  .placeholder {
+    height: 10rem;
+    width: 10rem;
+    font-size: 5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .heading-primary {
+    font-size: 6rem;
+    letter-spacing: 0.4rem;
+  }
+
+  .btn:hover,
+  .btn:active {
+    /* color: black; */
+    font-size: 1.8rem;
+  }
+
+  .btn-login {
+    font-size: 1.6rem;
+  }
+
+  .btn-register {
+    font-size: 1.6rem;
+  }
+
+  .heading-container {
+    margin-top: 12rem;
+  }
+
+  .placeholder {
+    height: 10rem;
+    width: 10rem;
+    font-size: 4.5rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .heading-primary {
+    font-size: 4.5rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .placeholder {
+    height: 8rem;
+    width: 8rem;
+    font-size: 4rem;
+  }
+
+  .btn-login {
+    margin: 0;
+  }
+
+  .btn-register {
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .heading-primary {
+    font-size: 4rem;
+  }
+
+  .placeholder {
+    height: 8rem;
+    width: 8rem;
+  }
+}

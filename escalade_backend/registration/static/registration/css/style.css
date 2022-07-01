@@ -71,16 +71,28 @@
   width: 13rem;
   background-color: #ccc;
   border-radius: 50%;
+  text-align: center;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
 }
 
 .logo {
   width: 11.5rem;
   height: 11.5rem;
   border-radius: 50%;
-  margin-right: 115rem;
+  /* margin-right: 115rem; */
   position: absolute;
   top: 3rem;
-  right: 40rem;
+  /* right: 40rem; */
+  left: 3rem;
+}
+
+.flex-container-holder {
+  display: flex;
+  gap: 4rem;
 }
 
 .popup-container {
@@ -92,7 +104,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 15rem;
+  top: 11rem;
   /* bottom: 68rem; */
 }
 
@@ -102,6 +114,30 @@
   text-align: center;
 }
 
+.loginError {
+  font-size: 4rem;
+  padding: 1rem;
+  text-align: center;
+}
+
 .background-red {
   background-color: rgba(255, 0, 0, 0.664);
 }
+
+@media only screen and (max-width: 800px) {
+  .flex-container-holder {
+    flex-direction: column;
+  }
+
+  .btn-login {
+    font-size: 2rem;
+  }
+
+  .btn-register {
+    font-size: 2rem;
+  }
+
+  .para {
+    font-size: 3rem;
+  }
+} ;

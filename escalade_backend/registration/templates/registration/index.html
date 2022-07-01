@@ -42,10 +42,10 @@
       <img src="{% static 'registration/img/escaladeLogo.png' %}" class="logo" />
       <div class="flex-container">
         <div class="register">
-          <a href="form.html" class="btn btn-register">REGISTER</a>
+          <a href="{% url 'register' %}" class="btn btn-register">REGISTER</a>
         </div>
         <div class="login">
-          <a href="form.html" class="btn btn-login">LOGIN</a>
+          <a href="#" disabled class="btn btn-login">LOGIN</a>
         </div>
       </div>
 
@@ -59,14 +59,19 @@
             Registration Failed <br />
             Please try again
           </p>
+          <p class="loginError hidden">You can login once the event is online.</p>
         </div>
         <h1 class="heading-primary">ESCALADE</h1>
       </div>
       <div class="flex-container-placeholder">
-        <div class="placeholder"></div>
-        <div class="placeholder"></div>
-        <div class="placeholder"></div>
-        <div class="placeholder"></div>
+        <div class="flex-container-holder">
+          <div class="placeholder" id="first-placeholder"></div>
+          <div class="placeholder" id="second-placeholder"></div>
+        </div>
+        <div class="flex-container-holder">
+          <div class="placeholder" id="third-placeholder"></div>
+          <div class="placeholder" id="fourth-placeholder"></div>
+        </div>
       </div>
     </section>
   </body>

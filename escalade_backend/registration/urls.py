@@ -5,6 +5,4 @@ urlpatterns = [
     path('register/', views.teamRegister, name="register"),
     path('complete-register/', views.membersRegister, name="membersRegister"),
     path('delete-expired-sessions/', views.deleteExpiredSession, name="del"),
-    path('0', views.t0),
-    path('1', views.t1),
 ]
