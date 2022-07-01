@@ -431,3 +431,10 @@ fieldset {
     height: 38px;
   }
 }
+
+
+@media only screen and (max-width: 600px) {
+  .gif {
+    width: 100% !important;
+  }
+}

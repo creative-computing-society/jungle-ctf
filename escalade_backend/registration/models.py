@@ -53,7 +53,7 @@ class Team(AbstractBaseUser):
 class Participant(models.Model):
     name = models.CharField(max_length=50)
     
-    rollno = models.CharField(
+    roll_no = models.CharField(
         max_length=9,
         unique=True,
         validators=[
@@ -65,7 +65,7 @@ class Participant(models.Model):
         ],
     )
 
-    phoneno = models.CharField(
+    phone_no = models.CharField(
         max_length=10,
         unique=True,
         validators=[
@@ -94,8 +94,8 @@ class Participant(models.Model):
         validators=[
             RegexValidator(
                 regex=DISCORD_REGEX,
-                message="Enter a valid discord ID",
-                code="invalid"
+                message="Invalid Discord ID",
+                code="invalid_discordID"
             )
         ],
     )

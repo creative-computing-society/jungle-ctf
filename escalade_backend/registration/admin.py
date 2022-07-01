@@ -33,10 +33,10 @@ class ParticipantResource(resources.ModelResource):
 
 class ParticipantAdmin(ImportExportModelAdmin):
     resource_class = ParticipantResource
-    list_display = ('id', 'name', 'email', 'rollno', 'phoneno', 'team')
+    list_display = ('id', 'name', 'email', 'roll_no', 'phone_no', 'team')
     list_display_links = ('id', 'name')
     list_filter = ('team',)
-    search_fields = ('name', 'email', 'rollno', 'discord_ID', 'phoneno', 'team')
+    search_fields = ('name', 'email', 'roll_no', 'discord_ID', 'phone_no', 'team')
     list_per_page = 25
 
 admin.site.register(Participant, ParticipantAdmin)

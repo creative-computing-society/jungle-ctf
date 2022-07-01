@@ -1,71 +1,85 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="member-style.css" />
+    <link rel="icon" type="image/x-icon" href="{% static 'registration/img/escaladeLogo.png' %}">
+    <link rel="stylesheet" href="{% static 'registration/css/member-style.css' %}" />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
-    <script defer src="script.js"></script>
+    <script defer src="{% static 'registration/js/script.js' %}"></script>
     <title>Registration Form</title>
   </head>
-  <body>
+  <body onload="
+    {% if email1_error %}popEmail();{% endif %}
+    {% if roll_no1_error %}popRoll();{% endif %}
+    {% if discord_ID1_error %}popDiscord();{% endif %}
+    {% if phone_no1_error %}popPhone();{% endif %}
+    {% if email2_error %}popEmail1();{% endif %}
+    {% if roll_no2_error %}popRoll1();{% endif %}
+    {% if discord_ID2_error %}popDiscord1();{% endif %}
+    {% if phone_no2_error %}popPhone1();{% endif %}
+  ">
     <div class="text1">REGISTER YOUR TEAM</div>
 
     <section id="contact">
       <div class="contact-box">
         <div class="contact-form-wrapper left">
           <h2 class="heading">Member 1 (required)</h2>
-          <form>
+          <form action="{% url 'membersRegister' %}" method="POST">
+            {% csrf_token %}
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="text" name="m1Name" required="required" />
               <label for="input" class="control-label">Name</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="email" required="required" />
+              <input type="email" name="m1Email" required="required" />
               <label for="input" class="control-label errEmail"
                 >Thapar id</label
               >
               <label
                 for="input"
                 class="control-label errEmail orange-text hidden"
-                >Please enter Thapar id</label
+                >{{email1_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="tel" required="required" />
+              <input type="tel" name="m1RollNo" required="required" />
               <label for="input" class="control-label errRoll"
                 >Roll Number</label
               ><label
                 for="input"
                 class="control-label errRoll orange-text hidden"
-                >Incorrect Format</label
+                >{{roll_no1_error}}</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="text" name="m1Discord" required="required" />
               <label for="input" class="control-label errDiscord"
                 >Discord id</label
               ><label
                 for="input"
                 class="control-label errDiscord orange-text hidden"
-                >Enter Correct Format</label
+                >{{discord_ID1_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="tel" required="required" />
+              <input type="tel" name="m1PhoneNo" required="required" />
               <label for="input" class="control-label errPhone"
                 >Phone Number</label
               ><label
                 for="input"
                 class="control-label errPhone orange-text hidden"
-                >Incorrect Format</label
+                >{{phone_no1_error}}</label
               ><i class="bar"></i>
             </div>
             <!-- <button class="submit-btn">Submit</button> -->
@@ -75,51 +89,51 @@
           <h2 class="heading">Member 2 (optional)</h2>
           <!-- <form> -->
             <div class="form-group">
-              <input type="text" required="required" />
+              <input id="m2Name" type="text" name="m2Name" required/>
               <label for="input" class="control-label">Name</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="email" required="required" />
+              <input type="email" name="m2Email" />
               <label for="input" class="control-label errEmail1"
                 >Thapar id</label
               >
               <label
                 for="input"
                 class="control-label errEmail1 orange-text hidden"
-                >Participant with this discord id already exists</label
+                >{{email2_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="tel" required="required" />
+              <input type="tel" name="m2RollNo" />
               <label for="input" class="control-label errRoll1"
                 >Roll Number</label
               ><label
                 for="input"
                 class="control-label errRoll1 orange-text hidden"
-                >Incorrect Format</label
+                >{{roll_no2_error}}</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="text" name="m2Discord" />
               <label for="input" class="control-label errDiscord1"
                 >Discord id</label
               ><label
                 for="input"
                 class="control-label errDiscord1 orange-text hidden"
-                >Enter Correct Format</label
+                >{{discord_ID2_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="tel" required="required" />
+              <input type="tel" name="m2PhoneNo" />
               <label for="input" class="control-label errPhone1"
                 >Phone Number</label
               ><label
                 for="input"
                 class="control-label errPhone1 orange-text hidden"
-                >Incorrect Format</label
+                >{{phone_no2_error}}</label
               ><i class="bar"></i>
             </div>
             <button class="submit-btn">Submit</button>

@@ -1,18 +1,28 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="form.css" />
+    <link rel="icon" type="image/x-icon" href="{% static 'registration/img/escaladeLogo.png' %}">
+    <link rel="stylesheet" href="{% static 'registration/css/form.css' %}" />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
-    <script defer src="scriptForm.js"></script>
+    <script defer src="{% static 'registration/js/scriptForm.js' %}"></script>
     <title>Registration Form</title>
   </head>
-  <body>
+  <body onload="
+    {% if teamName_error %}popTeamName();{% endif %}
+    {% if email_error %}popEmail();{% endif %}
+    {% if roll_no_error %}popRoll();{% endif %}
+    {% if discord_ID_error %}popDiscord();{% endif %}
+    {% if phone_no_error %}popPhone();{% endif %}
+  ">
     <div class="text1">REGISTER YOUR TEAM</div>
     <section id="contact">
       <div class="contact-box">
@@ -51,13 +61,15 @@
                 style="width: 500px; height: 500px"
                 loop
                 autoplay
+                class="gif"
               ></lottie-player>
             </div>
           </div>
         </div>
         <div class="contact-form-wrapper">
           <h2 class="heading">Team Leader</h2>
-          <form action="member.html">
+          <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
             <!-- <div class="form-item">
               <input type="text" name="sender" required />
               <label>Team Name:</label>
@@ -67,63 +79,63 @@
               <input required type="text" placeholder="Year" />
             </div> -->
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="text" name="teamName" required="required" />
               <label for="input" class="control-label errTeamName"
                 >Team Name</label
               >
               <label
                 for="input"
                 class="control-label errTeamName orange-text hidden"
-                >Team Name Already Taken</label
+                >{{teamName_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="text" name="leaderName" required="required" />
               <label for="input" class="control-label">Leader's Name</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="email" name="leaderEmail" required="required" />
               <label for="input" class="control-label errEmail"
                 >Leader's Thapar id</label
               >
               <label
                 for="input"
                 class="control-label errEmail orange-text hidden"
-                >Please enter Thapar id</label
+                >{{email_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="number" name="leaderRollNo" required="required" />
               <label for="input" class="control-label errRoll"
                 >Leader's Roll Number</label
               ><label
                 for="input"
                 class="control-label errRoll orange-text hidden"
-                >Incorrect Format</label
+                >{{roll_no_error}}</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="text" name="leaderDiscord" required="required" />
               <label for="input" class="control-label errDiscord"
                 >Leader's Discord id</label
               ><label
                 for="input"
                 class="control-label errDiscord orange-text hidden"
-                >Participant with this discord id already exists</label
+                >{{discord_ID_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="text" required="required" />
+              <input type="tel" name="leaderPhoneNo" required="required" />
               <label for="input" class="control-label errPhone"
                 >Leader's Phone Number</label
               ><label
                 for="input"
                 class="control-label errPhone orange-text hidden"
-                >Incorrect Format</label
+                >{{phone_no_error}}</label
               ><i class="bar"></i>
             </div>
 

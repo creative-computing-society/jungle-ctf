@@ -7,7 +7,7 @@ const popConvert = function () {
   para[1].classList.toggle("hidden");
 };
 
-popConvert();
+// popConvert();
 
 const popout = function () {
   popupContainer.classList.toggle("hidden");
@@ -15,4 +15,4 @@ const popout = function () {
 
 // popout();
 
-setTimeout(popout, 10000);
+// setTimeout(popout, 10000);

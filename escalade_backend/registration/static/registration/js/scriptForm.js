@@ -25,8 +25,10 @@ const popTeamName = function () {
   errorTeamName[1].classList.toggle("hidden");
 };
 
-popEmail();
-popRoll();
-popPhone();
-popDiscord();
-popTeamName();
+// popEmail();
+// popRoll();
+// popPhone();
+// popDiscord();
+// popTeamName();
+
+document.getElementById("m2Name").required = false;

@@ -44,8 +44,8 @@ body {
 
   font-weight: 800;
   color: #2c3c53;
-  margin-bottom: 20px;
-  font-size: 50px;
+  margin-bottom: 50px;
+  font-size: 40px;
   text-shadow: 0px 4px 4px #00000040 !important;
 }
 
@@ -63,7 +63,7 @@ body {
 
 .contact-form-wrapper {
   background-color: #34ced3;
-  background: radial-gradient(
+  /* background: radial-gradient(
       circle at 55% 80%,
       #6bd3dd 0 12%,
       transparent 12.2%
@@ -76,23 +76,8 @@ body {
     ),
     radial-gradient(circle at 100% 100%, #64d5df 0 40%, transparent 40.2%),
     radial-gradient(circle at 100% 0%, #64d5df 0 40%, transparent 40.2%),
-    #2fbbbf;
+    #2fbbbf; */
   border-radius: 10px 0 0 10px;
-}
-
-@media only screen and (max-width: 800px) {
-  .contact-links,
-  .contact-form-wrapper {
-    width: 100%;
-  }
-
-  .contact-links {
-    border-radius: 50px 50px 0 0;
-  }
-
-  .contact-form-wrapper {
-    border-radius: 0 0 50px 50px;
-  }
 }
 
 .contact-form-wrapper.left {
@@ -203,6 +188,7 @@ textarea:valid + label {
   cursor: pointer;
   user-select: none;
   transition: 0.2s;
+  margin-left: -28%;
 }
 
 .submit-btn:hover {
@@ -212,17 +198,6 @@ textarea:valid + label {
 .submit-btn:active {
   transform: scale(1.1, 1.1);
   filter: sepia(0.5);
-}
-@media only screen and (max-width: 1000px) {
-  .text1 {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .heading {
-    font-size: 35px;
-  }
 }
 
 @media only screen and (max-width: 800px) {
@@ -236,6 +211,11 @@ textarea:valid + label {
 
   .contact-form-wrapper.right {
     border-radius: 0px 0px 30px 30px;
+  }
+
+  .submit-btn {
+    margin-left: 0%;
+    margin: 3px auto;
   }
 }
 
@@ -448,8 +428,51 @@ fieldset {
 
 .orange-text.control-label {
   color: #ec6526;
+  font-size: 1.2rem;
 }
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  .heading {
+    font-size: 35px;
+  }
+
+  .orange-text.control-label {
+    color: #ec6526;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .text1 {
+    display: none;
+  }
+
+  .orange-text.control-label {
+    color: #ec6526;
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .contact-links,
+  .contact-form-wrapper {
+    width: 100%;
+  }
+
+  .contact-links {
+    border-radius: 50px 50px 0 0;
+  }
+
+  .contact-form-wrapper {
+    border-radius: 0 0 50px 50px;
+  }
+
+  .orange-text.control-label {
+    color: #ec6526;
+    font-size: 1.3rem;
+  }
 }

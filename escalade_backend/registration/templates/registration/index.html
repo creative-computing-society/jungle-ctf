@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="{% static 'registration/img/escaladeLogo.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'registration/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'registration/css/general.css' %}" />
+    <!-- <link rel="stylesheet" href="form.css" /> -->
+
+    <script defer src="{% static 'registration/js/homeScript.js' %}"></script>
+
+    <title>Escalade Registration</title>
+  </head>
+  <body onload="
+    {% if error %}
+    popConvert();
+    {% endif %}
+    {% if msg %}
+    popout();
+    setTimeout(popout, 10000);
+    {% endif %}
+  ">
+    <section class="section-hero">
+      <img src="{% static 'registration/img/escaladeLogo.png' %}" class="logo" />
+      <div class="flex-container">
+        <div class="register">
+          <a href="form.html" class="btn btn-register">REGISTER</a>
+        </div>
+        <div class="login">
+          <a href="form.html" class="btn btn-login">LOGIN</a>
+        </div>
+      </div>
+
+      <div class="heading-container">
+        <div class="popup-container hidden">
+          <p class="para">
+            Registration Successful<br />
+            Get Ready!!
+          </p>
+          <p class="para hidden">
+            Registration Failed <br />
+            Please try again
+          </p>
+        </div>
+        <h1 class="heading-primary">ESCALADE</h1>
+      </div>
+      <div class="flex-container-placeholder">
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+      </div>
+    </section>
+  </body>
+</html>
