@@ -207,16 +207,22 @@ def membersRegister(request):
             return redirect('/')
         
         #TODO: add raw img source to <img src:> in register.html
-        # subj = "Thank you for registering!"
-        # credentials={'OTP':teamData['password'],'Team_Name': teamData['teamName']} #password dict to be passed to email template
-        # html_message = render_to_string('registration/register.html', credentials) #html rendered message
-        # message = strip_tags(html_message) #incase html render fails
-        # from_email = settings.EMAIL_HOST_USER
+        subj = "Thank you for registering!"
+        # if m2present:
+        #     credentials={'OTP':teamData['password'],'Team_Name': teamData['teamName'],} #password dict to be passed to email template
+        # else:
+        credentials={'OTP':teamData['password'],'Team_Name': teamData['teamName'],} #password dict to be passed to email template
+        html_message = render_to_string('registration/register.html', credentials) #html rendered message
+        message = strip_tags(html_message) #incase html render fails
+        from_email = settings.EMAIL_HOST_USER
         
-        # print(from_email)
-        # to_list=[leaderData['email']]
+        if m2present:
+            to_list=[leaderData['email'],m1Data['email'],m2Data['email']]
+        else:
+            to_list=[leaderData['email'],m1Data['email']]
+            
         
-        # send_mail(subj, message, from_email, to_list, html_message=html_message, fail_silently=False)
+        send_mail(subj, message, from_email, to_list, html_message=html_message, fail_silently=False)
         
         messages.success(request, "formSuccess")
         return redirect("/")
