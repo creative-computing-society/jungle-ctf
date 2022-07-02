@@ -35,50 +35,50 @@
           <form action="{% url 'membersRegister' %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
-              <input type="text" name="m1Name" required="required" />
-              <label for="input" class="control-label">Name</label
+              <input type="text" name="m1Name" onchange="check6();" class="input-name1" required="required" />
+              <label for="input" class="control-label name1">Name</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="email" name="m1Email" required="required" />
-              <label for="input" class="control-label errEmail"
-                >Thapar id</label
+              <input type="email" name="m1Email" onchange="check7();" class="input-email1" required="required" />
+              <label for="input" class="control-label errEmail email1"
+                >Thapar email id</label
               >
               <label
                 for="input"
-                class="control-label errEmail orange-text hidden"
+                class="control-label errEmail orange-text hidden email1"
                 >{{email1_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="number" name="m1RollNo" required="required" />
-              <label for="input" class="control-label errRoll"
+              <input type="number" name="m1RollNo" onchange="check8();" class="input-roll1" required="required" />
+              <label for="input" class="control-label errRoll roll1"
                 >Roll Number</label
               ><label
                 for="input"
-                class="control-label errRoll orange-text hidden"
+                class="control-label errRoll orange-text hidden roll1"
                 >{{roll_no1_error}}</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="text" name="m1Discord" required="required" />
-              <label for="input" class="control-label errDiscord"
+              <input type="text" name="m1Discord" onchange="check9();" class="input-discord1" required="required" />
+              <label for="input" class="control-label errDiscord discord1"
                 >Discord id</label
               ><label
                 for="input"
-                class="control-label errDiscord orange-text hidden"
+                class="control-label errDiscord orange-text hidden discord1"
                 >{{discord_ID1_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="number" name="m1PhoneNo" required="required" />
-              <label for="input" class="control-label errPhone"
+              <input type="number" name="m1PhoneNo" onchange="check10();" class="input-phone1" required="required" />
+              <label for="input" class="control-label errPhone phone1"
                 >Phone Number</label
               ><label
                 for="input"
-                class="control-label errPhone orange-text hidden"
+                class="control-label errPhone orange-text hidden phone1"
                 >{{phone_no1_error}}</label
               ><i class="bar"></i>
             </div>
@@ -89,50 +89,50 @@
           <h2 class="heading">Member 2 (optional)</h2>
           <!-- <form> -->
             <div class="form-group">
-              <input id="m2Name" type="text" name="m2Name" required/>
-              <label for="input" class="control-label">Name</label
+              <input type="text" name="m2Name" onchange="check1();" class="input-name" />
+              <label for="input" class="control-label name">Name</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="email" name="m2Email" />
-              <label for="input" class="control-label errEmail1"
-                >Thapar id</label
+              <input type="email" name="m2Email" onchange="check2();" class="input-email" />
+              <label for="input" class="control-label errEmail1 email"
+                >Thapar email id</label
               >
               <label
                 for="input"
-                class="control-label errEmail1 orange-text hidden"
+                class="control-label errEmail1 orange-text hidden email"
                 >{{email2_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="number" name="m2RollNo" />
-              <label for="input" class="control-label errRoll1"
+              <input type="number" name="m2RollNo" onchange="check3();" class="input-roll" />
+              <label for="input" class="control-label errRoll1 roll"
                 >Roll Number</label
               ><label
                 for="input"
-                class="control-label errRoll1 orange-text hidden"
+                class="control-label errRoll1 orange-text hidden roll"
                 >{{roll_no2_error}}</label
               ><i class="bar"></i>
             </div>
             <div class="form-group">
-              <input type="text" name="m2Discord" />
-              <label for="input" class="control-label errDiscord1"
+              <input type="text" name="m2Discord" onchange="check4();" class="input-discord" />
+              <label for="input" class="control-label errDiscord1 discord"
                 >Discord id</label
               ><label
                 for="input"
-                class="control-label errDiscord1 orange-text hidden"
+                class="control-label errDiscord1 orange-text hidden discord"
                 >{{discord_ID2_error}}</label
               ><i class="bar"></i>
             </div>
 
             <div class="form-group">
-              <input type="number" name="m2PhoneNo" />
-              <label for="input" class="control-label errPhone1"
+              <input type="number" name="m2PhoneNo" onchange="check5();" class="input-phone" />
+              <label for="input" class="control-label errPhone1 phone"
                 >Phone Number</label
               ><label
                 for="input"
-                class="control-label errPhone1 orange-text hidden"
+                class="control-label errPhone1 orange-text hidden phone"
                 >{{phone_no2_error}}</label
               ><i class="bar"></i>
             </div>

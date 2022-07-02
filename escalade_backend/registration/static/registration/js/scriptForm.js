@@ -24,11 +24,3 @@ const popTeamName = function () {
   errorTeamName[0].classList.toggle("hidden");
   errorTeamName[1].classList.toggle("hidden");
 };
-
-// popEmail();
-// popRoll();
-// popPhone();
-// popDiscord();
-// popTeamName();
-
-document.getElementById("m2Name").required = false;

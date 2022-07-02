@@ -82,8 +82,13 @@ def teamRegister(request):
 def membersRegister(request):
     
     if request.method=='POST':
-        teamData = request.session['team']['teamData']
-        leaderData = request.session['team']['leaderData']
+        
+        try:
+            teamData = request.session['team']['teamData']
+            leaderData = request.session['team']['leaderData']
+        except:
+            messages.error(request, "formError")
+            return redirect("/")
 
         context = {}
 
@@ -157,11 +162,11 @@ def membersRegister(request):
                 duplicate_entry = True
             
             if m2Data['roll_no']==leaderData['roll_no']:
-                context["rollno2_error"] = "Participant with this Roll no already exists."
+                context["roll_no2_error"] = "Participant with this Roll no already exists."
                 duplicate_entry = True
             
             if m2Data['phone_no']==leaderData['phone_no']:
-                context["phoneno2_error"] = "Participant with this Phone no already exists."
+                context["phone_no2_error"] = "Participant with this Phone no already exists."
                 duplicate_entry = True
             
             if m2Data['discord_ID']==leaderData['discord_ID']:
@@ -173,11 +178,11 @@ def membersRegister(request):
                 duplicate_entry = True
             
             if m2Data['roll_no']==m1Data['roll_no']:
-                context["rollno2_error"] = "Participant with this Roll no already exists."
+                context["roll_no2_error"] = "Participant with this Roll no already exists."
                 duplicate_entry = True
             
             if m2Data['phone_no']==m1Data['phone_no']:
-                context["phoneno2_error"] = "Participant with this Phone no already exists."
+                context["phone_no2_error"] = "Participant with this Phone no already exists."
                 duplicate_entry = True
             
             if m2Data['discord_ID']==m1Data['discord_ID']:
@@ -206,11 +211,8 @@ def membersRegister(request):
             messages.error(request, "formError")
             return redirect('/')
         
-        #TODO: add raw img source to <img src:> in register.html
+        #send mails
         subj = "Thank you for registering!"
-        # if m2present:
-        #     credentials={'OTP':teamData['password'],'Team_Name': teamData['teamName'],} #password dict to be passed to email template
-        # else:
         credentials={'OTP':teamData['password'],'Team_Name': teamData['teamName'],} #password dict to be passed to email template
         html_message = render_to_string('registration/register.html', credentials) #html rendered message
         message = strip_tags(html_message) #incase html render fails
