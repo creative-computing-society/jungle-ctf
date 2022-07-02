@@ -105,4 +105,4 @@ class Participant(models.Model):
     current_ques = models.CharField(max_length=10, null=True, default=None)
 
     dummy1 = models.CharField(max_length=50, null=True, default=None)
-    dummy1 = models.CharField(max_length=50, null=True, default=None)
+    dummy2 = models.CharField(max_length=50, null=True, default=None)

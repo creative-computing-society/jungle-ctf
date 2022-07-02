@@ -62,7 +62,6 @@ def teamRegister(request):
             context = {}
             for key in leaderForm.errors:
                 context[f"{key}_error"] = strip_tags(leaderForm.errors[key])
-                print(strip_tags(leaderForm.errors[key]))
             return render(request, 'registration/form.html', context=context)
         
         request.session['team'] = {
