@@ -147,3 +147,15 @@ const startRenderLoading = function () {
 };
 
 startRenderLoading();
+
+// submit.addEventListener("click", startRenderLoading);
+
+document.getElementById("formId").addEventListener("submit", function (e) {
+  if (!isValid) {
+    e.preventDefault(); //stop form from submitting
+  }
+  if (isValid) {
+    renderLoading;
+  }
+  //do whatever an submit the form
+});
