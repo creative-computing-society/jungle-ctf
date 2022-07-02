@@ -3,6 +3,10 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from .models import Participant, Team
 from django.contrib.sessions.models import Session
+from django.contrib.admin import AdminSite
+
+AdminSite.site_header = "Escalade Administration"
+AdminSite.site_title = "Escalade site admin"
 
 # Register your models here.
 
