@@ -1,0 +1,141 @@
+.section-hero {
+  height: 100vh;
+  width: auto;
+  background-image: url('../img/Jungle.jpg');
+  background-size: cover;
+  color: #ddd;
+}
+
+.section-login {
+  height: 100vh;
+  width: auto;
+  position: absolute;
+}
+
+.flex-container {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 4rem;
+}
+
+.register {
+  margin-top: 3rem;
+  margin-left: auto;
+}
+
+.login {
+  margin-top: 3rem;
+  margin-right: 10rem;
+}
+
+.btn-register {
+  font-size: 3rem;
+  color: #fff;
+  letter-spacing: 0.5rem;
+  font-weight: 400;
+  background-color: #222;
+}
+
+.btn-login {
+  color: rgb(9, 56, 40);
+  font-size: 3rem;
+  letter-spacing: 0.5rem;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.heading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rem;
+}
+
+.heading-container h1 {
+  margin: 0px;
+  color: #fff;
+  letter-spacing: 4rem;
+  text-shadow: 10px 10px 10px #000000;
+}
+
+.flex-container-placeholder {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding-right: 4rem;
+  padding-top: 3rem;
+}
+
+.placeholder {
+  height: 13rem;
+  width: 13rem;
+  background-color: #ccc;
+  border-radius: 50%;
+  text-align: center;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+}
+
+.logo {
+  width: 11.5rem;
+  height: 11.5rem;
+  border-radius: 50%;
+  margin-right: 115rem;
+  position: absolute;
+  top: 3rem;
+  right: 40rem;
+}
+
+.flex-container-holder {
+  display: flex;
+  gap: 4rem;
+}
+
+.popup-container {
+  border-radius: 12px;
+  background-color: rgba(37, 106, 37, 0.835);
+  width: 40rem;
+  height: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 68rem;
+}
+
+.para {
+  font-size: 4rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.loginError {
+  font-size: 4rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.background-red {
+  background-color: rgba(255, 0, 0, 0.664);
+}
+
+@media only screen and (max-width: 800px) {
+  .flex-container-holder {
+    flex-direction: column;
+  }
+
+  .btn-login {
+    font-size: 2rem;
+  }
+
+  .btn-register {
+    font-size: 2rem;
+  }
+
+  .para {
+    font-size: 3rem;
+  }
+} ;
