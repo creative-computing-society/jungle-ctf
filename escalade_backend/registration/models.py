@@ -30,6 +30,11 @@ class Team(AbstractBaseUser):
     REQUIRED_FIELDS = []
     
     email = models.EmailField(blank=True)
+
+    current_ques = models.CharField(max_length=10, null=True, default=None)
+
+    dummy1 = models.CharField(max_length=50, null=True, default=None)
+    dummy2 = models.CharField(max_length=50, null=True, default=None)
     
 
     def get_short_name(self):
@@ -102,7 +107,4 @@ class Participant(models.Model):
     
     team = models.ForeignKey(Team, on_delete=models.CASCADE, blank=True)
 
-    current_ques = models.CharField(max_length=10, null=True, default=None)
-
-    dummy1 = models.CharField(max_length=50, null=True, default=None)
-    dummy2 = models.CharField(max_length=50, null=True, default=None)
+    
