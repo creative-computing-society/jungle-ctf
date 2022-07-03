@@ -103,7 +103,8 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 68rem;
+  /* bottom: 68rem; */
+  top: 10rem;
 }
 
 .para {

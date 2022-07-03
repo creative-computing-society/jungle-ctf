@@ -6,6 +6,8 @@ const errorEmail1 = document.querySelectorAll(".errEmail1");
 const errorRoll1 = document.querySelectorAll(".errRoll1");
 const errorPhone1 = document.querySelectorAll(".errPhone1");
 const errorDiscord1 = document.querySelectorAll(".errDiscord1");
+const loading = document.querySelector(".center");
+const submit = document.querySelector(".submit-btn");
 
 const popEmail = function () {
   errorEmail[0].classList.toggle("hidden");
@@ -134,3 +136,26 @@ const check10 = function () {
 };
 
 // inputName.addEventListener("click", check);
+
+const renderLoading = function () {
+  submit.classList.toggle("hidden");
+  loading.classList.toggle("hidden");
+};
+
+const startRenderLoading = function () {
+  submit.addEventListener("click", renderLoading);
+};
+
+// startRenderLoading();
+
+// submit.addEventListener("click", startRenderLoading);
+
+document.getElementById("formId").addEventListener("submit", function (e) {
+  // if (!isValid) {
+  //   e.preventDefault(); //stop form from submitting
+  // }
+  // if (isValid) {
+    renderLoading();
+  // }
+  //do whatever an submit the form
+});

@@ -65,7 +65,7 @@ html {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 @media only screen and (max-width: 800px) {
@@ -150,6 +150,19 @@ html {
   .heading-container h1 {
     letter-spacing: 3.5rem;
   }
+
+  .popup-container {
+    border-radius: 12px;
+    background-color: rgba(37, 106, 37, 0.835);
+    width: 27rem;
+    height: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* bottom: 68rem; */
+    top: 12rem !important;
+  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -177,5 +190,11 @@ html {
 
   .heading-container h1 {
     letter-spacing: 3rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .heading-container h1 {
+    letter-spacing: 2rem;
   }
 }

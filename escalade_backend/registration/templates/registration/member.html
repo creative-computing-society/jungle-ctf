@@ -32,7 +32,7 @@
       <div class="contact-box">
         <div class="contact-form-wrapper left">
           <h2 class="heading">Member 1 (required)</h2>
-          <form action="{% url 'membersRegister' %}" method="POST">
+          <form id="formId" action="{% url 'membersRegister' %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
               <input type="text" name="m1Name" onchange="check6();" class="input-name1" required="required" />
@@ -137,6 +137,9 @@
               ><i class="bar"></i>
             </div>
             <button class="submit-btn">Submit</button>
+            <div class="center hidden">
+              <div id="loading" class="loader"></div>
+            </div>
           </form>
         </div>
       </div>
