@@ -140,6 +140,19 @@ html {
   .btn-register {
     margin: 0;
   }
+
+  .popup-container {
+    border-radius: 12px;
+    background-color: rgba(37, 106, 37, 0.835);
+    width: 27rem;
+    height: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* bottom: 68rem; */
+    top: 12rem !important;
+  }
 }
 
 @media only screen and (max-width: 400px) {

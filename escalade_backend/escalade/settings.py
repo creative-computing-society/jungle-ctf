@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',
     'registration',
+    'game',
 ]
 
 MIDDLEWARE = [

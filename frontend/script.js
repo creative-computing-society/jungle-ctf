@@ -43,15 +43,15 @@ const popDiscord1 = function () {
   errorDiscord1[1].classList.toggle("hidden");
 };
 
-popEmail();
-popPhone();
-popDiscord();
-popRoll();
+// popEmail();
+// popPhone();
+// popDiscord();
+// popRoll();
 
-popEmail1();
-popPhone1();
-popDiscord1();
-popRoll1();
+// popEmail1();
+// popPhone1();
+// popDiscord1();
+// popRoll1();
 
 const Name = document.querySelector(".name");
 // console.log(Name);
@@ -146,16 +146,16 @@ const startRenderLoading = function () {
   submit.addEventListener("click", renderLoading);
 };
 
-startRenderLoading();
+// startRenderLoading();
 
 // submit.addEventListener("click", startRenderLoading);
 
 document.getElementById("formId").addEventListener("submit", function (e) {
-  if (!isValid) {
-    e.preventDefault(); //stop form from submitting
-  }
-  if (isValid) {
+  // if (!isValid) {
+  //   e.preventDefault(); //stop form from submitting
+  // }
+  // if (isValid) {
     renderLoading;
-  }
+  // }
   //do whatever an submit the form
 });
