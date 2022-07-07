@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -21,7 +22,7 @@ def login(request):
         if team is not None :
             auth.login(request, team)
             print("logged in successfully")
-            return redirect('/play')
+            return redirect('/start')
         
         else:
             messages.info(request, "Invalid Credentials")
@@ -56,10 +57,12 @@ def getRandomQuestion(team):
         idx = random.randrange(0, len(team.level4), 2)
         ques_id = team.level4[idx: idx+2]
         team.level4 = ques_str.replace(ques_id, '')
-    print(ques_id)
-    ques_id = int(ques_id)%5
-    if ques_id==0:
-        ques_id = 5
+    print('ques_id', ques_id)
+    ques_id = int(ques_id)
+    # ques_id %= 5
+    # if ques_id==0:
+    #     ques_id = 5
+    print(team.level1, ques_str)
     ques = Question.objects.get(id=ques_id)
     return ques
 
@@ -69,13 +72,16 @@ def play(request):
     if request.method=="POST":
         answer = request.POST.get("answer")
         if answer!=team.current_ques.ans:
-            return render(request, "game/start.html", context={
+            return render(request, "game/play.html", context={
                 "wrongAnswer": "true"
             })
-        team.points += 10;
+        ques_str = team.level1 if team.position<=20 else team.level2 if team.position<=40 else team.level3 if team.position<=60 else team.level4
+        if len(ques_str):
+            team.points += 10
         team.position += team.dice_value
         team.dice_value = random.randint(1, 6)
         team.current_ques = getRandomQuestion(team)
+        team.last_solved = datetime.now()
         snakePresent = None
         ladderPresent = None
         snake = BoardSnake.objects.filter(boardNo=team.board, snakeHead=team.position).first()
@@ -89,7 +95,7 @@ def play(request):
                 team.position = ladder.ladderTop
         team.save()
         print(snakePresent, ladderPresent)
-        return render(request, 'game/start.html', context={
+        return render(request, 'game/play.html', context={
             'correctAnswer': 'true',
             'snake': snakePresent,
             'ladder': ladderPresent
@@ -99,17 +105,18 @@ def play(request):
         team.dice_value = random.randint(1, 6)
         team.save()
         print(team.level1)
-    return render(request, 'game/start.html')
+    return render(request, 'game/play.html')
 
 @require_http_methods(['POST'])
 @login_required(login_url="/login")
 def hint(request):
     team = request.user
     hint = None
-    if team.points>=10:
-        hint = team.current_ques.hint
-        team.points -= 10
-        team.save()
+    if team.points<10:
+        return JsonResponse({})
+    hint = team.current_ques.hint
+    team.points -= 10
+    team.save()
     return JsonResponse({
         'hint': hint
     })
@@ -119,7 +126,7 @@ def hint(request):
 def sneakPeak(request):
     team = request.user
     if team.points<25:
-        return JsonResponse()
+        return JsonResponse({})
     team.points -= 25
     nextPos = team.position + team.dice_value
     ladder = False
@@ -127,6 +134,7 @@ def sneakPeak(request):
     if not snake:
         ladder = BoardLadder.objects.filter(ladderBottom=nextPos).exists()
     value = "snake" if snake else "ladder" if ladder else "none"
+    team.save()
     return JsonResponse({
         'value': value
     })
@@ -136,9 +144,7 @@ def sneakPeak(request):
 def reRoll(request):
     team = request.user
     if team.points<15:
-        return JsonResponse({
-            'value': None
-        })
+        return JsonResponse({})
     team.points -= 15
     prevVal = team.dice_value
     value = random.randint(1, 6)
@@ -166,7 +172,7 @@ def getHead(request):
     
 # @login_required(login_url='/login')
 def leaderboard(request):
-    top5=Team.objects.all().values('teamName','position').order_by('-position')[:5]
+    top5=Team.objects.all().values('teamName','position').order_by('-position', '-last_solved', '-points')[:5]
     # print(list(top5))
     # team1={
     #     'teamName': top5[0]['teamName'],
@@ -201,4 +207,7 @@ def leaderboard(request):
     
 @login_required(login_url='/login')
 def start(request):
+    team = request.user
+    if team.current_ques is not None:
+        return redirect('/play')
     return render(request, "game/start.html")

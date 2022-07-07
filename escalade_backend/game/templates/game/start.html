@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,84 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>{{user.teamName}}</h1><br>
-    <div>position: {{user.position}}</div>
-    <div>points: {{user.points}}</div>
-    <div>dice value: {{user.dice_value}}</div>
-    <br>
-    <hr>
-    <br>
-    <div>{{user.current_ques.body}}</div>
-    <form action="{% url 'play' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" name="answer">
-        <button type="submit">Submit</button>
-    </form>
-    <br>
-    <button onclick="fetchHint();">Hint</button>
-    <p id="hint"></p>
-    <br>
-    <br>
-    <button onclick="fetchSneakPeak();">Sneak Peak</button>
-    <p id="sneakPeak"></p>
-    <br>
-    <br>
-    <button onclick="fetchReRoll();">re roll</button>
-    <p id="reRoll"></p>
-    <br>
-    <hr>
-    {% if correctAnswer %}
-    <div>correctAnswer</div>
-    {% endif %}
-    {% if wrongAnswer %}
-    <div>wrongAnswer</div>
-    {% endif %}
-    {% if snake %}
-    <div>snake</div>
-    {% endif %}
-    {% if ladder %}
-    <div>ladder</div>
-    {% endif %}
-</body>
-<script>
-    // Options to be given as parameter
-    // in fetch for making requests
-    // other then GET
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    let options = {
-        method: 'POST',
-        headers: {
-            'Content-Type':
-                'application/json;charset=utf-8',
-            'X-CSRFToken': csrftoken,
-        },
-    }
-    // Fake api for making post requests
-    // let fetchRes = fetch("/sneak-peak/", options);
-    // fetchRes.then(res =>
-    //     res.json()).then(d => {
-    //         console.log(d)
-    //     })
     
-    async function fetchHint() {
-        let response = await fetch('/hint/', options);
-        let data = await response.json();
-        console.log(data)
-        document.getElementById("hint").innerHTML = data.hint;
-    }
+    <a href="{% url 'play' %}">Start Game</a>
 
-    async function fetchSneakPeak() {
-        let response = await fetch('/sneak-peak/', options);
-        let data = await response.json();
-        console.log(data)
-        document.getElementById("sneakPeak").innerHTML = data.value;
-    }
-
-    async function fetchReRoll() {
-        let response = await fetch('/re-roll/', options);
-        let data = await response.json();
-        console.log(data)
-        document.getElementById("reRoll").innerHTML = data.value;
-    }
-</script>
+</body>
 </html>
