@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <center>
+    <table>
+        <tr>
+            <th>Team Name</th>
+            <th>Position</th>
+        </tr>
+        {% for team in teams %}
+            <tr>
+                <td>{{team.teamName}}</td>
+                <td>{{team.position}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </center>
+
+</body>
+</html>

@@ -9,4 +9,6 @@ urlpatterns = [
     path('hint/', views.hint, name='hint'),
     path('re-roll/', views.reRoll, name='reRoll'),
     path('get-head/', views.getHead, name='getHead'),
+    path('leaderboard/', views.leaderboard, name='leaderboard'),
+    path('start/', views.start, name='start'),
 ]
