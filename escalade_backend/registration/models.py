@@ -41,8 +41,6 @@ class Team(AbstractBaseUser):
     level2 = models.CharField(max_length=50, blank=True, default="2122232425262728293031323334353637383940") #remember to delete where snake head or ladder bottom is present
     level3 = models.CharField(max_length=50, blank=True, default="4142434445464748495051525354555657585960") #remember to delete where snake head or ladder bottom is present
     level4 = models.CharField(max_length=50, blank=True, default="6162636465666768697071727374757677787980") #remember to delete where snake head or ladder bottom is present
-    
-    last_solved = models.DateTimeField(null=True, blank=True, default=None, auto_now=False)
 
     def get_short_name(self):
         # The user is identified by their team name

@@ -81,7 +81,6 @@ def play(request):
         team.position += team.dice_value
         team.dice_value = random.randint(1, 6)
         team.current_ques = getRandomQuestion(team)
-        team.last_solved = datetime.now()
         snakePresent = None
         ladderPresent = None
         snake = BoardSnake.objects.filter(boardNo=team.board, snakeHead=team.position).first()
@@ -104,7 +103,6 @@ def play(request):
         team.current_ques = getRandomQuestion(team)
         team.dice_value = random.randint(1, 6)
         team.save()
-        print(team.level1)
     return render(request, 'game/play.html')
 
 @require_http_methods(['POST'])
@@ -172,7 +170,7 @@ def getHead(request):
     
 # @login_required(login_url='/login')
 def leaderboard(request):
-    top5=Team.objects.all().values('teamName','position').order_by('-position', '-last_solved', '-points')[:5]
+    top5=Team.objects.all().values('teamName','position').order_by('-position', '-points')[:5]
     # print(list(top5))
     # team1={
     #     'teamName': top5[0]['teamName'],
