@@ -22,3 +22,6 @@ urlpatterns = [
     path('',include('game.urls')),
     
 ]
+
+# to be implemented when the project is done
+# handler404 = "escalade.views.page_not_found_view"
