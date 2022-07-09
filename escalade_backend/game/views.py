@@ -72,7 +72,7 @@ def play(request):
     if request.method=="POST":
         answer = request.POST.get("answer")
         if answer!=team.current_ques.ans:
-            return render(request, "game/play.html", context={
+            return render(request, "game/test.html", context={
                 "wrongAnswer": "true"
             })
         ques_str = team.level1 if team.position<=20 else team.level2 if team.position<=40 else team.level3 if team.position<=60 else team.level4
@@ -94,7 +94,7 @@ def play(request):
                 team.position = ladder.ladderTop
         team.save()
         print(snakePresent, ladderPresent)
-        return render(request, 'game/play.html', context={
+        return render(request, 'game/test.html', context={
             'correctAnswer': 'true',
             'snake': snakePresent,
             'ladder': ladderPresent
@@ -103,55 +103,56 @@ def play(request):
         team.current_ques = getRandomQuestion(team)
         team.dice_value = random.randint(1, 6)
         team.save()
-    return render(request, 'game/play.html')
+    return render(request, 'game/test.html')
 
 @require_http_methods(['POST'])
 @login_required(login_url="/login")
 def hint(request):
     team = request.user
-    hint = None
-    if team.points<10:
-        return JsonResponse({})
-    hint = team.current_ques.hint
-    team.points -= 10
-    team.save()
+    hint = ''
+    if team.points>=10:
+        hint = team.current_ques.hint
+        team.points -= 10
+        team.save()
     return JsonResponse({
-        'hint': hint
+        'value': hint,
+        'points': team.points
     })
 
 @require_http_methods(["POST"])
 @login_required(login_url="/login")
 def sneakPeak(request):
     team = request.user
-    if team.points<25:
-        return JsonResponse({})
-    team.points -= 25
-    nextPos = team.position + team.dice_value
-    ladder = False
-    snake = BoardSnake.objects.filter(snakeHead=nextPos).exists()
-    if not snake:
-        ladder = BoardLadder.objects.filter(ladderBottom=nextPos).exists()
-    value = "snake" if snake else "ladder" if ladder else "none"
-    team.save()
+    value = ""
+    if team.points>=25:
+        team.points -= 25
+        nextPos = team.position + team.dice_value
+        ladder = False
+        snake = BoardSnake.objects.filter(snakeHead=nextPos).exists()
+        if not snake:
+            ladder = BoardLadder.objects.filter(ladderBottom=nextPos).exists()
+        value = "snake" if snake else "ladder" if ladder else "none"
+        team.save()
     return JsonResponse({
-        'value': value
+        'value': value,
+        'points': team.points
     })
 
 @require_http_methods(["POST"])
 @login_required(login_url='/login')
 def reRoll(request):
     team = request.user
-    if team.points<15:
-        return JsonResponse({})
-    team.points -= 15
-    prevVal = team.dice_value
-    value = random.randint(1, 6)
-    while value==prevVal:
+    if team.points>=15:
+        team.points -= 15
+        prevVal = team.dice_value
         value = random.randint(1, 6)
-    team.dice_value = value
-    team.save()
+        while value==prevVal:
+            value = random.randint(1, 6)
+        team.dice_value = value
+        team.save()
     return JsonResponse({
-        'value': value
+        'value': team.dice_value,
+        'points': team.points
     })
 
 @login_required(login_url='/login')

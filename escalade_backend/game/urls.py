@@ -10,5 +10,6 @@ urlpatterns = [
     path('re-roll/', views.reRoll, name='reRoll'),
     path('get-head/', views.getHead, name='getHead'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
+    path('rulebook/', views.leaderboard, name='rulebook'),
     path('start/', views.start, name='start'),
 ]
