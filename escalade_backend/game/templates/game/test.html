@@ -12,8 +12,11 @@
     <link rel="stylesheet" href="{% static 'game/css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'game/css/dice.css' %}" />
     <link rel="stylesheet" href="{% static 'game/css/popup.css' %}" />
+    <link rel="stylesheet" href="{% static 'game/css/loader.css' %}" />
     <script defer src="{% static 'game/js/test.js' %}"></script>
     <script defer src="{% static 'game/js/dice.js' %}"></script>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,14 +45,56 @@
     />
   </head>
 
-  <body>
+  <body onload = "
+    display();
+    {% if correctAnswer %}correctAnswer();{% endif %}
+    {% if snake %}beforeLocation();
+    setTimeout(monsterReached, 2510);{% endif %}
+    {% if ladder %}beforeLocation();
+    setTimeout(boosterReached, 2510);{% endif %}
+  ">
+
+  <div class="wrapper">
+    <div class="loader">
+      <div class="loader_part loader_part--1"></div>
+      <div class="loader_part loader_part--2"></div>
+      <div class="loader_part loader_part--3"></div>
+    </div>
+  </div>
+  
+  <div class="hidden" id="main_body">
     <div class="popup hidden">
-      <div class="content">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt
-        architecto repudiandae, magnam maiores ipsam explicabo hic natus
-        voluptatibus consectetur commodi perferendis facilis quibusdam sed, quos
-        sequi repellat vero sint dolorem?
-      </div>
+      <div class="content hidden"></div>
+      <lottie-player 
+            src="https://assets10.lottiefiles.com/packages/lf20_sxbsfnm2.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 300px; height: 300px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="boosterGif3"
+          ></lottie-player>
+      <lottie-player
+          src="https://assets10.lottiefiles.com/temporary_files/M7fGjn.json"
+          background="transparent"
+          speed="1"
+          style="width: 300px; height: 300px"
+          loop
+          autoplay
+          class="hidden"
+          id="monsterGif3"
+        ></lottie-player>
+      <lottie-player 
+          src="https://assets10.lottiefiles.com/packages/lf20_m2igjaux.json"  
+          background="transparent"  
+          speed="1"  
+          style="width: 300px; height: 300px;"  
+          loop  
+          autoplay
+          class="hidden"
+          id="noneGif1"
+        ></lottie-player>
       <div class="next">
         <p class="next_text close">x</p>
       </div>
@@ -67,10 +112,10 @@
           <h2 class="text"><a href="{% url 'leaderboard' %}"> LEADERBOARD</a></h2>
         </div>
         <div class="team-name">
-          <h2 class="text">{{user.teamName}}</h2>
+          <h2 class="text">{% if user.teamName|length > 12%}{{user.teamName|truncatechars:11}}{% else %}{{user.teamName}}{% endif %}</h2>
         </div>
         <div class="points">
-          <h2 class="text"><b>POINTS:</b> {{user.points}}</h2>
+          <h2 class="text"><b>POINTS:</b> <span id="pointsText">{{user.points}}<span></h2>
         </div>
         <div class="logout">
           <h2 class="text"><a href="{% url 'logout' %}">LOGOUT</a></h2>
@@ -78,7 +123,16 @@
       </div>
       <div class="top-container">
         <div class="box" id="box1">
-          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+          <lottie-player 
+            src="https://assets10.lottiefiles.com/packages/lf20_sxbsfnm2.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 300px; height: 300px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="boosterGif1"
+          ></lottie-player>
           <lottie-player
             src="https://assets10.lottiefiles.com/temporary_files/M7fGjn.json"
             background="transparent"
@@ -86,31 +140,63 @@
             style="width: 300px; height: 300px"
             loop
             autoplay
-            class="{% if snake == None%}hidden{% endif %}"
+            class="hidden"
+            id="monsterGif1"
           ></lottie-player>
-          <h1 class="{% if snake %}hidden{% endif %}">{% if user.position > 0 %}{{user.position|add:-1}}{% endif %}</h1>
+          <lottie-player 
+            src="https://assets5.lottiefiles.com/packages/lf20_9aa9jkxv.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 250px; height: 250px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="tickMarkGif1"
+          ></lottie-player>
+          <h1 id="prevLocText">{% if user.position > 0 %}{{user.position|add:-1}}{% endif %}</h1>
         </div>
         <div class="box" id="box2">
-          <h1>{{user.position}}</h1>
+          <h1 id="beforeLocText" class="hidden">{{beforeLocation}}</h1>
+          <h1 id="currLocText">{{user.position}}</h1>
         </div>
         <div class="box" id="box3">
-          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+          <lottie-player 
+            src="https://assets10.lottiefiles.com/packages/lf20_sxbsfnm2.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 300px; height: 300px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="boosterGif2"
+          ></lottie-player>
           <lottie-player
-            src="https://assets10.lottiefiles.com/packages/lf20_m2igjaux.json"
+            src="https://assets10.lottiefiles.com/temporary_files/M7fGjn.json"
             background="transparent"
             speed="1"
             style="width: 300px; height: 300px"
             loop
             autoplay
-            class="{% if ladder == None%}hidden{% endif %}"
+            class="hidden"
+            id="monsterGif2"
           ></lottie-player>
-          <h1 class="{% if ladder %}hidden{% endif %}">{{user.position|add:1}}</h1>
+          <lottie-player 
+            src="https://assets5.lottiefiles.com/packages/lf20_9aa9jkxv.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 250px; height: 250px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="tickMarkGif2"
+          ></lottie-player>
+          <h1 id="nextLocText">{{user.position|add:1}}</h1>
         </div>
       </div>
       <span id="diceResult" class="hidden">{{user.dice_value}}</span>
       <div class="middle-container {% if wrongAnswer %}hidden{% endif %}">
         <div class="dice dice-center-container">
-          <div id="dice" data-side="1">
+          <div id="dice" data-side="{{user.dice_value}}">
             <div class="sides side-1">
               <span class="dot dot-1"></span>
             </div>
@@ -149,11 +235,18 @@
       </div>
       <div class="bottom-container {% if wrongAnswer %}hidden{% endif %}">
         <div class="option" id="reroll"></div>
+        <div id="reRollLoading" class="center hidden">
+          <div class="loading loader"></div>
+        </div>
         <div class="option" id="sneak-peek"></div>
+        <div id="sneakPeekLoading" class="center hidden">
+          <div class="loading loader"></div>
+        </div>
         <div class="option" id="continue"></div>
       </div>
 
-      <div class="middle-container2 {% if wrongAnswer == None %}hidden{% endif %}">
+      <div class="grid-container {% if wrongAnswer == None %}hidden{% endif %}">
+      <!--<div class="middle-container2 {% if wrongAnswer == None %}hidden{% endif %}">-->
         <div class="dice dice-center-container dice-right-shift">
           <div id="dice2" data-side="{{user.dice_value}}">
             <div class="sides side-1">
@@ -198,9 +291,12 @@
             >
           </h2>
         </div>
-      </div>
-      <div class="bottom-container2 {% if wrongAnswer == None %}hidden{% endif %}">
+      <!-- </div> -->
+       <!-- <div class="bottom-container2 {% if wrongAnswer == None %}hidden{% endif %}">  -->
         <div id="hint" class="hint"></div>
+        <div id="hintLoading" class="center hidden">
+          <div class="loading loader"></div>
+        </div>
         <form class="answer" action="{% url 'play' %}" method="POST">
           {% csrf_token %}
           <input
@@ -209,9 +305,13 @@
             type="text"
             name="answer"
           />
-          <label id="wrongAnsLabel" class="placeholder {% if wrongAnswer == None%}hidden{% endif %}">Incorrect answer</label>
+          <label id="wrongAnsLabel" class="placeholder {% if wrongAnswer == None%}hidden{% endif %}">INCORRECT ANSWER</label>
+          <div id="formSubmitLoading" class="center hidden">
+            <div class="loading loader"></div>
+          </div>
         </form>
       </div>
     </section>
+  </div>
   </body>
 </html>

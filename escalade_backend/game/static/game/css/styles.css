@@ -29,8 +29,9 @@ body {
   border: 3.5px solid white;
   /* width: 380px;
   height: 300px; */
-  width: 20rem;
-  height: 15.789rem;
+  /* width: 20rem; */
+  width: 28%;
+  height: 16.789rem;
   border-radius: 20px;
   justify-content: space-around;
   /* align-items: center; */
@@ -102,11 +103,12 @@ h1 {
 }
 .option {
   border: 2px solid white;
-  width: 230px;
+  width: 240px;
   height: 65px;
   border-radius: 15px;
   overflow: hidden;
   text-align: center;
+  cursor: pointer;
 }
 #reroll {
   background-color: #5acfb6;
@@ -114,7 +116,7 @@ h1 {
 #reroll::before {
   content: "RE-ROLL";
   text-align: center;
-  font-family: "Kanit", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   font-size: 28px;
   letter-spacing: 5px;
@@ -128,7 +130,7 @@ h1 {
 #reroll::after {
   content: " POINTS=15";
   text-align: center;
-  font-family: "Kanit", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   font-size: 24px;
   letter-spacing: 5px;
@@ -146,10 +148,10 @@ h1 {
 #sneak-peek::before {
   content: "SNEAKPEEK";
   text-align: center;
-  font-family: "Kanit", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   font-size: 28px;
-  letter-spacing: 7px;
+  letter-spacing: 6px;
   line-height: 60px;
   position: relative;
   right: -7px;
@@ -160,14 +162,14 @@ h1 {
 #sneak-peek::after {
   content: "POINTS=25";
   text-align: center;
-  font-family: "Kanit", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   font-size: 24px;
   letter-spacing: 5px;
   line-height: 60px;
   position: relative;
   top: 50px;
-  right: 180px;
+  right: 200px;
 }
 #sneak-peek:hover::after {
   top: 0px;
@@ -178,7 +180,7 @@ h1 {
 #continue::before {
   content: "CONTINUE";
   text-align: center;
-  font-family: "Kanit", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   font-size: 28px;
   letter-spacing: 7px;
@@ -211,15 +213,18 @@ h1 {
   height: 65px;
   border-radius: 15px;
   background-color: #5acfb6;
-  position: relative;
-  right: 70px;
-  top: 5px;
+  /* position: relative; */
+  /* right: 70px;
+  top: 5px; */
   overflow: hidden;
+  cursor: pointer;
+  
+  margin: auto;
 }
 .hint::after {
   content: "HINT";
   text-align: center;
-  font-family: "Kanit", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   position: relative;
   top: 10px;
@@ -236,7 +241,7 @@ h1 {
 /* .hint::before{
     content: "10 POINTS";
     text-align: center;
-    font-family:  'Kanit', sans-serif;
+    font-family:  'Montserrat', sans-serif;
     font-weight: bolder;
     position: relative;
     top: 10px;
@@ -263,7 +268,7 @@ h1 {
   height: 50px;
   font-size: x-large;
   color: white;
-  font-family: "Kanit", sans-serif;
+  font-family: "Montserrat", sans-serif;
   /* font-stretch: expanded; */
   letter-spacing: 3px;
   outline: none;
@@ -272,7 +277,7 @@ h1 {
   border: 3px solid white;
   height: 140px;
   width: 700px;
-  position: relative;
+  /* position: relative; */
   top: 60px;
   left: 40px;
   border-radius: 20px;
@@ -286,7 +291,7 @@ h1 {
   margin-bottom: 13px;
   margin-left: 15px;
   margin-right: 15px;
-  font-family: "Kanit", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: white;
   line-height: 23px;
   text-align: center;
@@ -349,16 +354,16 @@ h1 {
   margin-bottom: 40px;
   text-align: center;
   /* margin-right: 5px; */
-  font-family: "Kanit", sans-serif;
-  letter-spacing: 4.5px;
-  font-size: 23px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 2.5px;
+  font-size: 20px;
 }
 a {
   text-decoration: none;
   color: black;
 }
 a:hover {
-  font-size: 25px;
+  font-size: 22px;
 }
 .only {
   height: 1vh;
@@ -380,26 +385,126 @@ input::placeholder {
 
 .dice-right-shift {
   margin-right: -10%;
+  
+  margin: auto;
 }
 
-#answer-space {
-  position: relative;
-}
+/* #answer-space { */
+  /* position: relative; */
+/* } */
 
 .placeholder {
+  font-family: "Montserrat", sans-serif;
   display: inline-block;
   color: red;
+  
   font-size: 2rem;
+  /* font-size: 2rem; */
+  
   display: flex;
   text-align: center;
   width: inherit;
   position: absolute;
-  top: 30%;
-  right: 18%;
+
+  top: 86%;
+  /* top: 30%; */
+  /* right: 18%; */
+  
   text-align: right;
-  letter-spacing: 0.8rem;
+  letter-spacing: 0.6rem;
 }
 
 #wrongAnsLabel {
   cursor: text;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  border: 2px solid white;
+  width: 230px;
+  height: 65px;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  background-color: #5acfb6;
+}
+
+#hintLoading {
+  margin:auto;
+  /* position: relative;
+  right: 70px;
+  top: 5px; */
+}
+
+.loading {
+  margin: 0;
+}
+
+.loading {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  /* border: 4px solid rgba(255, 255, 255, 0.3); */
+  border: 4px solid #ffffff83;
+  border-radius: 50%;
+  /* border-top-color: #ec6526; */
+  border-top-color: #2c3c53;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+  /* margin-left: -5rem; */
+  align-self: center;
+}
+
+#formSubmitLoading {
+  border: none;
+  background: none;
+  width: 500px;
+  position: relative;
+  top: 10px;
+  height: 65px;
+  outline: none;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid: auto auto / 250px auto;
+  width: 100%;
+  position: relative;
+  top: 150px;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+.answer {
+  justify-self: center;
+}
+
+@media screen and (min-width: 1400px) {
+  .question {
+    width: 800px;
+  }
+}
+@media screen and (min-width: 1850px) {
+  .question {
+    width: 900px;
+  }
+}
+@media screen and (min-width: 2300px) {
+  .question {
+    width: 1000px;
+  }
 }

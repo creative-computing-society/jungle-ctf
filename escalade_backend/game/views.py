@@ -72,15 +72,18 @@ def play(request):
     if request.method=="POST":
         answer = request.POST.get("answer")
         if answer!=team.current_ques.ans:
-            return render(request, "game/test.html", context={
-                "wrongAnswer": "true"
-            })
+            messages.error(request, "wrongAnswer", 'wrong')
+            return redirect('/play')
+            # return render(request, "game/test.html", context={
+            #     "wrongAnswer": "true"
+            # })
         ques_str = team.level1 if team.position<=20 else team.level2 if team.position<=40 else team.level3 if team.position<=60 else team.level4
         if len(ques_str):
             team.points += 10
         team.position += team.dice_value
         team.dice_value = random.randint(1, 6)
         team.current_ques = getRandomQuestion(team)
+        beforeLocation = team.position
         snakePresent = None
         ladderPresent = None
         snake = BoardSnake.objects.filter(boardNo=team.board, snakeHead=team.position).first()
@@ -93,17 +96,40 @@ def play(request):
                 ladderPresent = "yes"
                 team.position = ladder.ladderTop
         team.save()
-        print(snakePresent, ladderPresent)
-        return render(request, 'game/test.html', context={
-            'correctAnswer': 'true',
-            'snake': snakePresent,
-            'ladder': ladderPresent
-        })
+        messages.success(request, "correctAnswer", 'correct')
+        if snakePresent:
+            messages.info(request, "snakePresent", 'snake')
+        if ladderPresent:
+            messages.info(request, "snakePresent", 'ladder')
+        messages.info(request, f"{beforeLocation}", 'before_location')
+        return redirect('/play')
+        # return render(request, 'game/test.html', context={
+        #     'correctAnswer': 'true',
+        #     'snake': snakePresent,
+        #     'ladder': ladderPresent,
+        #     'beforeLocation': beforeLocation
+        # })
+    context = {}
     if team.current_ques==None:
         team.current_ques = getRandomQuestion(team)
         team.dice_value = random.randint(1, 6)
         team.save()
-    return render(request, 'game/test.html')
+    else:
+        msgs = messages.get_messages(request)
+        for msg in msgs:
+            print(str(msg.tags))
+            if msg.tags=='correct success':
+                context['correctAnswer'] = True
+            elif msg.tags=='snake info':
+                context['snake'] = True
+            elif msg.tags=='ladder info':
+                context['ladder'] = True
+            elif msg.tags=='before_location info':
+                context['beforeLocation'] = str(msg)
+            elif msg.tags=='wrong error':
+                context['wrongAnswer'] = True
+        msgs.used = True
+    return render(request, 'game/test.html', context=context)
 
 @require_http_methods(['POST'])
 @login_required(login_url="/login")
@@ -131,7 +157,7 @@ def sneakPeak(request):
         snake = BoardSnake.objects.filter(snakeHead=nextPos).exists()
         if not snake:
             ladder = BoardLadder.objects.filter(ladderBottom=nextPos).exists()
-        value = "snake" if snake else "ladder" if ladder else "none"
+        value = "monster" if snake else "booster" if ladder else "none"
         team.save()
     return JsonResponse({
         'value': value,

@@ -32,8 +32,10 @@
   border: 3px solid #ffffff;
   border-radius: 30px;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 @media only screen and (min-width: 375px) and (max-width: 812px) {
@@ -56,7 +58,7 @@
 .next {
   display: flex;
   justify-content: flex-end;
-  margin-left: 50%;
+  /* margin-left: 50%; */
 }
 
 .next_text {
@@ -94,6 +96,6 @@
 .popup {
   position: absolute;
   top: 5.6rem;
-  right: 1.5rem;
-  left: 1.5rem;
+  right: 1rem;
+  left: 1rem;
 }
