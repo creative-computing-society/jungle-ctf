@@ -173,36 +173,36 @@ def getHead(request):
 def leaderboard(request):
     top5=Team.objects.all().values('teamName','position').order_by('-position', '-points')[:5]
     # print(list(top5))
-    # team1={
-    #     'teamName': top5[0]['teamName'],
-    #     'position': top5[0]['position']
-    # }
-    # team2={
-    #     'teamName': top5[1]['teamName'],
-    #     'position': top5[1]['position']
-    # }
-    # team3={
-    #     'teamName': top5[2]['teamName'],
-    #     'position': top5[2]['position']
-    # }
-    # team4={
-    #     'teamName': top5[3]['teamName'],
-    #     'position': top5[3]['position']
-    # }
-    # team5={
-    #     'teamName': top5[4]['teamName'],
-    #     'position': top5[4]['position']
-    # }
+    team1={
+        'teamName': top5[0]['teamName'],
+        'position': top5[0]['position']
+    }
+    team2={
+        'teamName': top5[1]['teamName'],
+        'position': top5[1]['position']
+    }
+    team3={
+        'teamName': top5[2]['teamName'],
+        'position': top5[2]['position']
+    }
+    team4={
+        'teamName': top5[3]['teamName'],
+        'position': top5[3]['position']
+    }
+    team5={
+        'teamName': top5[4]['teamName'],
+        'position': top5[4]['position']
+    }
    
-    return render(request, "game/lead.html",context={'teams':list(top5)})
-    # return render(request, "game/lead.html",context={
-    #     'team1': team1,
-    #     'team2': team2,
-    #     'team3': team3,
-    #     'team4': team4,
-    #     'team5': team5,
-    #     'teams':list(top5)
-    # })
+    # return render(request, "game/scoreboard.html",context={'teams':list(top5)})
+    return render(request, "game/scoreboard.html",context={
+        'team1': team1,
+        'team2': team2,
+        'team3': team3,
+        'team4': team4,
+        'team5': team5,
+        'teams':list(top5)
+    })
     
 @login_required(login_url='/login')
 def start(request):
@@ -210,3 +210,8 @@ def start(request):
     if team.current_ques is not None:
         return redirect('/play')
     return render(request, "game/start.html")
+
+# @login_required(login_url='/login')
+def game_over(request):
+    
+    return render(request, "game/game_over.html",)

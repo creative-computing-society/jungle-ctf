@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,18 +6,18 @@
     <title>Game Finished!</title>
     <link href="https://fonts.google.com/specimen/Cinzel+Decorative#standard-styles" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="game_over_style.css">       
+    <link rel="stylesheet" href="{% static 'css/game_over_style.css' %}">       
 </head>
 <body>
     <header>
         
             <div class="logo">
-                <img src="escaladeLogowhite.png" alt="">
+                <img src="img/escaladeLogowhite.png" alt="">
         
         <div class="banner-text">
-            <h1>Congratulations!</h1>
+            <h1>Congratulations! </h1>
             <p>You have successfully completed the game.<br> Thank You for participating in Escalade.<br>The results will be declared soon !</p>
-            <a href="#">Leaderboard</a>
+            <a href="{% url 'leaderboard' %}">Leaderboard</a>
         </div>
     </header>
 

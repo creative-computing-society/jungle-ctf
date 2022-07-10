@@ -8,7 +8,7 @@ body {
 }
 
 header {
-	background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url('game_over_1.jpg');
+	background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url('../img/game_over_1.jpg');
 	height: 100vh;
 	-webkit-background-size: cover;
 	background-size: cover;
