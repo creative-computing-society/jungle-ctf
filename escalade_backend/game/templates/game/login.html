@@ -1,18 +1,70 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-        <input type="text" name="TeamName" placeholder="username"><br>
-        <input type="password" name="password" placeholder="password"><br>
-        <input type="submit" value="Login">
-    </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="{% static 'form.js' %}"></script>
+    <title>Registration Form</title>
+  </head>
+  <body>
+    <div class="text1">LOGIN TO START</div>
+    <section id="contact">
+      <div class="contact-box">
+        <div class="contact-links">
+          <!-- <div class="links"> -->
+          <div class="link">
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+            <lottie-player
+              src="https://assets9.lottiefiles.com/packages/lf20_i9arxzcg.json"
+              background="transparent"
+              speed="1"
+              class="gif"
+              style="width: 500px; height: 500px"
+              loop
+              autoplay
+            ></lottie-player>
+          </div>
+          <!-- </div> -->
+        </div>
+        <div class="contact-form-wrapper">
+          <h2 class="heading">Login</h2>
+          <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" required="required" name="TeamName"/>
+              <label for="input" class="control-label errTeamName"
+                >Team Name</label
+              >
+              <label
+                for="input"
+                class="control-label errTeamName orange-text hidden"
+                >No Such Team Exists</label
+              ><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+              <input type="password" required="required" name="password" />
+              <label for="input" class="control-label errPassword"
+                >Password</label
+              >
+              <label
+                for="input"
+                class="control-label errPassword orange-text hidden"
+                >Incorrect Password</label
+              ><i class="bar"></i>
+            </div>
+
+            <input type="submit" class="submit-btn" value="Next" >
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

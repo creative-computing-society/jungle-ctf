@@ -69,6 +69,8 @@ def getRandomQuestion(team):
 @login_required(login_url="/login")
 def play(request):
     team = request.user
+    if team.position>80:
+        return render(request, "game/game_over.html",context={'teamName':team.teamName})
     if request.method=="POST":
         answer = request.POST.get("answer")
         if answer!=team.current_ques.ans:
@@ -233,11 +235,11 @@ def leaderboard(request):
 @login_required(login_url='/login')
 def start(request):
     team = request.user
-    if team.current_ques is not None:
-        return redirect('/play')
+    
     return render(request, "game/start.html")
 
 # @login_required(login_url='/login')
 def game_over(request):
-    
-    return render(request, "game/game_over.html",)
+    team=request.user
+    teamName=team.teamName
+    return render(request, "game/game_over.html",context={'teamName':teamName})
