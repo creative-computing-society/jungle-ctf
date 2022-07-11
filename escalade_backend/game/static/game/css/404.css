@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(b.jpg);
+    background: url('/game/img/404.jpg');
     background-repeat: no-repeat;
     max-width: 100%;
     min-height: 100vh;
