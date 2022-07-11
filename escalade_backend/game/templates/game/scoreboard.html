@@ -1,88 +1,49 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=	, initial-scale=1.0">
-    <title>Leaderboard</title>
-    <link rel="stylesheet" href="{% static 'css/scoreb.css' %}">
-</head>
-<body>
-    <div class="leaderboard">
+<html>
+  <title>Leaderboard</title>
+  <head>
+    <link rel="stylesheet" href="{% static 'css\Leaderboard.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-        <div class="description">
-            <h2 id="h3">LEADERBOARD</h2>
+  <body>
 
+<a href="#"class="arrow" ><span><</span></a>
 
-        </div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>
-                          <h3 class="okay">RANK</h3>
-                        </td>
-                        <td >
-                          <h3 class="okay">PLAYER</h3>
-                        </td>
-                        <td>
-                            <h3 class="okay">POSITION</h3>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="winner">🥇</td>
-                        <td><p> {{team1.teamName}}</p></td>
-                        <td>{{team1.position}} </td>
+    <div class="top">LEADERBOARD</div>
 
-                    </tr>
-
-                    <tr>
-                        <td id="runner-up">🥈</td>
-                        <td><p>{{team2.teamName}} </p></td>
-                        <td>{{team2.position}} </td>
-
-                    </tr>
-
-                    <tr>
-                        <td id="second-runner-up">  🥉</td>
-                        <td><p>{{team3.teamName}} </p></td>
-                        <td>{{team3.position}} </td>
-
-                    </tr>
-
-                    <tr>
-                        <td>4</td>
-                        <td><p>{{team4.teamName}} </p></td>
-                        <td>{{team4.position}} </td>
-
-                    </tr>
-
-                    <tr>
-                        <td>5</td>
-                        <td><p>{{team5.teamName}} </p></td>
-                        <td>{{team5.position}} </td>
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-</body>
-<script>
-    function search(){
-        var text = document.getElementById('search').value;
-        const tr = document.getElementsByTagName('tr');
-        for (let i=1;i<tr.length;i++){
-            if(!tr[i].children[1].children[1].innerHTML.toLowerCase().includes(
-                text.toLowerCase()
-            )){
-                tr[i].style.display = 'none';
-            }
-            else{
-                tr[i].style.display = '';
-            }
-        }
-    }
-</script>
+    <div class="main-flex-container">
+      <div class="secondary-flex" id="first-line">
+        <div class="flex-element">Rank</div>
+        <div class="flex-element">Team</div>
+        <div class="flex-element">Position</div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">🥇</div>
+        <div class="flex-element">{{team1.teamName}}</div>
+        <div class="flex-element">{{team1.position}} </div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">🥈</div>
+        <div class="flex-element">{{team2.teamName}} </div>
+        <div class="flex-element">{{team2.position}} </div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">🥉</div>
+        <div class="flex-element">{{team3.teamName}} </div>
+        <div class="flex-element">{{team3.position}} </div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">4</div>
+        <div class="flex-element">{{team4.teamName}} </div>
+        <div class="flex-element">{{team4.position}} </div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">5</div>
+        <div class="flex-element">{{team5.teamName}} </div>
+        <div class="flex-element">{{team5.position}} </div>
+      </div>
+    </div>
+  </body>
 </html>
