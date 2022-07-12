@@ -12,16 +12,16 @@ class Question(models.Model):
     def __str__(self):
         return str(self.id)
 
-class BoardSnake(models.Model):
+class Opposer(models.Model):
     boardNo = models.IntegerField()
-    snakeHead = models.IntegerField()
-    snakeTail = models.IntegerField()
-    
-class BoardLadder(models.Model):
+    start = models.IntegerField()
+    end = models.IntegerField()
+
+class Booster(models.Model):
     boardNo = models.IntegerField()
-    ladderBottom = models.IntegerField()
-    ladderTop = models.IntegerField()
-    
+    start = models.IntegerField()
+    end = models.IntegerField()
+
 # class board(models.Model):
 #     boardNo=models.IntegerField()
 #     snake=models.ForeignKey(boardSnake, on_delete=models.CASCADE, blank=True)

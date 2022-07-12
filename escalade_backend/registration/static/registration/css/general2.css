@@ -88,6 +88,12 @@ html {
     width: 10rem;
     font-size: 5rem;
   }
+
+  .sponsor-heading {
+    font-size: 6rem;
+    letter-spacing: 3.5rem;
+    padding-left: 3.5rem;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -120,6 +126,12 @@ html {
     width: 10rem;
     font-size: 4.5rem;
   }
+
+  .sponsor-heading {
+    font-size: 6rem;
+    letter-spacing: 3.5rem;
+    padding-left: 3.5rem;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -149,6 +161,7 @@ html {
 
   .heading-container h1 {
     letter-spacing: 3.5rem;
+    padding-left: 3.5rem;
   }
 
   .popup-container {
@@ -163,13 +176,19 @@ html {
     /* bottom: 68rem; */
     top: 12rem !important;
   }
+
+  .sponsor-heading {
+    font-size: 4.5rem;
+    letter-spacing: 3rem;
+    padding-left: 3rem;
+  }
 }
 
 @media only screen and (max-width: 450px) {
   .heading-primary {
     font-size: 4rem;
     /* letter-spacing: 0.2rem; */
-    margin-left: -2rem;
+    /* margin-left: -2rem; */
   }
 
   .placeholder {
@@ -180,21 +199,33 @@ html {
 
   .btn-register {
     margin: 0;
-    margin-left: 6rem;
+    /* margin-left: 6rem; */
   }
 
   .heading-container {
     margin-top: 24rem;
-    margin-left: 2rem;
+    /* margin-left: 2rem; */
   }
 
   .heading-container h1 {
     letter-spacing: 3rem;
+    padding-left: 3rem;
+  }
+
+  .sponsor-heading {
+    font-size: 4rem;
+    letter-spacing: 2.5rem;
+    padding-left: 2.5rem;
   }
 }
 
 @media only screen and (max-width: 400px) {
   .heading-container h1 {
     letter-spacing: 2rem;
+    padding-left: 2rem;
+  }
+  .sponsor-heading {
+    letter-spacing: 1.5rem;
+    padding-left: 1.5rem;
   }
 }

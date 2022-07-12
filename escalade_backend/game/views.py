@@ -5,9 +5,8 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 import django.contrib.auth as auth
-from django.utils.safestring import mark_safe
 
-from .models import BoardLadder, BoardSnake, Question
+from .models import Booster, Opposer, Question
 from registration.models import Team
 
 
@@ -33,6 +32,8 @@ def login(request):
     return render(request, 'game/login.html')
 
 def logout(request):
+    if request.user.is_anonymous:
+        return redirect('/login')
     auth.logout(request)
     return redirect('/login')
 
@@ -96,29 +97,29 @@ def play(request):
         prev_ques_id = team.current_ques.id
         team.current_ques = getRandomQuestion(team, prev_ques_id)
         beforeLocation = team.position
-        snakePresent = None
-        ladderPresent = None
-        snake = BoardSnake.objects.filter(boardNo=team.board, snakeHead=team.position).first()
-        if snake is not None:
-            snakePresent = "yes"
-            team.position = snake.snakeTail
+        opposerPresent = False
+        boosterPresent = False
+        opposer = Opposer.objects.filter(boardNo=team.board, start=team.position).first()
+        if opposer is not None:
+            opposerPresent = True
+            team.position = opposer.end
         else:
-            ladder = BoardLadder.objects.filter(boardNo=team.board, ladderBottom=team.position).first()
-            if ladder is not None:
-                ladderPresent = "yes"
-                team.position = ladder.ladderTop
+            booster = Booster.objects.filter(boardNo=team.board, start=team.position).first()
+            if booster is not None:
+                boosterPresent = True
+                team.position = booster.end
         team.save()
         messages.success(request, "correctAnswer", 'correct')
-        if snakePresent:
-            messages.info(request, "snakePresent", 'snake')
-        if ladderPresent:
-            messages.info(request, "snakePresent", 'ladder')
+        if opposerPresent:
+            messages.info(request, "opposerPresent", 'opposer')
+        if boosterPresent:
+            messages.info(request, "opposerPresent", 'booster')
         messages.info(request, f"{beforeLocation}", 'before_location')
         return redirect('/play')
         # return render(request, 'game/test.html', context={
         #     'correctAnswer': 'true',
-        #     'snake': snakePresent,
-        #     'ladder': ladderPresent,
+        #     'opposer': opposerPresent,
+        #     'booster': boosterPresent,
         #     'beforeLocation': beforeLocation
         # })
     context = {}
@@ -132,10 +133,10 @@ def play(request):
             print(str(msg.tags))
             if msg.tags=='correct success':
                 context['correctAnswer'] = True
-            elif msg.tags=='snake info':
-                context['snake'] = True
-            elif msg.tags=='ladder info':
-                context['ladder'] = True
+            elif msg.tags=='opposer info':
+                context['opposer'] = True
+            elif msg.tags=='booster info':
+                context['booster'] = True
             elif msg.tags=='before_location info':
                 context['beforeLocation'] = str(msg)
             elif msg.tags=='wrong error':
@@ -165,11 +166,11 @@ def sneakPeek(request):
     if team.points>=25:
         team.points -= 25
         nextPos = team.position + team.dice_value
-        ladder = False
-        snake = BoardSnake.objects.filter(snakeHead=nextPos).exists()
-        if not snake:
-            ladder = BoardLadder.objects.filter(ladderBottom=nextPos).exists()
-        value = "monster" if snake else "booster" if ladder else "none"
+        booster = False
+        opposer = Opposer.objects.filter(start=nextPos).exists()
+        if not opposer:
+            booster = Booster.objects.filter(start=nextPos).exists()
+        value = "opposer" if opposer else "booster" if booster else "none"
         team.save()
     return JsonResponse({
         'value': value,

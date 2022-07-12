@@ -52,7 +52,7 @@
   font-size: 23px;
   line-height: 36px;
   color: #ffffff;
-  transform: translateX(50%);
+  /* transform: translateX(50%); */
 }
 
 .next {

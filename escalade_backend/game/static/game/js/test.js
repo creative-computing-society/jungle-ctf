@@ -14,7 +14,7 @@ const hintWrapper = document.getElementById("hintWrapper");
 const popup = document.querySelector(".popup");
 const popupContent = document.querySelector(".popup .content");
 const popupBoosterGif = document.getElementById("boosterGif3");
-const popupMonsterGif = document.getElementById("monsterGif3");
+const popupOpposerGif = document.getElementById("opposerGif3");
 const popupNoneGif = document.getElementById("noneGif1");
 
 const points = document.querySelector(".points");
@@ -26,8 +26,8 @@ const grid_cont = document.querySelector(".grid-container");
 
 const tickMarkGif1 = document.getElementById('tickMarkGif1');
 const tickMarkGif2 = document.getElementById('tickMarkGif2');
-const monsterGif1 = document.getElementById('monsterGif1');
-const monsterGif2 = document.getElementById('monsterGif2');
+const opposerGif1 = document.getElementById('opposerGif1');
+const opposerGif2 = document.getElementById('opposerGif2');
 const boosterGif1 = document.getElementById('boosterGif1');
 const boosterGif2 = document.getElementById('boosterGif2');
 const prevLocText = document.getElementById('prevLocText');
@@ -45,7 +45,7 @@ const formSubmitLoading = document.getElementById("formSubmitLoading");
 reRoll.addEventListener("click", function () {
   // popup.classList.remove("hidden");
   if(pointsText>=15) {
-    reRoll.classList.add("hidden");
+    reRollWrapper.classList.add("hidden");
     reRollLoading.classList.remove("hidden");
       fetchReRoll();
   }
@@ -54,7 +54,7 @@ reRoll.addEventListener("click", function () {
 sneakPeek.addEventListener("click", function () {
   // popup.classList.remove("hidden");
   if(pointsText>=25) {
-    sneakPeek.classList.add("hidden");
+    sneakPeekWrapper.classList.add("hidden");
     sneakPeekLoading.classList.remove("hidden");
       fetchsneakPeek();
   }
@@ -62,7 +62,7 @@ sneakPeek.addEventListener("click", function () {
 
 hint.addEventListener("click", function () {
   if(pointsText>=10) {
-    hint.classList.add("hidden");
+    hintWrapper.classList.add("hidden");
     hintLoading.classList.remove("hidden");
       fetchHint();
   }
@@ -104,13 +104,13 @@ async function fetchHint() {
   popupContent.innerHTML = data.value;
   points.innerHTML = "<h2 class='text'><b>POINTS:</b> "+data.points+"</h2>"
   pointsText = data.points;
-  popupMonsterGif.classList.add("hidden");
+  popupOpposerGif.classList.add("hidden");
   popupBoosterGif.classList.add("hidden");
   popupNoneGif.classList.add("hidden");
   popup.classList.remove("hidden");
   popupContent.classList.remove("hidden");
   hintLoading.classList.add("hidden");
-  hint.classList.remove("hidden");
+  hintWrapper.classList.remove("hidden");
   setButtonsByPoints();
 }
 
@@ -122,14 +122,14 @@ async function fetchsneakPeek() {
   points.innerHTML = "<h2 class='text'><b>POINTS:</b> "+data.points+"</h2>"
   pointsText = data.points;
   popup.classList.remove("hidden");
-  popupMonsterGif.classList.add("hidden");
+  popupOpposerGif.classList.add("hidden");
   popupBoosterGif.classList.add("hidden");
   popupNoneGif.classList.add("hidden");
   popupContent.classList.add("hidden");
-  if(data.value=='monster') {
+  if(data.value=='opposer') {
     popup.style.backgroundImage = "url('../../static/game/img/bg_none.jpg')";
-    // popupContent.innerHTML = "There is a Monster ahead!";
-    popupMonsterGif.classList.remove("hidden");
+    // popupContent.innerHTML = "There is a opposer ahead!";
+    popupOpposerGif.classList.remove("hidden");
   }
   else if(data.value=='none') {
     popup.style.backgroundImage = 'url("../../static/game/img/nonebg2.jpg")';
@@ -143,7 +143,7 @@ async function fetchsneakPeek() {
     popupBoosterGif.classList.remove("hidden");
   }
   sneakPeekLoading.classList.add("hidden");
-  sneakPeek.classList.remove("hidden");
+  sneakPeekWrapper.classList.remove("hidden");
   setButtonsByPoints();
 }
 
@@ -156,7 +156,7 @@ async function fetchReRoll() {
   pointsText = data.points;
   rollDice();
   reRollLoading.classList.add("hidden");
-  reRoll.classList.remove("hidden");
+  reRollWrapper.classList.remove("hidden");
   setButtonsByPoints();
 }
 
@@ -205,19 +205,19 @@ const beforeLocation = function() {
   setTimeout(currentLocation, 2500);
 };
 
-const normaliseMonster = function() {
-  monsterGif1.classList.add("hidden");
-  monsterGif2.classList.add("hidden");
+const normaliseOpposer = function() {
+  opposerGif1.classList.add("hidden");
+  opposerGif2.classList.add("hidden");
   prevLocText.classList.remove("hidden");
   nextLocText.classList.remove("hidden");
 };
 
-const monsterReached = function() {
-  monsterGif1.classList.remove("hidden");
-  monsterGif2.classList.remove("hidden");
+const opposerReached = function() {
+  opposerGif1.classList.remove("hidden");
+  opposerGif2.classList.remove("hidden");
   prevLocText.classList.add("hidden");
   nextLocText.classList.add("hidden");
-  setTimeout(normaliseMonster, 4000);
+  setTimeout(normaliseOpposer, 4500);
 };
 
 const normaliseBooster = function() {
@@ -232,7 +232,7 @@ const boosterReached = function() {
   boosterGif2.classList.remove("hidden");
   prevLocText.classList.add("hidden");
   nextLocText.classList.add("hidden");
-  setTimeout(normaliseBooster, 4000);
+  setTimeout(normaliseBooster, 4500);
 };
 
 const display = function(){
@@ -261,3 +261,20 @@ const setButtonsByPoints = function() {
 };
 
 setButtonsByPoints();
+
+const hintPop = document.getElementsByClassName("hint-pop")
+const mouseenter = function () {
+  hintPop[0].classList.add("hidden");
+  hintPop[1].classList.remove("hidden");
+};
+const mouseleave = function () {
+  hintPop[0].classList.remove("hidden");
+  hintPop[1].classList.add("hidden");
+};
+
+hint.addEventListener("mouseenter", function () {
+  setTimeout(mouseenter, 100);
+});
+hint.addEventListener("mouseleave", function () {
+  setTimeout(mouseleave, 150);
+});

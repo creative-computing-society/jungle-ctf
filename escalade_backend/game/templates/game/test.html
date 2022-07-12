@@ -49,9 +49,9 @@
   <body onload = "
     display();
     {% if correctAnswer %}correctAnswer();{% endif %}
-    {% if snake %}beforeLocation();
-    setTimeout(monsterReached, 2510);{% endif %}
-    {% if ladder %}beforeLocation();
+    {% if opposer %}beforeLocation();
+    setTimeout(opposerReached, 2510);{% endif %}
+    {% if booster %}beforeLocation();
     setTimeout(boosterReached, 2510);{% endif %}
   ">
 
@@ -84,10 +84,10 @@
           loop
           autoplay
           class="hidden"
-          id="monsterGif3"
+          id="opposerGif3"
         ></lottie-player>
       <lottie-player 
-          src="https://assets6.lottiefiles.com/packages/lf20_9ylokcac.json"  
+          src="https://assets3.lottiefiles.com/packages/lf20_xyhdo4jv.json"  
           background="transparent"  
           speed="1"  
           style="width: 300px; height: 300px;"  
@@ -142,7 +142,7 @@
             loop
             autoplay
             class="hidden"
-            id="monsterGif1"
+            id="opposerGif1"
           ></lottie-player>
           <lottie-player 
             src="https://assets5.lottiefiles.com/packages/lf20_9aa9jkxv.json"  
@@ -179,7 +179,7 @@
             loop
             autoplay
             class="hidden"
-            id="monsterGif2"
+            id="opposerGif2"
           ></lottie-player>
           <lottie-player 
             src="https://assets5.lottiefiles.com/packages/lf20_9aa9jkxv.json"  
@@ -247,7 +247,6 @@
       </div>
 
       <div class="grid-container {% if wrongAnswer == None %}hidden{% endif %}">
-      <!--<div class="middle-container2 {% if wrongAnswer == None %}hidden{% endif %}">-->
         <div class="dice dice-center-container dice-right-shift">
           <div id="dice2" data-side="{{user.dice_value}}">
             <div class="sides side-1">
@@ -288,9 +287,10 @@
         <div class="question">
           <div id="question-text"><b>{{user.current_ques.body | safe}}</b></div>
         </div>
-      <!-- </div> -->
-       <!-- <div class="bottom-container2 {% if wrongAnswer == None %}hidden{% endif %}">  -->
-        <div id="hintWrapper"><div id="hint" class="hint"></div></div>
+        <div id="hintWrapper" class=""><div id="hint" class="hint">
+          <span class="hint-pop">HINT</span>
+          <span class="hint-pop hidden">POINTS=10</span>
+        </div></div>
         <div id="hintLoading" class="center hidden">
           <div class="loading loader"></div>
         </div>

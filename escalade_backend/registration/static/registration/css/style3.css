@@ -1,3 +1,10 @@
+body {
+  /* background-image: url('../img/Jungle.jpg'); */
+  /* background-size: cover; */
+  /* background-attachment: fixed; */
+  background-position-x: center;
+}
+
 .section-hero {
   height: 100vh;
   width: auto;
@@ -12,13 +19,25 @@
   position: absolute;
 }
 
+.big-flex-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 3rem;
+  margin-bottom: 3rem;
+  margin-right: 2rem;
+  padding-top: 3rem;
+  align-items: center;
+}
+
 .flex-container {
   display: flex;
   /* flex-direction: column; */
   gap: 4rem;
+  /* margin-top: 3rem; */
+  justify-content: end;
 }
 
-.register {
+/* .register {
   margin-top: 3rem;
   margin-left: auto;
 }
@@ -26,7 +45,7 @@
 .login {
   margin-top: 3rem;
   margin-right: 10rem;
-}
+} */
 
 .btn-register {
   font-size: 3rem;
@@ -48,13 +67,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20rem;
+  margin-top: 18rem;
 }
 
 .heading-container h1 {
   margin: 0px;
   color: #fff;
   letter-spacing: 4rem;
+  padding-left: 4rem;
   text-shadow: 10px 10px 10px #000000;
 }
 
@@ -62,7 +82,7 @@
   display: flex;
   justify-content: center;
   gap: 4rem;
-  padding-right: 4rem;
+  /* padding-right: 4rem; */
   padding-top: 3rem;
 }
 
@@ -83,10 +103,10 @@
   width: 11.5rem;
   height: 11.5rem;
   border-radius: 50%;
-  margin-right: 115rem;
-  position: absolute;
-  top: 3rem;
-  right: 40rem;
+  /* margin-right: 115rem; */
+  /* position: absolute; */
+  /* top: 3rem; */
+  /* right: 40rem; */
 }
 
 .flex-container-holder {
@@ -123,20 +143,71 @@
   background-color: rgba(255, 0, 0, 0.664);
 }
 
+@media only screen and (max-width: 600px) {
+  .logo {
+    display: none;
+  }
+  .big-flex-container {
+    display: block;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+    padding-top: 2rem;
+  }
+  .flex-container {
+    justify-content: space-evenly;
+  }
+
+  .flex-container-holder {
+    flex-direction: column;
+  }
+  .btn-login {
+    font-size: 2rem;
+  }
+  .btn-register {
+    font-size: 2rem;
+  }
+  .para {
+    font-size: 3rem;
+  }
+  .flex-container {
+    gap: 2rem;
+  }
+  .logo {
+    height: 10rem;
+    width: 10rem;
+  }
+};
+
 @media only screen and (max-width: 800px) {
   .flex-container-holder {
     flex-direction: column;
   }
-
   .btn-login {
     font-size: 2rem;
   }
-
   .btn-register {
     font-size: 2rem;
   }
-
   .para {
     font-size: 3rem;
   }
+
+  .flex-container {
+    gap: 2rem;
+  }
+  .logo {
+    height: 10rem;
+    width: 10rem;
+  }
 } ;
+
+@media only screen and (max-width: 1100px) {
+  .flex-container {
+    gap: 2rem;
+  }
+  .logo {
+    height: 10rem;
+    width: 10rem;
+  }
+};
