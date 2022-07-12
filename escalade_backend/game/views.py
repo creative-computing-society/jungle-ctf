@@ -91,12 +91,16 @@ def play(request):
             team.position = 81
             team.dice_value = None
             team.current_ques = None
+            team.hint_taken = False
+            team.sneakpeek_taken = None
             team.save()
             return redirect("/play")
         team.dice_value = random.randint(1, 6)
         prev_ques_id = team.current_ques.id
         team.current_ques = getRandomQuestion(team, prev_ques_id)
         beforeLocation = team.position
+        team.hint_taken = False
+        team.sneakpeek_taken = None
         opposerPresent = False
         boosterPresent = False
         opposer = Opposer.objects.filter(boardNo=team.board, start=team.position).first()
@@ -126,6 +130,8 @@ def play(request):
     if team.current_ques==None:
         team.current_ques = getRandomQuestion(team, -1)
         team.dice_value = random.randint(1, 6)
+        team.hint_taken = False
+        team.sneakpeek_taken = None
         team.save()
     else:
         msgs = messages.get_messages(request)
@@ -149,9 +155,12 @@ def play(request):
 def hint(request):
     team = request.user
     hint = ''
-    if team.points>=10:
+    if team.hint_taken:
+        hint = team.current_ques.hint
+    elif team.points>=10:
         hint = team.current_ques.hint
         team.points -= 10
+        team.hint_taken = True
         team.save()
     return JsonResponse({
         'value': hint,
@@ -163,7 +172,9 @@ def hint(request):
 def sneakPeek(request):
     team = request.user
     value = ""
-    if team.points>=25:
+    if team.sneakpeek_taken is not None:
+        value = team.sneakpeek_taken
+    elif team.points>=25:
         team.points -= 25
         nextPos = team.position + team.dice_value
         booster = False
@@ -171,6 +182,7 @@ def sneakPeek(request):
         if not opposer:
             booster = Booster.objects.filter(start=nextPos).exists()
         value = "opposer" if opposer else "booster" if booster else "none"
+        team.sneakpeek_taken = value
         team.save()
     return JsonResponse({
         'value': value,
@@ -188,12 +200,13 @@ def reRoll(request):
         while value==prevVal:
             value = random.randint(1, 6)
         team.dice_value = value
+        team.sneakpeek_taken = None
         team.save()
     return JsonResponse({
         'value': team.dice_value,
         'points': team.points
     })
-    
+
 # @login_required(login_url='/login')
 def leaderboard(request):
     top5=Team.objects.all().values('teamName','position').order_by('-position', '-points')[:5]

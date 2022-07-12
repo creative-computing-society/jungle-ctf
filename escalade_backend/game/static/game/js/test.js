@@ -190,7 +190,6 @@ const correctAnswer = function() {
   sneakPeek.style.pointerEvents = 'none';
   proceed.style.pointerEvents = 'none';
   dice.style.pointerEvents = 'none';
-  console.log("ask");
   setTimeout(normaliseCorrectAns, 2500);
 };
 
@@ -202,7 +201,7 @@ const currentLocation = function() {
 const beforeLocation = function() {
   currLocText.classList.add("hidden");
   beforeLocText.classList.remove("hidden");
-  setTimeout(currentLocation, 2500);
+  setTimeout(currentLocation, 4000);
 };
 
 const normaliseOpposer = function() {
