@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'import_export',
     'registration',
     'game',
+    'webescques',
 ]
 
 MIDDLEWARE = [

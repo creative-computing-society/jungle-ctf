@@ -1,0 +1,29 @@
+<!doctype html>
+
+{% load static %}
+
+<html>
+<head>
+    <title>Secure Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="{% static 'webescques/js/securePortal.js' %}"></script>
+</head>
+	<body>
+		<div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-8 text-center">
+                    <h1>Welcome to Secure Portal</h1>
+                    <h3 class="mt-2">Enter the key to continue!</h3>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-4 text-center">
+                    <form onsubmit="return validate();" action="{% url 'securePortal' %}" method="GET">
+                        <input type="text" id="key" name="key" placeholder="Enter the secure key" class="form-control w-80">
+                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

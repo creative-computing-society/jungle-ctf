@@ -9,6 +9,8 @@ class Question(models.Model):
     img = models.URLField(null=True, blank=True, default=None)
     hint = models.TextField(null=True, default=None)
     ans = models.CharField(max_length=50)
+    def __str__(self):
+        return str(self.id)
 
 class BoardSnake(models.Model):
     boardNo = models.IntegerField()

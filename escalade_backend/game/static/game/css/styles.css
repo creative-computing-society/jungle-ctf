@@ -508,3 +508,14 @@ input::placeholder {
     width: 1000px;
   }
 }
+
+#question-text a {
+  text-decoration: underline;
+  color: #fff;
+  font-style: oblique;
+  font-size: 19px;
+}
+
+#question-text a:hover {
+  font-size: 20px;
+}

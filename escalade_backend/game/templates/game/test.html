@@ -87,7 +87,7 @@
           id="monsterGif3"
         ></lottie-player>
       <lottie-player 
-          src="https://assets10.lottiefiles.com/packages/lf20_m2igjaux.json"  
+          src="https://assets6.lottiefiles.com/packages/lf20_9ylokcac.json"  
           background="transparent"  
           speed="1"  
           style="width: 300px; height: 300px;"  
@@ -235,11 +235,11 @@
         </div>
       </div>
       <div class="bottom-container {% if wrongAnswer %}hidden{% endif %}">
-        <div class="option" id="reroll"></div>
+        <div id="reRollWrapper"><div class="option" id="reroll"></div></div>
         <div id="reRollLoading" class="center hidden">
           <div class="loading loader"></div>
         </div>
-        <div class="option" id="sneak-peek"></div>
+        <div id="sneakPeekWrapper"><div class="option" id="sneak-peek"></div></div>
         <div id="sneakPeekLoading" class="center hidden">
           <div class="loading loader"></div>
         </div>
@@ -286,15 +286,11 @@
           </div>
         </div>
         <div class="question">
-          <h2 id="question-text">
-            <b
-              >{{user.current_ques.body}}</b
-            >
-          </h2>
+          <div id="question-text"><b>{{user.current_ques.body | safe}}</b></div>
         </div>
       <!-- </div> -->
        <!-- <div class="bottom-container2 {% if wrongAnswer == None %}hidden{% endif %}">  -->
-        <div id="hint" class="hint"></div>
+        <div id="hintWrapper"><div id="hint" class="hint"></div></div>
         <div id="hintLoading" class="center hidden">
           <div class="loading loader"></div>
         </div>

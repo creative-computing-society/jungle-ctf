@@ -1,11 +1,11 @@
 import random
-from datetime import datetime
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 import django.contrib.auth as auth
+from django.utils.safestring import mark_safe
 
 from .models import BoardLadder, BoardSnake, Question
 from registration.models import Team
@@ -13,6 +13,8 @@ from registration.models import Team
 
 # Create your views here.
 def login(request):
+    if request.user.is_authenticated:
+        return redirect("/start")
     if request.method == 'POST':
         TeamName = request.POST['TeamName']
         password=request.POST['password']
@@ -34,12 +36,14 @@ def logout(request):
     auth.logout(request)
     return redirect('/login')
 
-def getRandomQuestion(team):
+def getRandomQuestion(team, prev_ques_id):
     level = 1 if team.position<=20 else 2 if team.position<=40 else 3 if team.position<=60 else 4
     ques_str = team.level1 if level==1 else team.level2 if level==2 else team.level3 if level==3 else team.level4
     if len(ques_str)==0:
         ques_bank = Question.objects.filter(level=level)
         ques = random.choice(ques_bank)
+        while ques.id==prev_ques_id:
+            ques = random.choice(ques_bank)
         return ques
     if level==1:
         idx = random.randrange(0, len(team.level1), 2)
@@ -59,10 +63,6 @@ def getRandomQuestion(team):
         team.level4 = ques_str.replace(ques_id, '')
     print('ques_id', ques_id)
     ques_id = int(ques_id)
-    # ques_id %= 5
-    # if ques_id==0:
-    #     ques_id = 5
-    print(team.level1, ques_str)
     ques = Question.objects.get(id=ques_id)
     return ques
 
@@ -73,6 +73,9 @@ def play(request):
         return render(request, "game/game_over.html",context={'teamName':team.teamName})
     if request.method=="POST":
         answer = request.POST.get("answer")
+        if team.current_ques==None:
+            print('current question null')
+            return redirect('/play')
         if answer!=team.current_ques.ans:
             messages.error(request, "wrongAnswer", 'wrong')
             return redirect('/play')
@@ -83,8 +86,15 @@ def play(request):
         if len(ques_str):
             team.points += 10
         team.position += team.dice_value
+        if team.position>80:
+            team.position = 81
+            team.dice_value = None
+            team.current_ques = None
+            team.save()
+            return redirect("/play")
         team.dice_value = random.randint(1, 6)
-        team.current_ques = getRandomQuestion(team)
+        prev_ques_id = team.current_ques.id
+        team.current_ques = getRandomQuestion(team, prev_ques_id)
         beforeLocation = team.position
         snakePresent = None
         ladderPresent = None
@@ -113,7 +123,7 @@ def play(request):
         # })
     context = {}
     if team.current_ques==None:
-        team.current_ques = getRandomQuestion(team)
+        team.current_ques = getRandomQuestion(team, -1)
         team.dice_value = random.randint(1, 6)
         team.save()
     else:
@@ -149,7 +159,7 @@ def hint(request):
 
 @require_http_methods(["POST"])
 @login_required(login_url="/login")
-def sneakPeak(request):
+def sneakPeek(request):
     team = request.user
     value = ""
     if team.points>=25:
@@ -181,20 +191,6 @@ def reRoll(request):
     return JsonResponse({
         'value': team.dice_value,
         'points': team.points
-    })
-
-@login_required(login_url='/login')
-def getHead(request):
-    if request.method=="POST":
-        return render(request, "game/gethead.html", context={
-            'color': 'blue'
-        })
-    if request.method=="HEAD":
-        req = HttpResponse("")
-        req['flag'] = "answer"
-        return req
-    return render(request, "game/getHead.html", context={
-        'color': 'red'
     })
     
 # @login_required(login_url='/login')
@@ -234,8 +230,6 @@ def leaderboard(request):
     
 @login_required(login_url='/login')
 def start(request):
-    team = request.user
-    
     return render(request, "game/start.html")
 
 # @login_required(login_url='/login')

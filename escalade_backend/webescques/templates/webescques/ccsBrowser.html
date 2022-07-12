@@ -1,0 +1,32 @@
+<!doctype html>
+
+{% load static %}
+
+<html>
+<head>
+    <title>Our website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+	<body>
+		<div class="container">
+            <div class="row justify-content-center my-5">
+                <div class="col-11 text-center">
+                    <h1 class="h4">This site is best viewed in ccsbrowser.</h1>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="col-11 col-md-6 text-center alert alert-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}" role="alert">{{message}}<span class="d-none">{{user_agent}}</span></div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="row justify-content-center mt-3">
+                <div class="col-11 col-md-6 bg-light p-3 rounded-3 text-center">
+                    <a href="{% url 'ccsBrowserOptionsRequest' %}" class="btn w-75 btn-primary btn-lg">Continue</a>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

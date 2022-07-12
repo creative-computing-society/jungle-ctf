@@ -1,0 +1,37 @@
+<!doctype html>
+
+{% load static %}
+
+<html>
+<head>
+    <title>Passbook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+	<body>
+		<div class="container">
+            <div class="row justify-content-center my-5">
+                {% if flag %}
+                <div class="col-10 bg-light rounded-2 p-3 text-center">
+                    <h2 class="h5">Flag: {{flag}}</h2>
+                </div>
+                {% else %}
+                {% if cookie %}
+                <div class="col-10 bg-light rounded-2 py-4 text-center">
+                    <h1 class="h4">Apologies!, but currently we don't support anonymous users.</h1>
+                    <h2 class="h5 mt-3">Only Admin has it's access.</h2>
+                </div>
+                {% else %}
+                <div class="col-11 col-lg-6 bg-light rounded-2 py-4 text-center">
+                    <form action="{% url 'powerCookies' %}" method="GET">
+                        <h1 class="h3 mb-5">Passbook</h1>
+                        <h2 class='h5 mb-4'>Login to Continue!</h2>
+                        <button type="Submit" class="btn btn-primary">Proceed anonymously</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+	</body>
+</html>

@@ -7,6 +7,10 @@ const hint = document.getElementById("hint");
 const proceed = document.getElementById("continue");
 const closeButton = document.querySelector(".close");
 
+const reRollWrapper = document.getElementById("reRollWrapper");
+const sneakPeekWrapper = document.getElementById("sneakPeekWrapper");
+const hintWrapper = document.getElementById("hintWrapper");
+
 const popup = document.querySelector(".popup");
 const popupContent = document.querySelector(".popup .content");
 const popupBoosterGif = document.getElementById("boosterGif3");
@@ -52,7 +56,7 @@ sneakPeek.addEventListener("click", function () {
   if(pointsText>=25) {
     sneakPeek.classList.add("hidden");
     sneakPeekLoading.classList.remove("hidden");
-      fetchSneakPeak();
+      fetchsneakPeek();
   }
 });
 
@@ -110,8 +114,8 @@ async function fetchHint() {
   setButtonsByPoints();
 }
 
-async function fetchSneakPeak() {
-  let response = await fetch('/sneak-peak/', options);
+async function fetchsneakPeek() {
+  let response = await fetch('/sneak-peek/', options);
   let data = await response.json();
   console.log(data)
   // popupContent.innerHTML = data.value;
@@ -244,12 +248,15 @@ answerForm.addEventListener('submit', function() {
 const setButtonsByPoints = function() {
   if(pointsText<25) {
     sneakPeek.style.pointerEvents = 'none';
+    sneakPeekWrapper.style.cursor = 'not-allowed';
   }
   if(pointsText<15) {
     reRoll.style.pointerEvents = 'none';
+    reRollWrapper.style.cursor = 'not-allowed';
   }
   if(pointsText<10) {
     hint.style.pointerEvents = 'none';
+    hintWrapper.style.cursor = 'not-allowed';
   }
 };
 

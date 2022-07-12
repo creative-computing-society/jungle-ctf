@@ -1,9 +1,16 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
+from import_export import resources
 from .models import Question, BoardLadder, BoardSnake
 
 # Register your models here.
 
-class QuestionAdmin(admin.ModelAdmin):
+class QuestionResource(resources.ModelResource):
+    class Meta:
+        model = Question
+
+class QuestionAdmin(ImportExportModelAdmin):
+    resource_class = QuestionResource
     list_display = ['id', 'body', 'level', 'ans', 'hint']
     list_filter = ['level',]
     list_per_page = 40
