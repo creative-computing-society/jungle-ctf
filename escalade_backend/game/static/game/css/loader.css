@@ -1,6 +1,5 @@
 .wrapper {
     position: absolute;
-    /* top: 50%; */
     left: 50%;
     transform: translate(-50%);
     display: flex;
@@ -28,7 +27,6 @@
 .loader_part--1 {
     animation: opacity 0.3s linear forwards,
         anim-1 0.5s cubic-bezier(0.8, 0, 0.6, 1) infinite alternate;
-    /* animation-delay: 0.3s; */
 }
 
 @keyframes anim-1 {

@@ -1,15 +1,12 @@
 body {
-  /*background-color: #394349;*/
   margin: 0px;
-  /* background-image: url("/Users/vaniya/Desktop/vs code/WEB DEV/test/Jungle.jpg"); */
   background-image: url("../img/Jungle.jpg");
-  /*background-image: url("/test/Jungle.jpg");*/
   background-size: cover;
   background-attachment: fixed;
   background-color: #394349;
 }
+
 .navbar {
-  /*background-color: #394349;*/
   height: 120px;
   position: fixed;
   top: 0;
@@ -19,52 +16,54 @@ body {
   display: flex;
   justify-content: space-around;
 }
+
 .top-container {
   display: flex;
   justify-content: space-evenly;
   position: relative;
   top: 120px;
 }
+
 .box {
   border: 3.5px solid white;
-  /* width: 380px;
-  height: 300px; */
-  /* width: 20rem; */
   width: 28%;
   height: 16.789rem;
   border-radius: 20px;
   justify-content: space-around;
-  /* align-items: center; */
 }
+
 #box1 {
   background-color: #205569;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 #box2 {
   background-color: #5acfb6;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 #box3 {
   background-color: #205569;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 h1 {
   font-family: "Oswald", sans-serif;
   font-size: 150px;
   border: 2px;
   border-color: white;
   margin: 0px;
-  /* padding: 40px 70px 70px 110px; */
   color: #332f2e;
   text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff,
     1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
+
 .middle-container {
   display: flex;
   justify-content: space-around;
@@ -72,28 +71,12 @@ h1 {
   top: 120px;
   height: 200px;
 }
-/*#dice{
-    height: 160px;
-    width: 160px;
-    padding-top: 15px;
-}
-#dice:hover{
-    background-image: url(../img/dice-roll.gif);
-}*/
-/*.dice{
-    height: 400px; 
-    width: 550px;
-    background-size: cover;
-    cursor: pointer;
-    background-image: url("/Users/vaniya/Desktop/vs code/WEB DEV/test/dice-static.png");
-}
-.dice:hover{
-    background-image: url("/Users/vaniya/Desktop/vs code/WEB DEV/test/dice-roll.gif");
-}*/
+
 .dice {
   height: 200px;
   width: 200px;
 }
+
 .bottom-container {
   display: flex;
   justify-content: space-evenly;
@@ -101,6 +84,7 @@ h1 {
   top: 120px;
   padding-bottom: 2rem;
 }
+
 .option {
   border: 2px solid white;
   width: 240px;
@@ -110,9 +94,11 @@ h1 {
   text-align: center;
   cursor: pointer;
 }
+
 #reroll {
   background-color: #5acfb6;
 }
+
 #reroll::before {
   content: "RE-ROLL";
   text-align: center;
@@ -124,9 +110,11 @@ h1 {
   position: relative;
   right: 0px;
 }
+
 #reroll:hover::before {
   top: -60px;
 }
+
 #reroll::after {
   content: " POINTS=15";
   text-align: center;
@@ -138,13 +126,15 @@ h1 {
   position: relative;
   top: 50px;
 }
+
 #reroll:hover::after {
   top: -60px;
-  /* right: ; */
 }
+
 #sneak-peek {
   background-color: #5acfb6;
 }
+
 #sneak-peek::before {
   content: "SNEAKPEEK";
   text-align: center;
@@ -156,9 +146,11 @@ h1 {
   position: relative;
   right: -7px;
 }
+
 #sneak-peek:hover::before {
   top: -60px;
 }
+
 #sneak-peek::after {
   content: "POINTS=25";
   text-align: center;
@@ -171,12 +163,15 @@ h1 {
   top: 50px;
   right: 200px;
 }
+
 #sneak-peek:hover::after {
   top: 0px;
 }
+
 #continue {
   background-color: #5acfb6;
 }
+
 #continue::before {
   content: "CONTINUE";
   text-align: center;
@@ -187,6 +182,7 @@ h1 {
   line-height: 60px;
   position: relative;
 }
+
 #continue:hover::before {
   font-size: 24px;
 }
@@ -194,6 +190,7 @@ h1 {
 .hidden {
   display: none !important;
 }
+
 .middle-container2 {
   display: flex;
   justify-content: space-around;
@@ -201,43 +198,13 @@ h1 {
   top: 120px;
   height: 230px;
 }
+
 .bottom-container2 {
   display: flex;
   justify-content: space-evenly;
   position: relative;
   top: 120px;
 }
-/* .hint {
-  border: 2px solid white;
-  width: 230px;
-  height: 65px;
-  border-radius: 15px;
-  background-color: #5acfb6;
-   //position: relative; 
-   //right: 70px;
-  //top: 5px; 
-  overflow: hidden;
-  cursor: pointer;
-  
-  margin: auto;
-}
-.hint::after {
-  content: "HINT";
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bolder;
-  position: relative;
-  top: 10px;
-  left: 10px;
-  margin: 70px;
-  width: 100%;
-  font-size: 28px;
-  letter-spacing: 5px;
-  overflow: hidden;
-} 
-.hint:hover::after {
-  top: -70px;
-}*/
 
 .hint {
   text-align: center;
@@ -246,20 +213,15 @@ h1 {
   height: 65px;
   border-radius: 15px;
   background-color: #5acfb6;
-  /* position: relative; */
-  /* right: 70px; */
-  /* top: 5px; */
   overflow: hidden;
   cursor: pointer;
   margin: auto;
 }
+
 .hint::after {
   text-align: center;
   font-family: "Montserrat", sans-serif;
   font-weight: bolder;
-  /* position: relative; */
-  /* top: 20px; */
-  /* left: 10px; */
   margin: 70px;
   width: 100%;
   font-size: 28px;
@@ -267,27 +229,7 @@ h1 {
   overflow: hidden;
 }
 
-/* .hint::before{
-    content: "10 POINTS";
-    text-align: center;
-    font-family:  'Montserrat', sans-serif;
-    font-weight: bolder;
-    position: relative;
-    top: 10px;
-    left: 10px;
-    margin: 70px;
-    width: 100%;
-    font-size: 28px;
-    letter-spacing: 5px;
-} */
 #answer-space {
-  /* border: 0px 0px 2px 0px solid white; */
-  /* background: none; */
-  /* display: block; */
-  /* border-width: 2px; */
-  /* border-color: transparent; */
-  /* border-bottom: white; */
-  /* line-height: 1.5px; */
   border: none;
   border-bottom: 3px solid white;
   background: none;
@@ -298,15 +240,14 @@ h1 {
   font-size: x-large;
   color: white;
   font-family: "Montserrat", sans-serif;
-  /* font-stretch: expanded; */
   letter-spacing: 3px;
   outline: none;
 }
+
 .question {
   border: 3px solid white;
   height: 140px;
   width: 700px;
-  /* position: relative; */
   top: 60px;
   left: 40px;
   border-radius: 20px;
@@ -314,6 +255,7 @@ h1 {
   align-items: center;
   overflow: auto;
 }
+
 #question-text {
   margin: 0px;
   margin-top: 14px;
@@ -328,72 +270,54 @@ h1 {
   font-size: 20px;
   font-weight: 200;
 }
+
 .logo {
   width: 80px;
   height: 80px;
-  /* position: relative;
-  left: 70px; */
-  /* background-color: white; */
   background-image: url("../img/escaladeLogo.png");
   background-size: cover;
   align-self: center;
-  /* top: 20px; */
 }
-/* #logo-image{
-    /* height: 120px; */
-/* width: 120px; */
-/* max-width: 100%; */
-/* max-height: auto; */
-/* }  */
+
 .rulebook {
   height: 120px;
-  /* width: 200px;
-  position: relative;
-  left: 100px; */
-   /* background-color: violet;  */
 }
+
 .leaderboard {
   height: 120px;
-  /* width: 230px; */
-  /* background-color: rgba(253, 253, 250, 0.514); */
-  /* position: relative;
-  left: 150px; */
 }
+
 .team-name {
   height: 120px;
-  /* width: 250px; */
-  /* background-color: rgba(253, 253, 250, 0.514); */
-  /* position: relative;
-  left: 220px;
-  align-items: flex-start; */
   overflow: hidden;
 }
+
 .points {
   height: 120px;
-  /* width: 230px; */
-  /* background-color: rgba(255, 255, 255, 0.452); */
-  /* position: relative;
-  left: 310px; */
 }
+
 .logout {
   height: 120px;
 }
+
 .text {
   margin-top: 40px;
   margin-bottom: 40px;
   text-align: center;
-  /* margin-right: 5px; */
   font-family: "Montserrat", sans-serif;
   letter-spacing: 2.5px;
   font-size: 20px;
 }
+
 a {
   text-decoration: none;
   color: black;
 }
+
 a:hover {
   font-size: 22px;
 }
+
 .only {
   height: 1vh;
 }
@@ -414,31 +338,20 @@ input::placeholder {
 
 .dice-right-shift {
   margin-right: -10%;
-  
+
   margin: auto;
 }
-
-/* #answer-space { */
-  /* position: relative; */
-/* } */
 
 .placeholder {
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   color: red;
-  
   font-size: 2rem;
-  /* font-size: 2rem; */
-  
   display: flex;
   text-align: center;
   width: inherit;
   position: absolute;
-
   top: 86%;
-  /* top: 30%; */
-  /* right: 18%; */
-  
   text-align: right;
   letter-spacing: 0.6rem;
 }
@@ -461,10 +374,7 @@ input::placeholder {
 }
 
 #hintLoading {
-  margin:auto;
-  /* position: relative;
-  right: 70px;
-  top: 5px; */
+  margin: auto;
 }
 
 .loading {
@@ -475,14 +385,11 @@ input::placeholder {
   display: inline-block;
   width: 45px;
   height: 45px;
-  /* border: 4px solid rgba(255, 255, 255, 0.3); */
   border: 4px solid #ffffff83;
   border-radius: 50%;
-  /* border-top-color: #ec6526; */
   border-top-color: #2c3c53;
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
-  /* margin-left: -5rem; */
   align-self: center;
 }
 
@@ -501,6 +408,7 @@ input::placeholder {
     -webkit-transform: rotate(360deg);
   }
 }
+
 @-webkit-keyframes spin {
   to {
     -webkit-transform: rotate(360deg);
@@ -527,11 +435,13 @@ input::placeholder {
     width: 800px;
   }
 }
+
 @media screen and (min-width: 1850px) {
   .question {
     width: 900px;
   }
 }
+
 @media screen and (min-width: 2300px) {
   .question {
     width: 1000px;

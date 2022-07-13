@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+
 * {
 	margin: 0;
 	padding: 0;
 }
+
 body {
 	font-family: 'Poppins', sans-serif;
 }
@@ -12,31 +14,37 @@ header {
 	height: 100vh;
 	-webkit-background-size: cover;
 	background-size: cover;
-	background-position: center center;
 	position: relative;
 }
+
 .logo {
 	float: left;
 }
+
 .logo img {
 	width: 10%;
-	padding: 15px 0;
+	padding: 15px;
 }
+
 .banner-text {
 	position: absolute;
-	width: 600px;
+	width: 100vw;
 	height: 300px;
-	margin: 10% 30%;
+	margin: 10% 0px;
 	text-align: center;
 }
+
 .banner-text h1 {
 	text-align: center;
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 60px;
 	font-family: 'Montserrat';
+	width: 600px;
+	margin: auto;
 }
-        .banner-text p {
+
+.banner-text p {
 	font-family: 'Ubuntu', 'sans-serif';
 	font-size: 20px;
 	line-height: 1.5;
@@ -53,28 +61,33 @@ header {
 	display: inline-block;
 	color: #fff;
 }
+
 .banner-text a:hover {
 	background: #fff;
 	color: #333;
 }
+
 /*resposive*/
 
 @media (max-width:600px) {
 	.wrapper {
 		width: 100%;
 	}
+
 	.logo {
 		float: none;
 		width: 50%;
 		text-align: center;
 		margin: auto;
 	}
+
 	.banner-text {
 		width: 100%;
 		height: auto;
 		margin: 15% 0;
 	}
+
 	.banner-text h1 {
 		font-size: 30px;
 	}
-}
+};

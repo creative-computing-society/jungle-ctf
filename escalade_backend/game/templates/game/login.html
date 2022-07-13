@@ -11,7 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
       rel="stylesheet"
     />
-    <!-- <script defer src="{% static 'game/js/form.js' %}"></script> -->
     <title>Registration Form</title>
   </head>
   <body>
@@ -19,7 +18,6 @@
     <section id="contact">
       <div class="contact-box">
         <div class="contact-links">
-          <!-- <div class="links"> -->
           <div class="link">
             <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
             <lottie-player
@@ -32,7 +30,6 @@
               autoplay
             ></lottie-player>
           </div>
-          <!-- </div> -->
         </div>
         <div class="contact-form-wrapper">
           <h2 class="heading">Login</h2>
@@ -43,10 +40,6 @@
               <label for="input" class="control-label errTeamName"
                 >Team Name</label
               >
-              <!-- <label
-                for="input"
-                class="control-label errTeamName orange-text hidden"
-                >No Such Team Exists</label> -->
               <i class="bar"></i>
             </div>
 
@@ -55,15 +48,11 @@
               <label for="input" class="control-label errPassword"
                 >Password</label
               >
-              <!-- <label
-                for="input"
-                class="control-label errPassword orange-text hidden"
-                >Incorrect Password</label> -->
               <i class="bar"></i>
             </div>
             <div class="error_message_div">
               {% for message in messages %}
-                <font class="error_message" color="red"><b>{{ message }}</b></font> </p>
+                <font class="error_message"><b>{{ message }}</b></font> </p>
               {% endfor %}
             </div>
 

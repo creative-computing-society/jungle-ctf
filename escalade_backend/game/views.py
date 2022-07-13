@@ -9,7 +9,6 @@ import django.contrib.auth as auth
 from .models import Booster, Opposer, Question
 from registration.models import Team
 
-
 # Create your views here.
 def login(request):
     if request.user.is_authenticated:
@@ -22,12 +21,10 @@ def login(request):
         
         if team is not None :
             auth.login(request, team)
-            print("logged in successfully")
             return redirect('/start')
         
         else:
             messages.info(request, "Invalid Credentials")
-            print("lmao")
             return redirect('/login')
     return render(request, 'game/login.html')
 
@@ -62,7 +59,6 @@ def getRandomQuestion(team, prev_ques_id):
         idx = random.randrange(0, len(team.level4), 2)
         ques_id = team.level4[idx: idx+2]
         team.level4 = ques_str.replace(ques_id, '')
-    print('ques_id', ques_id)
     ques_id = int(ques_id)
     ques = Question.objects.get(id=ques_id)
     return ques
@@ -71,18 +67,14 @@ def getRandomQuestion(team, prev_ques_id):
 def play(request):
     team = request.user
     if team.position>80:
-        return render(request, "game/game_over.html",context={'teamName':team.teamName})
+        return render(request, "game/game_over.html")
     if request.method=="POST":
         answer = request.POST.get("answer")
         if team.current_ques==None:
-            print('current question null')
             return redirect('/play')
         if answer!=team.current_ques.ans:
             messages.error(request, "wrongAnswer", 'wrong')
             return redirect('/play')
-            # return render(request, "game/test.html", context={
-            #     "wrongAnswer": "true"
-            # })
         ques_str = team.level1 if team.position<=20 else team.level2 if team.position<=40 else team.level3 if team.position<=60 else team.level4
         if len(ques_str):
             team.points += 10
@@ -120,12 +112,6 @@ def play(request):
             messages.info(request, "opposerPresent", 'booster')
         messages.info(request, f"{beforeLocation}", 'before_location')
         return redirect('/play')
-        # return render(request, 'game/test.html', context={
-        #     'correctAnswer': 'true',
-        #     'opposer': opposerPresent,
-        #     'booster': boosterPresent,
-        #     'beforeLocation': beforeLocation
-        # })
     context = {}
     if team.current_ques==None:
         team.current_ques = getRandomQuestion(team, -1)
@@ -136,7 +122,6 @@ def play(request):
     else:
         msgs = messages.get_messages(request)
         for msg in msgs:
-            print(str(msg.tags))
             if msg.tags=='correct success':
                 context['correctAnswer'] = True
             elif msg.tags=='opposer info':
@@ -210,7 +195,7 @@ def reRoll(request):
 # @login_required(login_url='/login')
 def leaderboard(request):
     top5=Team.objects.all().values('teamName','position').order_by('-position', '-points')[:5]
-    # print(list(top5))
+    
     team1={
         'teamName': top5[0]['teamName'],
         'position': top5[0]['position']
@@ -232,7 +217,6 @@ def leaderboard(request):
         'position': top5[4]['position']
     }
    
-    # return render(request, "game/scoreboard.html",context={'teams':list(top5)})
     return render(request, "game/scoreboard.html",context={
         'team1': team1,
         'team2': team2,
@@ -245,9 +229,3 @@ def leaderboard(request):
 @login_required(login_url='/login')
 def start(request):
     return render(request, "game/start.html")
-
-# @login_required(login_url='/login')
-def game_over(request):
-    team=request.user
-    teamName=team.teamName
-    return render(request, "game/game_over.html",context={'teamName':teamName})

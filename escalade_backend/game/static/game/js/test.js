@@ -43,7 +43,6 @@ const sneakPeekLoading = document.getElementById("sneakPeekLoading");
 const formSubmitLoading = document.getElementById("formSubmitLoading");
 
 reRoll.addEventListener("click", function () {
-  // popup.classList.remove("hidden");
   if(pointsText>=15) {
     reRollWrapper.classList.add("hidden");
     reRollLoading.classList.remove("hidden");
@@ -52,7 +51,6 @@ reRoll.addEventListener("click", function () {
 });
 
 sneakPeek.addEventListener("click", function () {
-  // popup.classList.remove("hidden");
   if(pointsText>=25) {
     sneakPeekWrapper.classList.add("hidden");
     sneakPeekLoading.classList.remove("hidden");
@@ -69,24 +67,17 @@ hint.addEventListener("click", function () {
 });
 
 proceed.addEventListener("click", function () {
-  // popup.classList.remove("hidden");
   middle_cont.classList.add("hidden");
   bottom_cont.classList.add("hidden");
   grid_cont.classList.remove("hidden");
-  // middle_cont2.classList.remove("hidden");
-  // bottom_cont2.classList.remove("hidden");
 });
-// document.addEventListener("click", function () {
-//   if (!popup.classList.contains("hidden")) {
-//     popup.classList.add("hidden");
-//   }
-// });
+
 closeButton.addEventListener("click", function () {
   popup.classList.add("hidden");
 });
 
-
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
 let options = {
     method: 'POST',
     headers: {
@@ -99,10 +90,9 @@ let options = {
 async function fetchHint() {
   let response = await fetch('/hint/', options);
   let data = await response.json();
-  console.log(data)
   popup.style.background = "rgba(31, 31, 31, 0.979)";
   popupContent.innerHTML = data.value;
-  points.innerHTML = "<h2 class='text'><b>POINTS:</b> "+data.points+"</h2>"
+  points.innerHTML = "<h2 class='text'><b>POINTS:</b> "+data.points+"</h2>";
   pointsText = data.points;
   popupOpposerGif.classList.add("hidden");
   popupBoosterGif.classList.add("hidden");
@@ -117,9 +107,7 @@ async function fetchHint() {
 async function fetchsneakPeek() {
   let response = await fetch('/sneak-peek/', options);
   let data = await response.json();
-  console.log(data)
-  // popupContent.innerHTML = data.value;
-  points.innerHTML = "<h2 class='text'><b>POINTS:</b> "+data.points+"</h2>"
+  points.innerHTML = "<h2 class='text'><b>POINTS:</b> "+data.points+"</h2>";
   pointsText = data.points;
   popup.classList.remove("hidden");
   popupOpposerGif.classList.add("hidden");
@@ -127,21 +115,14 @@ async function fetchsneakPeek() {
   popupNoneGif.classList.add("hidden");
   popupContent.classList.add("hidden");
   if(data.value=='opposer') {
-    // popup.style.backgroundImage = "url('../../static/game/img/bg_none.jpg')";
-    // popupContent.innerHTML = "There is a opposer ahead!";
     setSneakPeekOpposerBgImg();
     popupOpposerGif.classList.remove("hidden");
   }
   else if(data.value=='none') {
-    // popup.style.backgroundImage = 'url("../../static/game/img/nonebg2.jpg")';
-    // popupContent.innerHTML = "Nothing ahead.";
     setSneakPeekNoneBgImg();
     popupNoneGif.classList.remove("hidden");
-    
   }
   else if(data.value=='booster') {
-    // popup.style.backgroundImage = "url('../../static/game/img/Star.jpg')";
-    // popupContent.innerHTML = "There is a Booster ahead!";
     setSneakPeekBoosterBgImg();
     popupBoosterGif.classList.remove("hidden");
   }
@@ -153,9 +134,8 @@ async function fetchsneakPeek() {
 async function fetchReRoll() {
   let response = await fetch('/re-roll/', options);
   let data = await response.json();
-  console.log(data)
   document.getElementById("diceResult").innerHTML = data.value;
-  points.innerHTML = "<h2 class='text'><b>POINTS:</b> "+data.points+"</h2>"
+  points.innerHTML = "<h2 class='text'><b>POINTS:</b> "+data.points+"</h2>";
   pointsText = data.points;
   rollDice();
   reRollLoading.classList.add("hidden");
@@ -265,10 +245,12 @@ const setButtonsByPoints = function() {
 setButtonsByPoints();
 
 const hintPop = document.getElementsByClassName("hint-pop")
+
 const mouseenter = function () {
   hintPop[0].classList.add("hidden");
   hintPop[1].classList.remove("hidden");
 };
+
 const mouseleave = function () {
   hintPop[0].classList.remove("hidden");
   hintPop[1].classList.add("hidden");
@@ -277,6 +259,7 @@ const mouseleave = function () {
 hint.addEventListener("mouseenter", function () {
   setTimeout(mouseenter, 100);
 });
+
 hint.addEventListener("mouseleave", function () {
   setTimeout(mouseleave, 150);
 });

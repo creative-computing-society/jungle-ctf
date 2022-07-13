@@ -475,6 +475,7 @@ fieldset {
 
 .error_message {
   font-family: Montserrat;
+  color: #ec6526;
 }
 
 .error_message_div {
