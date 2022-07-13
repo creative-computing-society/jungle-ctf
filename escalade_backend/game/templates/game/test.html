@@ -284,7 +284,7 @@
           </div>
         </div>
         <div class="question">
-          <div id="question-text"><b>{{user.current_ques.body | safe}}</b></div>
+          <div id="question-text"><b>{{user.current_ques.body}}&nbsp;{% if user.current_ques.link1 %}(<a href="{{user.current_ques.link1}}" target="_blank">Link 1&nbsp;</a>{% if user.current_ques.link2 %},&nbsp;<a href="{{user.current_ques.link2}}" target="_blank">Link 2&nbsp;</a>{% endif %}){% endif %}</b></div>
         </div>
         <div id="hintWrapper" class=""><div id="hint" class="hint">
           <span class="hint-pop">HINT</span>

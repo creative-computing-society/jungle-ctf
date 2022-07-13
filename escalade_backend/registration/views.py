@@ -196,6 +196,8 @@ def membersRegister(request):
         try:
             teamData['email'] = leaderData['email']
             team = TeamForm(teamData).save()   #save team
+            team.board = random.randint(0, 3)
+            team.save()
             
             leaderData['team'] = team
             ParticipantForm(leaderData).save()  #save leader

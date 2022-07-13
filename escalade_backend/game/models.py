@@ -6,9 +6,10 @@ from django.db import models
 class Question(models.Model):
     level = models.IntegerField()
     body = models.TextField()
-    img = models.URLField(null=True, blank=True, default=None)
     hint = models.TextField(null=True, default=None)
     ans = models.CharField(max_length=50)
+    link1 = models.CharField(max_length=200, null=True, blank=True, default=None)
+    link2 = models.CharField(max_length=200, null=True, blank=True, default=None)
     def __str__(self):
         return str(self.id)
 
