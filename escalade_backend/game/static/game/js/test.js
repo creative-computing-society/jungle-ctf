@@ -127,19 +127,22 @@ async function fetchsneakPeek() {
   popupNoneGif.classList.add("hidden");
   popupContent.classList.add("hidden");
   if(data.value=='opposer') {
-    popup.style.backgroundImage = "url('../../static/game/img/bg_none.jpg')";
+    // popup.style.backgroundImage = "url('../../static/game/img/bg_none.jpg')";
     // popupContent.innerHTML = "There is a opposer ahead!";
+    setSneakPeekOpposerBgImg();
     popupOpposerGif.classList.remove("hidden");
   }
   else if(data.value=='none') {
-    popup.style.backgroundImage = 'url("../../static/game/img/nonebg2.jpg")';
+    // popup.style.backgroundImage = 'url("../../static/game/img/nonebg2.jpg")';
     // popupContent.innerHTML = "Nothing ahead.";
+    setSneakPeekNoneBgImg();
     popupNoneGif.classList.remove("hidden");
     
   }
   else if(data.value=='booster') {
-    popup.style.backgroundImage = "url('../../static/game/img/Star.jpg')";
+    // popup.style.backgroundImage = "url('../../static/game/img/Star.jpg')";
     // popupContent.innerHTML = "There is a Booster ahead!";
+    setSneakPeekBoosterBgImg();
     popupBoosterGif.classList.remove("hidden");
   }
   sneakPeekLoading.classList.add("hidden");

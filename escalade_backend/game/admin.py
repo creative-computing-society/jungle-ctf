@@ -17,13 +17,23 @@ class QuestionAdmin(ImportExportModelAdmin):
     search_fields = ['body', 'ans', 'hint']
 admin.site.register(Question, QuestionAdmin)
 
-class OpposerAdmin(admin.ModelAdmin):
+class OpposerResource(resources.ModelResource):
+    class Meta:
+        model = Opposer
+
+class OpposerAdmin(ImportExportModelAdmin):
+    resource_class = OpposerResource
     list_display = ['boardNo', 'start', 'end']
     list_filter = ['boardNo']
     list_per_page = 30
 admin.site.register(Opposer, OpposerAdmin)
 
-class BoosterAdmin(admin.ModelAdmin):
+class BoosterResource(resources.ModelResource):
+    class Meta:
+        model = Booster
+
+class BoosterAdmin(ImportExportModelAdmin):
+    resource_class = BoosterResource
     list_display = ['boardNo', 'start', 'end']
     list_filter = ['boardNo']
     list_per_page = 30

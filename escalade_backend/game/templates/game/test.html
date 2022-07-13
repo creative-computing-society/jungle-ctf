@@ -310,5 +310,18 @@
       </div>
     </section>
   </div>
+
+  <script type="text/javascript">
+    const setSneakPeekNoneBgImg = function() {
+      document.querySelector(".popup").style.backgroundImage = "url({% static 'game/img/nonebg2.jpg' %})";
+    };
+    const setSneakPeekBoosterBgImg = function() {
+      document.querySelector(".popup").style.backgroundImage = "url({% static 'game/img/Star.jpg' %})";
+    };
+    const setSneakPeekOpposerBgImg = function() {
+      document.querySelector(".popup").style.backgroundImage = "url({% static 'game/img/bg_none.jpg' %})";
+    };
+  </script>
+
   </body>
 </html>

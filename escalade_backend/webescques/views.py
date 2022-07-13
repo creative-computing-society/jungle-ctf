@@ -50,7 +50,7 @@ def encryptCookies(request):
 @login_required(login_url='/login')
 def securePortal(request):
     key = request.GET.get("key")
-    if key=='magnet_power#warm&ocean its*sigh=till@end':
+    if key=='magnet_power_warm_ocean_its_sigh_till_end':
         response = render(request, 'webescques/securePortal.html')
         response['flag'] = 'pitch_class_factory' #answer
         return response
