@@ -9,6 +9,7 @@ urlpatterns = [
     path('hint/', views.hint, name='hint'),
     path('re-roll/', views.reRoll, name='reRoll'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
-    path('rulebook/', views.leaderboard, name='rulebook'),
+    path('rulebook/', views.rulebook, name='rulebook'),
     path('start/', views.start, name='start'),
+    
 ]

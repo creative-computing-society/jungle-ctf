@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.top{
+    padding-top: 1%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 70px;
+    line-height: 85px;
+    text-align: center;
+    letter-spacing: 1.5vw;
+}
+
+body {
+    background-image: url("../img/lab__bg2_1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+ul li{
+    list-style-type: disc;
+}
+
+.box{
+    width: 94%; 
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+    margin-top: 2%;
+    background: #ffffff;
+    background: rgba(31, 31, 31, 0.94);
+    border: 3px solid #FFFFFF;
+    border-radius: 30px
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+    .box{    
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+  }
+
+.content{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 36px;
+    color: #FFFFFF;
+}
+
+.next{
+    display: flex;
+    justify-content: start;
+    margin-left: 3%;
+    margin-bottom: 2%;
+}
+
+.next_text{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 33px;
+    letter-spacing: 0.28em;
+    color: #34BFC3;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background: rgba(7, 7, 7, 1);
+}
+
+::-webkit-scrollbar-thumb{
+    background: rgb(26, 58, 106)    ;
+    border-radius: 10px;
+}

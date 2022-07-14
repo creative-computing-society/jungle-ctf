@@ -229,3 +229,6 @@ def leaderboard(request):
 @login_required(login_url='/login')
 def start(request):
     return render(request, "game/start.html")
+
+def rulebook(request):
+    return render(request, "game/rulebook.html")
