@@ -37,10 +37,10 @@ class Team(AbstractBaseUser):
     dummy1 = models.CharField(max_length=50, blank=True, null=True, default=None)
     dummy2 = models.CharField(max_length=50, blank=True, null=True, default=None)
     
-    level1 = models.CharField(max_length=50, blank=True, default="0102030405060708091011121314151617181920")
-    level2 = models.CharField(max_length=50, blank=True, default="2122232425262728293031323334353637383940")
-    level3 = models.CharField(max_length=50, blank=True, default="4142434445464748495051525354555657585960")
-    level4 = models.CharField(max_length=50, blank=True, default="6162636465666768697071727374757677787980")
+    level1 = models.CharField(max_length=50, blank=True, default="010203040506070809101112131415")
+    level2 = models.CharField(max_length=50, blank=True, default="161718192021222324252627282930")
+    level3 = models.CharField(max_length=50, blank=True, default="3132333435363738394041424344454647484950")
+    level4 = models.CharField(max_length=50, blank=True, default="5152535455565758596061626364656667686970")
 
     hint_taken = models.BooleanField(blank=True, default=False)
     sneakpeek_taken = models.CharField(max_length=10, null=True, blank=True, default=None)

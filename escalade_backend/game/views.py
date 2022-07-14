@@ -163,9 +163,9 @@ def sneakPeek(request):
         team.points -= 25
         nextPos = team.position + team.dice_value
         booster = False
-        opposer = Opposer.objects.filter(start=nextPos).exists()
+        opposer = Opposer.objects.filter(boardNo=team.board, start=nextPos).exists()
         if not opposer:
-            booster = Booster.objects.filter(start=nextPos).exists()
+            booster = Booster.objects.filter(boardNo=team.board, start=nextPos).exists()
         value = "opposer" if opposer else "booster" if booster else "none"
         team.sneakpeek_taken = value
         team.save()

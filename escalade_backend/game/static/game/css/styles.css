@@ -453,6 +453,7 @@ input::placeholder {
   color: #fff;
   font-style: oblique;
   font-size: 19px;
+  cursor: pointer;
 }
 
 #question-text a:hover {
@@ -478,4 +479,8 @@ input::placeholder {
   font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   margin-top: 7.5%;
+}
+
+#popupImage {
+  width: 300px;
 }

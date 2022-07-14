@@ -16,6 +16,7 @@ const popupContent = document.querySelector(".popup .content");
 const popupBoosterGif = document.getElementById("boosterGif3");
 const popupOpposerGif = document.getElementById("opposerGif3");
 const popupNoneGif = document.getElementById("noneGif1");
+const popupImage = document.getElementById("popupImage");
 
 const points = document.querySelector(".points");
 const middle_cont = document.querySelector(".middle-container");
@@ -74,6 +75,11 @@ proceed.addEventListener("click", function () {
 
 closeButton.addEventListener("click", function () {
   popup.classList.add("hidden");
+  popupOpposerGif.classList.add("hidden");
+  popupBoosterGif.classList.add("hidden");
+  popupNoneGif.classList.add("hidden");
+  popupContent.classList.add("hidden");
+  popupImage.classList.add("hidden");
 });
 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
@@ -97,6 +103,7 @@ async function fetchHint() {
   popupOpposerGif.classList.add("hidden");
   popupBoosterGif.classList.add("hidden");
   popupNoneGif.classList.add("hidden");
+  popupImage.classList.add("hidden");
   popup.classList.remove("hidden");
   popupContent.classList.remove("hidden");
   hintLoading.classList.add("hidden");
@@ -114,6 +121,7 @@ async function fetchsneakPeek() {
   popupBoosterGif.classList.add("hidden");
   popupNoneGif.classList.add("hidden");
   popupContent.classList.add("hidden");
+  popupImage.classList.add("hidden");
   if(data.value=='opposer') {
     setSneakPeekOpposerBgImg();
     popupOpposerGif.classList.remove("hidden");
@@ -263,3 +271,13 @@ hint.addEventListener("mouseenter", function () {
 hint.addEventListener("mouseleave", function () {
   setTimeout(mouseleave, 150);
 });
+
+const showPopupImage = function() {
+  popupContent.classList.add("hidden");
+  popupBoosterGif.classList.add("hidden");
+  popupOpposerGif.classList.add("hidden");
+  popupNoneGif.classList.add("hidden");
+  popup.style.background = "rgba(31, 31, 31, 0.979)";
+  popupImage.classList.remove("hidden");
+  popup.classList.remove("hidden");
+};

@@ -53,6 +53,7 @@
     setTimeout(opposerReached, 2510);{% endif %}
     {% if booster %}beforeLocation();
     setTimeout(boosterReached, 2510);{% endif %}
+    rollDice();
   ">
 
   <div class="wrapper">
@@ -96,6 +97,7 @@
           class="hidden"
           id="noneGif1"
         ></lottie-player>
+        <img class="hidden" id="popupImage" src="{% if user.current_ques.img %}{{user.current_ques.img}}{% endif %}" alt="Something went wrong.">
       <div class="next">
         <p class="next_text close">x</p>
       </div>
@@ -284,7 +286,7 @@
           </div>
         </div>
         <div class="question">
-          <div id="question-text"><b>{{user.current_ques.body}}&nbsp;{% if user.current_ques.link1 %}(<a href="{{user.current_ques.link1}}" target="_blank">Link 1&nbsp;</a>{% if user.current_ques.link2 %},&nbsp;<a href="{{user.current_ques.link2}}" target="_blank">Link 2&nbsp;</a>{% endif %}){% endif %}</b></div>
+          <div id="question-text"><b>{{user.current_ques.body}}&nbsp;{% if user.current_ques.link1 %}(<a href="{{user.current_ques.link1}}" target="_blank">Link 1&nbsp;</a>{% if user.current_ques.link2 %},&nbsp;<a href="{{user.current_ques.link2}}" target="_blank">Link 2&nbsp;</a>{% endif %}){% endif %}&nbsp;{% if user.current_ques.img %}(<a onclick="showPopupImage();">Image&nbsp;</a>){% endif %}</b></div>
         </div>
         <div id="hintWrapper" class=""><div id="hint" class="hint">
           <span class="hint-pop">HINT</span>

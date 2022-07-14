@@ -28,7 +28,7 @@ class TeamAdmin(ImportExportModelAdmin):
     def members(self, obj):
         return (obj.participant_set.count())
     def solved_ques(self, obj):
-        return int(20-len(obj.level1)/2-len(obj.level2)/2-len(obj.level3)/2-len(obj.level4)/2)
+        return int(70-len(obj.level1)/2-len(obj.level2)/2-len(obj.level3)/2-len(obj.level4)/2)
 
 admin.site.register(Team, TeamAdmin)
 
