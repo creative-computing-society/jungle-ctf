@@ -43,6 +43,8 @@ const reRollLoading = document.getElementById("reRollLoading");
 const sneakPeekLoading = document.getElementById("sneakPeekLoading");
 const formSubmitLoading = document.getElementById("formSubmitLoading");
 
+const hintPointsCost = document.getElementById("hintPointsCost");
+
 reRoll.addEventListener("click", function () {
   if(pointsText>=15) {
     reRollWrapper.classList.add("hidden");
@@ -108,6 +110,7 @@ async function fetchHint() {
   popupContent.classList.remove("hidden");
   hintLoading.classList.add("hidden");
   hintWrapper.classList.remove("hidden");
+  hintPointsCost.innerHTML = "POINTS=0";
   setButtonsByPoints();
 }
 

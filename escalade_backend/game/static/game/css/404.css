@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('../img/404.jpg');
+    background: url('../img/b.jpg');
     background-repeat: no-repeat;
     max-width: 100%;
     min-height: 100vh;
@@ -9,8 +9,9 @@ body {
 
 .logo {
     height: 100px;
-    margin-left: 1480px;
-    margin-top: 30px;
+    /* margin-left: 1480px;
+    margin-top: 30px; */
+    margin: 2rem;
 }
 
 .container {
@@ -26,7 +27,7 @@ body {
     margin: 0;
     font-weight: 900;
     letter-spacing: 20px;
-    background: url('../img/b.jpg') center no-repeat;
+    background: url('../img/Jungle.jpg') center no-repeat;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     -webkit-background-clip: text;

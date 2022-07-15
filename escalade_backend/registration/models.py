@@ -15,7 +15,7 @@ PHONENO_REGEX = "^[0-9]{10}$"
 class Team(AbstractBaseUser):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     teamName = models.CharField(max_length=100, unique=True)
-    points = models.IntegerField(default=50)
+    points = models.IntegerField(default=75)
     position = models.IntegerField(default=0)
     board=models.IntegerField(default=0)
     

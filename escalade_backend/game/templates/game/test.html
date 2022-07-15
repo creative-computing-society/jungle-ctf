@@ -290,7 +290,7 @@
         </div>
         <div id="hintWrapper" class=""><div id="hint" class="hint">
           <span class="hint-pop">HINT</span>
-          <span class="hint-pop hidden">POINTS=10</span>
+          <span id="hintPointsCost" class="hint-pop hidden">POINTS={% if user.hint_taken %}0{% else %}10{% endif %}</span>
         </div></div>
         <div id="hintLoading" class="center hidden">
           <div class="loading loader"></div>
