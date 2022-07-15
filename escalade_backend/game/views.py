@@ -1,8 +1,10 @@
+from operator import ne
 import random
 from django.http import JsonResponse
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.cache import never_cache
 from django.contrib.auth.decorators import login_required
 import django.contrib.auth as auth
 
@@ -73,6 +75,7 @@ def getRandomQuestion(team, prev_ques_id):
     print(level, ques_id, team.position)
     return ques
 
+@never_cache
 @login_required(login_url="/login")
 def play(request):
     team = request.user
@@ -145,6 +148,7 @@ def play(request):
         msgs.used = True
     return render(request, 'game/test.html', context=context)
 
+@never_cache
 @require_http_methods(['POST'])
 @login_required(login_url="/login")
 def hint(request):
@@ -162,6 +166,7 @@ def hint(request):
         'points': team.points
     })
 
+@never_cache
 @require_http_methods(["POST"])
 @login_required(login_url="/login")
 def sneakPeek(request):
@@ -184,6 +189,7 @@ def sneakPeek(request):
         'points': team.points
     })
 
+@never_cache
 @require_http_methods(["POST"])
 @login_required(login_url='/login')
 def reRoll(request):
