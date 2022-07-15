@@ -36,6 +36,7 @@ admin.site.register(Team, TeamAdmin)
 class ParticipantResource(resources.ModelResource):
     class Meta:
         model = Participant
+        fields = ('id', 'name', 'email', 'roll_no', 'discord_ID', 'phone_no', 'team__teamName')
 
 class ParticipantAdmin(ImportExportModelAdmin):
     resource_class = ParticipantResource
