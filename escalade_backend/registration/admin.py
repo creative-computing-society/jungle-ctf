@@ -22,7 +22,7 @@ class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     list_display = ('uuid','teamName', 'points', 'position', 'board', 'members', 'current_ques', 'solved_ques')
     list_display_links = ('uuid', 'teamName')
-    list_filter = ('position',)
+    # list_filter = ('position',)
     search_fields = ('uuid','teamName', 'position')
     list_per_page = 25
     def members(self, obj):
@@ -41,8 +41,8 @@ class ParticipantAdmin(ImportExportModelAdmin):
     resource_class = ParticipantResource
     list_display = ('id', 'name', 'email', 'roll_no', 'phone_no', 'team')
     list_display_links = ('id', 'name')
-    list_filter = ('team',)
-    search_fields = ('name', 'email', 'roll_no', 'discord_ID', 'phone_no', 'team')
+    # list_filter = ('team',)
+    search_fields = ('name', 'email', 'roll_no', 'discord_ID', 'phone_no', 'team__teamName')
     list_per_page = 25
 
 admin.site.register(Participant, ParticipantAdmin)

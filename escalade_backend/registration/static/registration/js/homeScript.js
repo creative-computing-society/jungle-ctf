@@ -43,6 +43,7 @@ var x = setInterval(function () {
   // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    document.getElementById("timer").classList.add("hidden");
+    document.getElementById("after-timer-play").classList.remove("hidden");
   }
 }, 1000);

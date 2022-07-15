@@ -20,7 +20,12 @@ def login(request):
         team = auth.authenticate(teamName=TeamName, password=password)
         
         if team is not None :
+            if team.is_loggedin:
+                messages.error(request, "Already logged in from other browser!")
+                return redirect('/login')
             auth.login(request, team)
+            team.is_loggedin = True
+            team.save()
             return redirect('/start')
         
         else:
@@ -31,17 +36,21 @@ def login(request):
 def logout(request):
     if request.user.is_anonymous:
         return redirect('/login')
+    team = request.user
+    team.is_loggedin = False
+    team.save()
     auth.logout(request)
     return redirect('/login')
 
 def getRandomQuestion(team, prev_ques_id):
-    level = 1 if team.position<=20 else 2 if team.position<=40 else 3 if team.position<=60 else 4
+    level = 1 if team.position<16 else 2 if team.position<33 else 3 if team.position<57 else 4
     ques_str = team.level1 if level==1 else team.level2 if level==2 else team.level3 if level==3 else team.level4
     if len(ques_str)==0:
         ques_bank = Question.objects.filter(level=level)
         ques = random.choice(ques_bank)
         while ques.id==prev_ques_id:
             ques = random.choice(ques_bank)
+        print(level, ques.id, team.position)
         return ques
     if level==1:
         idx = random.randrange(0, len(team.level1), 2)
@@ -61,6 +70,7 @@ def getRandomQuestion(team, prev_ques_id):
         team.level4 = ques_str.replace(ques_id, '')
     ques_id = int(ques_id)
     ques = Question.objects.get(id=ques_id)
+    print(level, ques_id, team.position)
     return ques
 
 @login_required(login_url="/login")
@@ -75,7 +85,7 @@ def play(request):
         if answer!=team.current_ques.ans:
             messages.error(request, "wrongAnswer", 'wrong')
             return redirect('/play')
-        ques_str = team.level1 if team.position<=20 else team.level2 if team.position<=40 else team.level3 if team.position<=60 else team.level4
+        ques_str = team.level1 if team.position<16 else team.level2 if team.position<33 else team.level3 if team.position<57 else team.level4
         if len(ques_str):
             team.points += 10
         team.position += team.dice_value
@@ -87,12 +97,7 @@ def play(request):
             team.sneakpeek_taken = None
             team.save()
             return redirect("/play")
-        team.dice_value = random.randint(1, 6)
-        prev_ques_id = team.current_ques.id
-        team.current_ques = getRandomQuestion(team, prev_ques_id)
         beforeLocation = team.position
-        team.hint_taken = False
-        team.sneakpeek_taken = None
         opposerPresent = False
         boosterPresent = False
         opposer = Opposer.objects.filter(boardNo=team.board, start=team.position).first()
@@ -104,6 +109,11 @@ def play(request):
             if booster is not None:
                 boosterPresent = True
                 team.position = booster.end
+        team.dice_value = random.randint(1, 6)
+        prev_ques_id = team.current_ques.id
+        team.current_ques = getRandomQuestion(team, prev_ques_id)
+        team.hint_taken = False
+        team.sneakpeek_taken = None
         team.save()
         messages.success(request, "correctAnswer", 'correct')
         if opposerPresent:

@@ -8,7 +8,7 @@ body {
 
 .navbar {
   height: 120px;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   width: 100%;
   z-index: 50;
@@ -20,7 +20,7 @@ body {
 .top-container {
   display: flex;
   justify-content: space-evenly;
-  position: relative;
+  /* position: relative; */
   top: 120px;
 }
 
@@ -67,7 +67,7 @@ h1 {
 .middle-container {
   display: flex;
   justify-content: space-around;
-  position: relative;
+  /* position: relative; */
   top: 120px;
   height: 200px;
 }
@@ -80,7 +80,7 @@ h1 {
 .bottom-container {
   display: flex;
   justify-content: space-evenly;
-  position: relative;
+  /* position: relative; */
   top: 120px;
   padding-bottom: 2rem;
 }
@@ -318,9 +318,9 @@ a:hover {
   font-size: 22px;
 }
 
-.only {
+/* .only {
   height: 1vh;
-}
+} */
 
 .sides {
   background-color: #efe5dc !important;
@@ -333,7 +333,12 @@ a:hover {
 }
 
 input::placeholder {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
   color: red;
+  letter-spacing: 0.6rem;
+  width: inherit;
+  text-align: center;
 }
 
 .dice-right-shift {
@@ -351,7 +356,7 @@ input::placeholder {
   text-align: center;
   width: inherit;
   position: absolute;
-  top: 86%;
+  top: 92%;
   text-align: right;
   letter-spacing: 0.6rem;
 }
@@ -419,11 +424,12 @@ input::placeholder {
   display: grid;
   grid: auto auto / 250px auto;
   width: 100%;
-  position: relative;
+  /* position: relative; */
   top: 150px;
   align-items: center;
   justify-content: space-evenly;
   margin: auto;
+  margin-bottom: 50px;
 }
 
 .answer {
