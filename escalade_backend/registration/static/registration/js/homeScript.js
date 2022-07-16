@@ -1,6 +1,6 @@
 const popupContainer = document.querySelector(".popup-container");
 const para = document.querySelectorAll(".para");
-const loginButton = document.querySelector(".btn-login");
+const loginButton = document.getElementById("loginButton");
 
 const popConvert = function () {
   popupContainer.classList.toggle("background-red");
@@ -45,5 +45,6 @@ var x = setInterval(function () {
     clearInterval(x);
     document.getElementById("timer").classList.add("hidden");
     document.getElementById("after-timer-play").classList.remove("hidden");
+    loginButton.classList.remove("hidden");
   }
 }, 1000);

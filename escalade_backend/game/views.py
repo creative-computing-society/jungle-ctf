@@ -1,4 +1,3 @@
-from operator import ne
 import random
 from django.http import JsonResponse
 from django.contrib import messages
@@ -52,7 +51,6 @@ def getRandomQuestion(team, prev_ques_id):
         ques = random.choice(ques_bank)
         while ques.id==prev_ques_id:
             ques = random.choice(ques_bank)
-        print(level, ques.id, team.position)
         return ques
     if level==1:
         idx = random.randrange(0, len(team.level1), 2)
@@ -72,7 +70,6 @@ def getRandomQuestion(team, prev_ques_id):
         team.level4 = ques_str.replace(ques_id, '')
     ques_id = int(ques_id)
     ques = Question.objects.get(id=ques_id)
-    print(level, ques_id, team.position)
     return ques
 
 @never_cache

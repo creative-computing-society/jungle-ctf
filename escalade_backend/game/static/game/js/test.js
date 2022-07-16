@@ -154,12 +154,8 @@ async function fetchReRoll() {
   setButtonsByPoints();
 }
 
-wrongAnsLabel.addEventListener("click", function () {
-  answerSpace.focus();
-});
-
 answerSpace.addEventListener("focus", function() {
-  wrongAnsLabel.classList.add("hidden");
+  answerSpace.placeholder = "";
 });
 
 const normaliseCorrectAns = function() {

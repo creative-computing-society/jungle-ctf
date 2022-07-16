@@ -347,24 +347,6 @@ input::placeholder {
   margin: auto;
 }
 
-.placeholder {
-  font-family: "Montserrat", sans-serif;
-  display: inline-block;
-  color: red;
-  font-size: 2rem;
-  display: flex;
-  text-align: center;
-  width: inherit;
-  position: absolute;
-  top: 92%;
-  text-align: right;
-  letter-spacing: 0.6rem;
-}
-
-#wrongAnsLabel {
-  cursor: text;
-}
-
 .center {
   display: flex;
   justify-content: center;
