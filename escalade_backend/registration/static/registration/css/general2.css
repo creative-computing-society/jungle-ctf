@@ -131,7 +131,7 @@ html {
   }
 
   .heading-container {
-    margin-top: 20rem;
+    margin-top: 19rem;
     /* margin-right: 2.75rem; */
   }
 
@@ -178,13 +178,15 @@ html {
   }
 
   .heading-container {
-    margin-top: 24rem;
+    margin-top: 19rem;
     /* margin-right: 2.75rem; */
   }
 
   .heading-container h1 {
-    letter-spacing: 3.5rem;
-    padding-left: 3.5rem;
+    /* letter-spacing: 3.5rem;
+    padding-left: 3.5rem; */
+    letter-spacing: 3rem;
+    padding-left: 3rem;
   }
 
   .popup-container {
@@ -235,13 +237,15 @@ html {
   }
 
   .heading-container {
-    margin-top: 24rem;
+    margin-top: 19rem;
     /* margin-left: 2rem; */
   }
 
   .heading-container h1 {
-    letter-spacing: 3rem;
-    padding-left: 3rem;
+    /* letter-spacing: 3rem;
+    padding-left: 3rem; */
+    letter-spacing: 2.5rem;
+    padding-left: 2.5rem;
   }
 
   .sponsor-heading {
@@ -262,8 +266,10 @@ html {
 
 @media only screen and (max-width: 400px) {
   .heading-container h1 {
-    letter-spacing: 2rem;
-    padding-left: 2rem;
+    /* letter-spacing: 2rem;
+    padding-left: 2rem; */
+    letter-spacing: 1.5rem;
+    padding-left: 1.5rem;
   }
   .sponsor-heading {
     letter-spacing: 1.5rem;

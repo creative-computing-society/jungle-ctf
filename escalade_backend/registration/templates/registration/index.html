@@ -29,7 +29,6 @@
 
     <link rel="stylesheet" href="{% static 'registration/css/style3.css' %}" />
     <link rel="stylesheet" href="{% static 'registration/css/general2.css' %}" />
-    <!-- <link rel="stylesheet" href="form.css" /> -->
 
     <script defer src="{% static 'registration/js/homeScript.js' %}"></script>
 
@@ -69,9 +68,9 @@
           </p>
           <p class="loginError hidden">You can login once the event is online.</p>
         </div>
-        <h1 class="heading-primary">ESCALADE</h1>
+        <h1 class="heading-primary">GAME OVER</h1>
       </div>
-      <div id="timer" class="flex-container-placeholder ">
+      <div id="timer" class="flex-container-placeholder hidden">
         <div class="flex-container-holder">
           <div class="placeholder" id="first-placeholder"></div>
           <div class="placeholder" id="second-placeholder"></div>
@@ -100,6 +99,11 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="popup-block">
+        <p>The event has ended</p>
+        <p>We thank you for your healthy participation!</p>
+        <p>Results will be out soon!</p>
       </div>
     </section>
 

@@ -48,3 +48,5 @@ var x = setInterval(function () {
     loginButton.classList.remove("hidden");
   }
 }, 1000);
+
+clearInterval(x);

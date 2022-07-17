@@ -1,7 +1,4 @@
 body {
-  /* background-image: url('../img/Jungle.jpg'); */
-  /* background-size: cover; */
-  /* background-attachment: fixed; */
   background-position-x: center;
 }
 
@@ -69,7 +66,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 18rem;
+  margin-top: 11rem;
 }
 
 .heading-container h1 {
@@ -78,6 +75,7 @@ body {
   letter-spacing: 4rem;
   padding-left: 4rem;
   text-shadow: 10px 10px 10px #000000;
+  text-align: center;
 }
 
 .flex-container-placeholder {
@@ -194,9 +192,29 @@ body {
   font-size: 5rem;
 }
 
+.popup-block {
+  background-color: #111;
+  font-size: 3rem;
+  letter-spacing: 1.5px;
+  line-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 60%;
+  height: 30%;
+  border: 2px #fff dotted;
+  border-radius: 20px;
+  margin: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
 
 @media only screen and (max-width: 600px) {
-  .logo {
+  /* .logo {
     display: none;
   }
   .big-flex-container {
@@ -205,7 +223,7 @@ body {
     margin-bottom: 2rem;
     margin-right: 1rem;
     padding-top: 2rem;
-  }
+  } */
   .flex-container {
     justify-content: space-evenly;
   }
@@ -226,8 +244,8 @@ body {
     gap: 2rem;
   }
   .logo {
-    height: 10rem;
-    width: 10rem;
+    height: 5rem;
+    width: 5rem;
   }
 };
 
