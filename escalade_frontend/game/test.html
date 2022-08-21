@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="{% static 'game/img/escaladeLogowhite.png' %}">
+    <title>Escalade</title>
+
+    <link rel="stylesheet" href="{% static 'game/css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'game/css/dice.css' %}" />
+    <link rel="stylesheet" href="{% static 'game/css/popup.css' %}" />
+    <link rel="stylesheet" href="{% static 'game/css/loader.css' %}" />
+    <script defer src="{% static 'game/js/test.js' %}"></script>
+    <script defer src="{% static 'game/js/dice.js' %}"></script>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body onload = "
+    display();
+    {% if correctAnswer %}correctAnswer();{% endif %}
+    {% if opposer %}beforeLocation();
+    setTimeout(opposerReached, 2510);{% endif %}
+    {% if booster %}beforeLocation();
+    setTimeout(boosterReached, 2510);{% endif %}
+    rollDice();
+  ">
+
+  <div class="wrapper">
+    <div class="loader">
+      <div class="loader_part loader_part--1"></div>
+      <div class="loader_part loader_part--2"></div>
+      <div class="loader_part loader_part--3"></div>
+    </div>
+  </div>
+  
+  <div class="hidden" id="main_body">
+    <div class="popup hidden">
+      <div class="content hidden"></div>
+      <lottie-player 
+            src="https://assets10.lottiefiles.com/packages/lf20_sxbsfnm2.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 300px; height: 300px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="boosterGif3"
+          ></lottie-player>
+      <lottie-player
+          src="https://assets10.lottiefiles.com/temporary_files/M7fGjn.json"
+          background="transparent"
+          speed="1"
+          style="width: 300px; height: 300px"
+          loop
+          autoplay
+          class="hidden"
+          id="opposerGif3"
+        ></lottie-player>
+      <lottie-player 
+          src="https://assets3.lottiefiles.com/packages/lf20_xyhdo4jv.json"  
+          background="transparent"  
+          speed="1"  
+          style="width: 300px; height: 300px;"  
+          loop  
+          autoplay
+          class="hidden"
+          id="noneGif1"
+        ></lottie-player>
+        <img class="hidden" id="popupImage" src="{% if user.current_ques.img %}{{user.current_ques.img}}{% endif %}" alt="Something went wrong.">
+      <div class="next">
+        <p class="next_text close">x</p>
+      </div>
+    </div>
+
+    <section class="only">
+      <div class="navbar">
+        <div class="logo">
+        </div>
+        <div class="rulebook">
+          <h2 class="text"><a href="{% url 'rulebook' %}"> RULEBOOK </a></h2>
+        </div>
+        <div class="leaderboard">
+          <h2 class="text"><a href="{% url 'leaderboard' %}"> LEADERBOARD</a></h2>
+        </div>
+        <div class="team-name">
+          <h2 class="text">{% if user.teamName|length > 12%}{{user.teamName|truncatechars:11}}{% else %}{{user.teamName}}{% endif %}</h2>
+        </div>
+        <div class="points">
+          <h2 class="text"><b>POINTS:</b> <span id="pointsText">{{user.points}}<span></h2>
+        </div>
+        <div class="logout">
+          <h2 class="text"><a href="{% url 'logout' %}">LOGOUT</a></h2>
+        </div>
+      </div>
+      <div class="top-container">
+        <div class="box" id="box1">
+          <lottie-player 
+            src="https://assets10.lottiefiles.com/packages/lf20_sxbsfnm2.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 300px; height: 300px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="boosterGif1"
+          ></lottie-player>
+          <lottie-player
+            src="https://assets10.lottiefiles.com/temporary_files/M7fGjn.json"
+            background="transparent"
+            speed="1"
+            style="width: 300px; height: 300px"
+            loop
+            autoplay
+            class="hidden"
+            id="opposerGif1"
+          ></lottie-player>
+          <lottie-player 
+            src="https://assets5.lottiefiles.com/packages/lf20_9aa9jkxv.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 250px; height: 250px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="tickMarkGif1"
+          ></lottie-player>
+          <h1 id="prevLocText">{% if user.position > 0 %}{{user.position|add:-1}}{% endif %}</h1>
+        </div>
+        <div class="box" id="box2">
+          <h1 id="beforeLocText" class="hidden">{{beforeLocation}}</h1>
+          <h1 id="currLocText">{{user.position}}</h1>
+        </div>
+        <div class="box" id="box3">
+          <lottie-player 
+            src="https://assets10.lottiefiles.com/packages/lf20_sxbsfnm2.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 300px; height: 300px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="boosterGif2"
+          ></lottie-player>
+          <lottie-player
+            src="https://assets10.lottiefiles.com/temporary_files/M7fGjn.json"
+            background="transparent"
+            speed="1"
+            style="width: 300px; height: 300px"
+            loop
+            autoplay
+            class="hidden"
+            id="opposerGif2"
+          ></lottie-player>
+          <lottie-player 
+            src="https://assets5.lottiefiles.com/packages/lf20_9aa9jkxv.json"  
+            background="transparent"  
+            speed="1"  
+            style="width: 250px; height: 250px;"  
+            loop  
+            autoplay
+            class="hidden"
+            id="tickMarkGif2"
+          ></lottie-player>
+          <h1 id="nextLocText">{{user.position|add:1}}</h1>
+        </div>
+      </div>
+      <span id="diceResult" class="hidden">{{user.dice_value}}</span>
+      <div class="middle-container {% if wrongAnswer %}hidden{% endif %}">
+        <div class="dice dice-center-container">
+          <div id="dice" data-side="{{user.dice_value}}">
+            <div class="sides side-1">
+              <span class="dot dot-1"></span>
+            </div>
+            <div class="sides side-2">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+            </div>
+            <div class="sides side-3">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+            </div>
+            <div class="sides side-4">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+            </div>
+            <div class="sides side-5">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+            </div>
+            <div class="sides side-6">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+              <span class="dot dot-6"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-container {% if wrongAnswer %}hidden{% endif %}">
+        <div id="reRollWrapper"><div class="option" id="reroll"></div></div>
+        <div id="reRollLoading" class="center hidden">
+          <div class="loading loader"></div>
+        </div>
+        <div id="sneakPeekWrapper"><div class="option" id="sneak-peek"></div></div>
+        <div id="sneakPeekLoading" class="center hidden">
+          <div class="loading loader"></div>
+        </div>
+        <div class="option" id="continue"></div>
+      </div>
+
+      <div class="grid-container {% if wrongAnswer == None %}hidden{% endif %}">
+        <div class="dice dice-center-container dice-right-shift">
+          <div id="dice2" data-side="{{user.dice_value}}">
+            <div class="sides side-1">
+              <span class="dot dot-1"></span>
+            </div>
+            <div class="sides side-2">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+            </div>
+            <div class="sides side-3">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+            </div>
+            <div class="sides side-4">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+            </div>
+            <div class="sides side-5">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+            </div>
+            <div class="sides side-6">
+              <span class="dot dot-1"></span>
+              <span class="dot dot-2"></span>
+              <span class="dot dot-3"></span>
+              <span class="dot dot-4"></span>
+              <span class="dot dot-5"></span>
+              <span class="dot dot-6"></span>
+            </div>
+          </div>
+        </div>
+        <div class="question">
+          <div id="question-text"><b>{{user.current_ques.body}}&nbsp;{% if user.current_ques.link1 %}(<a href="{{user.current_ques.link1}}" target="_blank">Link 1&nbsp;</a>{% if user.current_ques.link2 %},&nbsp;<a href="{{user.current_ques.link2}}" target="_blank">Link 2&nbsp;</a>{% endif %}){% endif %}&nbsp;{% if user.current_ques.img %}(<a onclick="showPopupImage();">Image&nbsp;</a>){% endif %}</b></div>
+        </div>
+        <div id="hintWrapper" class=""><div id="hint" class="hint">
+          <span class="hint-pop">HINT</span>
+          <span id="hintPointsCost" class="hint-pop hidden">POINTS={% if user.hint_taken %}0{% else %}10{% endif %}</span>
+        </div></div>
+        <div id="hintLoading" class="center hidden">
+          <div class="loading loader"></div>
+        </div>
+        <form class="answer" action="{% url 'play' %}" method="POST">
+          {% csrf_token %}
+          <input
+            id="answer-space"
+            placeholder="{% if wrongAnswer %}INCORRECT ANSWER{% endif %}"
+            type="text"
+            name="answer"
+          />
+          <div id="formSubmitLoading" class="center hidden">
+            <div class="loading loader"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script type="text/javascript">
+    const setSneakPeekNoneBgImg = function() {
+      document.querySelector(".popup").style.backgroundImage = "url({% static 'game/img/nonebg2.jpg' %})";
+    };
+    const setSneakPeekBoosterBgImg = function() {
+      document.querySelector(".popup").style.backgroundImage = "url({% static 'game/img/Star.jpg' %})";
+    };
+    const setSneakPeekOpposerBgImg = function() {
+      document.querySelector(".popup").style.backgroundImage = "url({% static 'game/img/bg_none.jpg' %})";
+    };
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="{% static 'game/img/escaladeLogowhite.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'game/css/404.css' %}" />
+
+    <title>Not Found</title>
+  </head>
+  <body>
+    <img class= "logo" src="{%static 'game/img/escaladeLogo.png' %}" >
+    <div class="container">
+      <h1>404</h1>
+      <h2>Page Not Found</h2>
+      <!-- https://drive.google.com/file/d/1JOW_j-80rDTJjSdcizjaz0Yva4LvwRtv/view?usp=sharing -->
+      <a href="{% url 'index' %}">Back To Home</a>
+    </div>
+  </body>
+</html>

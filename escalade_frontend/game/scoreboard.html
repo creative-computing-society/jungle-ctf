@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <title>Leaderboard | Escalade</title>
+  <head>
+    <link rel="stylesheet" href="{% static 'game/css/Leaderboard.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'game/img/escaladeLogowhite.png' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+
+<a href="{% url 'play' %}"class="arrow" ><span><</span></a>
+
+    <div class="top">LEADERBOARD</div>
+
+    <div class="main-flex-container">
+      <div class="secondary-flex" id="first-line">
+        <div class="flex-element">Rank</div>
+        <div class="flex-element">Team</div>
+        <div class="flex-element">Position</div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">🥇</div>
+        <div class="flex-element">{{team1.teamName}}</div>
+        <div class="flex-element">{{team1.position}} </div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">🥈</div>
+        <div class="flex-element">{{team2.teamName}} </div>
+        <div class="flex-element">{{team2.position}} </div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">🥉</div>
+        <div class="flex-element">{{team3.teamName}} </div>
+        <div class="flex-element">{{team3.position}} </div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">4</div>
+        <div class="flex-element">{{team4.teamName}} </div>
+        <div class="flex-element">{{team4.position}} </div>
+      </div>
+      <div class="secondary-flex">
+        <div class="flex-element">5</div>
+        <div class="flex-element">{{team5.teamName}} </div>
+        <div class="flex-element">{{team5.position}} </div>
+      </div>
+    </div>
+  </body>
+</html>

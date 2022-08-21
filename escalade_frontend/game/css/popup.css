@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+.top {
+  padding-top: 1%;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 85px;
+  text-align: center;
+  letter-spacing: 1.5vw;
+}
+
+.popup {
+  width: 94%;
+  height: 82%;
+  z-index: 1;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+  margin-top: 2%;
+  background: #ffffff;
+  background: rgba(31, 31, 31, 0.979);
+  border: 3px solid #ffffff;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+  .popup {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+.content {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 36px;
+  color: #ffffff;
+}
+
+.next {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.next_text {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 33px;
+  letter-spacing: 0.28em;
+  color: #34bfc3;
+  cursor: pointer;
+  z-index: 2;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(7, 7, 7, 1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(26, 58, 106);
+  border-radius: 10px;
+}
+
+.next_text {
+  cursor: pointer;
+  position: absolute;
+  top: -1rem;
+  right: 1rem;
+}
+
+.popup {
+  position: absolute;
+  top: 5.6rem;
+  right: 1rem;
+  left: 1rem;
+}

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="{% static 'game/img/escaladeLogowhite.png' %}">
+    <link rel="stylesheet" href="{% static 'game/css/form.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <title>Login | Escalade</title>
+  </head>
+  <body>
+    <div class="text1">LOGIN TO START</div>
+    <section id="contact">
+      <div class="contact-box">
+        <div class="contact-links">
+          <div class="link">
+            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+            <lottie-player
+              src="https://assets9.lottiefiles.com/packages/lf20_i9arxzcg.json"
+              background="transparent"
+              speed="1"
+              class="gif"
+              style="width: 500px; height: 500px"
+              loop
+              autoplay
+            ></lottie-player>
+          </div>
+        </div>
+        <div class="contact-form-wrapper">
+          <h2 class="heading">Login</h2>
+          <form id="form" action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" required="required" name="TeamName"/>
+              <label for="input" class="control-label errTeamName"
+                >Team Name</label
+              >
+              <i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+              <input type="password" required="required" name="password" />
+              <label for="input" class="control-label errPassword"
+                >Password</label
+              >
+              <i class="bar"></i>
+            </div>
+            <div class="error_message_div">
+              {% for message in messages %}
+                <font class="error_message"><b>{{ message }}</b></font> </p>
+              {% endfor %}
+            </div>
+
+            <input id="formSubmitButton" type="submit" class="submit-btn" value="Next" >
+            <div id="loader" class="center hidden">
+              <div id="loading" class="loader"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script type="text/javascript">
+      const formSubmitButton = document.getElementById("formSubmitButton");
+      const loader = document.getElementById("loader");
+      const form = document.getElementById("form");
+      form.addEventListener('submit', function() {
+        formSubmitButton.classList.add("hidden");
+        loader.classList.remove("hidden");
+      });
+    </script>
+  </body>
+</html>

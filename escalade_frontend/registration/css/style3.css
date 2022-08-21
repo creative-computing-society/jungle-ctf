@@ -1,0 +1,291 @@
+body {
+  background-position-x: center;
+}
+
+.section-hero {
+  min-height: 100vh;
+  width: auto;
+  background-image: url('../img/Jungle.jpg');
+  background-size: cover;
+  background-position-x: center;
+  color: #ddd;
+  padding-bottom: 50px;
+}
+
+.section-login {
+  height: 100vh;
+  width: auto;
+  position: absolute;
+}
+
+.big-flex-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 3rem;
+  margin-bottom: 3rem;
+  margin-right: 2rem;
+  padding-top: 3rem;
+  align-items: center;
+}
+
+.flex-container {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 4rem;
+  /* margin-top: 3rem; */
+  justify-content: end;
+}
+
+/* .register {
+  margin-top: 3rem;
+  margin-left: auto;
+}
+
+.login {
+  margin-top: 3rem;
+  margin-right: 10rem;
+} */
+
+.btn-register {
+  font-size: 3rem;
+  color: #fff;
+  letter-spacing: 0.5rem;
+  font-weight: 400;
+  background-color: #222;
+}
+
+.btn-login {
+  color: rgb(9, 56, 40);
+  font-size: 3rem;
+  letter-spacing: 0.5rem;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.heading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 11rem;
+}
+
+.heading-container h1 {
+  margin: 0px;
+  color: #fff;
+  letter-spacing: 4rem;
+  padding-left: 4rem;
+  text-shadow: 10px 10px 10px #000000;
+  text-align: center;
+}
+
+.flex-container-placeholder {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  /* padding-right: 4rem; */
+  padding-top: 3rem;
+}
+
+.placeholder {
+  height: 13rem;
+  width: 13rem;
+  background-color: #ccc;
+  border-radius: 50%;
+  text-align: center;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+}
+
+.logo {
+  width: 11.5rem;
+  height: 11.5rem;
+  border-radius: 50%;
+  /* margin-right: 115rem; */
+  /* position: absolute; */
+  /* top: 3rem; */
+  /* right: 40rem; */
+}
+
+.flex-container-holder {
+  display: flex;
+  gap: 4rem;
+}
+
+.popup-container {
+  border-radius: 12px;
+  background-color: rgba(37, 106, 37, 0.835);
+  width: 40rem;
+  height: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  /* bottom: 68rem; */
+  top: 10rem;
+}
+
+.para {
+  font-size: 4rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.loginError {
+  font-size: 4rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.background-red {
+  background-color: rgba(255, 0, 0, 0.664);
+}
+
+.para a {
+  color: #ddd;
+}
+
+.para a:hover {
+  font-size: 4.1rem;
+}
+
+.flex-container-text-placeholder {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding-right: 4rem;
+  padding-top: 3rem;
+}
+
+.flex-container-text-holder {
+  display: flex;
+  gap: 4rem;
+}
+
+.text-placeholder {
+  height: 13rem;
+  width: 13rem;
+  background-color: #ccc;
+  border-radius: 50%;
+  text-align: center;
+  color: rgb(9, 56, 40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7rem;
+  transition-duration: 0.5s;
+}
+
+.text-placeholder:hover {
+  font-size: 9rem;
+  -webkit-text-stroke: 10px #4444;
+}
+
+.text-placeholder {
+  height: 6rem;
+  width: 6rem;
+  font-size: 3rem;
+}
+.text-placeholder:hover {
+  font-size: 5rem;
+}
+
+.popup-block {
+  background-color: #111;
+  font-size: 3rem;
+  letter-spacing: 1.5px;
+  line-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 60%;
+  height: 30%;
+  border: 2px #fff dotted;
+  border-radius: 20px;
+  margin: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.popup-block a {
+  color: #ddd;
+}
+
+.popup-block a:hover {
+  font-size: 3.1rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+  /* .logo {
+    display: none;
+  }
+  .big-flex-container {
+    display: block;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+    padding-top: 2rem;
+  } */
+  .flex-container {
+    justify-content: space-evenly;
+  }
+
+  .flex-container-holder {
+    flex-direction: column;
+  }
+  .btn-login {
+    font-size: 2rem;
+  }
+  .btn-register {
+    font-size: 2rem;
+  }
+  .para {
+    font-size: 3rem;
+  }
+  .flex-container {
+    gap: 2rem;
+  }
+  .logo {
+    height: 5rem;
+    width: 5rem;
+  }
+};
+
+@media only screen and (max-width: 800px) {
+  .flex-container-holder {
+    flex-direction: column;
+  }
+  .btn-login {
+    font-size: 2rem;
+  }
+  .btn-register {
+    font-size: 2rem;
+  }
+  .para {
+    font-size: 3rem;
+  }
+
+  .flex-container {
+    gap: 2rem;
+  }
+  .logo {
+    height: 10rem;
+    width: 10rem;
+  }
+} ;
+
+@media only screen and (max-width: 1100px) {
+  .flex-container {
+    gap: 2rem;
+  }
+  .logo {
+    height: 10rem;
+    width: 10rem;
+  }
+};
