@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="form.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="scriptForm.js"></script>
+    <title>Registration Form</title>
+  </head>
+  <body>
+    <div class="text1">REGISTER YOUR TEAM</div>
+    <section id="contact">
+      <div class="contact-box">
+        <div class="contact-links">
+          <div class="links">
+            <div class="link">
+              <!-- <a
+                ><img
+                  src="https://i.postimg.cc/m2mg2Hjm/linkedin.png"
+                  alt="linkedin"
+              /></a>
+            </div>
+            <div class="link">
+              <a
+                ><img
+                  src="https://i.postimg.cc/YCV2QBJg/github.png"
+                  alt="github"
+              /></a>
+            </div>
+            <div class="link">
+              <a
+                ><img
+                  src="https://i.postimg.cc/W4Znvrry/codepen.png"
+                  alt="codepen"
+              /></a>
+            </div>
+            <div class="link">
+              <a
+                ><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"
+              /></a> -->
+              <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+              <lottie-player
+                src="https://assets9.lottiefiles.com/packages/lf20_i9arxzcg.json"
+                background="transparent"
+                speed="1"
+                style="width: 500px; height: 500px"
+                loop
+                autoplay
+              ></lottie-player>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-wrapper">
+          <h2 class="heading">Team Leader</h2>
+          <form action="member.html">
+            <!-- <div class="form-item">
+              <input type="text" name="sender" required />
+              <label>Team Name:</label>
+            </div> -->
+            <!-- <div class="input-field">
+              <span></span>
+              <input required type="text" placeholder="Year" />
+            </div> -->
+            <div class="form-group">
+              <input type="text" required="required" />
+              <label for="input" class="control-label errTeamName"
+                >Team Name</label
+              >
+              <label
+                for="input"
+                class="control-label errTeamName orange-text hidden"
+                >Team Name Already Taken</label
+              ><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+              <input type="text" required="required" />
+              <label for="input" class="control-label">Leader's Name</label
+              ><i class="bar"></i>
+            </div>
+            <div class="form-group">
+              <input type="text" required="required" />
+              <label for="input" class="control-label errEmail"
+                >Leader's Thapar id</label
+              >
+              <label
+                for="input"
+                class="control-label errEmail orange-text hidden"
+                >Please enter Thapar id</label
+              ><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+              <input type="text" required="required" />
+              <label for="input" class="control-label errRoll"
+                >Leader's Roll Number</label
+              ><label
+                for="input"
+                class="control-label errRoll orange-text hidden"
+                >Incorrect Format</label
+              ><i class="bar"></i>
+            </div>
+            <div class="form-group">
+              <input type="text" required="required" />
+              <label for="input" class="control-label errDiscord"
+                >Leader's Discord id</label
+              ><label
+                for="input"
+                class="control-label errDiscord orange-text hidden"
+                >Participant with this discord id already exists</label
+              ><i class="bar"></i>
+            </div>
+
+            <div class="form-group">
+              <input type="text" required="required" />
+              <label for="input" class="control-label errPhone"
+                >Leader's Phone Number</label
+              ><label
+                for="input"
+                class="control-label errPhone orange-text hidden"
+                >Incorrect Format</label
+              ><i class="bar"></i>
+            </div>
+
+            <!-- <div class="form-item">
+              <input type="text" name="sender" required />
+              <label>Leader Name:</label>
+            </div> -->
+            <!-- <div class="form-item">
+              <input type="email" name="email" required />
+              <label class="errEmail">Leader Email:</label>
+              <label class="errEmail red-text hidden">Enter Thapar id</label>
+            </div>
+            <div class="form-item">
+              <input type="text" name="sender" required />
+              <label class="errRoll">Leader Roll Number:</label>
+              <label class="errRoll red-text hidden"
+                >Incorrect roll number format</label
+              >
+            </div> -->
+            <!-- <div class="form-item">
+              <input type="phone" name="email" required />
+              <label class="errPhone">Leader Phone Number:</label>
+              <label class="errPhone red-text hidden"
+                >Incorrect phone number format</label
+              >
+              
+            </div> -->
+            <!-- <div class="form__group field">
+              <input
+                type="input"
+                class="form__field"
+                placeholder="Name"
+                name="name"
+                id="name"
+                required
+              />
+              <label for="name" class="form__label">Name</label>
+            </div> -->
+            <!-- <div class="form__group field">
+              <input
+                type="input"
+                class="form__field"
+                placeholder="Name"
+                name="name"
+                id="name"
+                required
+              />
+              <label for="name" class="form__label">Name</label>
+            </div>
+
+            <div class="form-item">
+              <input type="text" name="sender" required />
+              <label class="errDiscord">Leader Discord id:</label>
+              <label class="errDiscord red-text hidden"
+                >Incorrect discord id format</label
+              >
+            </div>
+            <div class="form-item">
+              <input type="text" name="sender" required />
+              <label class="errPassword">Leader Set Password</label>
+              <label class="errPassword red-text hidden"
+                >Incorrect password format</label
+              >
+            </div> -->
+            <button type="submit" class="submit-btn">Next</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
