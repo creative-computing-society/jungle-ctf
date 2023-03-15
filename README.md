@@ -50,7 +50,7 @@ Install dependencies
   pip install -r requirements.txt
 ```
 
-Add _Security Key_ : Go to project's _settings.py_ file and change the value of _SECURITY_KEY_ variable to desired security key.
+Create ```.env``` file in project's root directory(base directory), and add _SECURITY_KEY_, _EMAIL_HOST_USER_, and _EMAIL_HOST_PASSWORD_
 
 Run Migrations
 
@@ -89,4 +89,6 @@ Start the server
 - [Rimjhim Mittal](https://github.com/rimjhimittal)
 - [Saanvi Sharma](https://github.com/Saanvi49)
 - [Arvinder Singh Kandola](https://github.com/askandola)
+- [Vivaan Taneja](https://github.com/vivaantaneja)
 - [Atin Arora](https://github.com/jimbo-exe/)
+- [Garv Chandalia](https://github.com/grc-04)
