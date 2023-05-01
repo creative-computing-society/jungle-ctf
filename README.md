@@ -76,7 +76,7 @@ Exit the Postgres shell:
 \q
 ```
 
-Create `.env` file in base directory and place Secret-Key, Email credentials and Database credentials, as per the format given in `sample_creds.txt`
+Create `.env` file in base directory and place Secret-Key, Email credentials and Database credentials, as per the format given in `sample_credentials.txt`
 
 Run Migrations
 
