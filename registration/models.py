@@ -2,6 +2,7 @@ import uuid
 from django.contrib.auth.models import AbstractBaseUser
 from .managers import UserManager
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.core.validators import RegexValidator
 from game.models import Question
 
@@ -11,6 +12,18 @@ DISCORD_REGEX = "^.{2,32}#[0-9]{4}$"
 EMAIL_REGEX = "^[A-Za-z0-9._~+-]+@thapar\.edu$"
 ROLLNO_REGEX = "^[0-9]{9}$"
 PHONENO_REGEX = "^[0-9]{10}$"
+
+def get_level1():
+    return list((1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15))
+
+def get_level2():
+    return list((16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30))
+
+def get_level3():
+    return list((31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50))
+
+def get_level4():
+    return list((51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70))
 
 class Team(AbstractBaseUser):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -39,10 +52,10 @@ class Team(AbstractBaseUser):
     dummy1 = models.CharField(max_length=50, blank=True, null=True, default=None)
     dummy2 = models.CharField(max_length=50, blank=True, null=True, default=None)
     
-    level1 = models.CharField(max_length=50, blank=True, default="010203040506070809101112131415")
-    level2 = models.CharField(max_length=50, blank=True, default="161718192021222324252627282930")
-    level3 = models.CharField(max_length=50, blank=True, default="3132333435363738394041424344454647484950")
-    level4 = models.CharField(max_length=50, blank=True, default="5152535455565758596061626364656667686970")
+    level1 = ArrayField(models.IntegerField(), default=get_level1)
+    level2 = ArrayField(models.IntegerField(), default=get_level2)
+    level3 = ArrayField(models.IntegerField(), default=get_level3)
+    level4 = ArrayField(models.IntegerField(), default=get_level4)
 
     hint_taken = models.BooleanField(blank=True, default=False)
     sneakpeek_taken = models.CharField(max_length=10, null=True, blank=True, default=None)

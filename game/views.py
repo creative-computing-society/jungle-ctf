@@ -21,12 +21,12 @@ def login(request):
         team = auth.authenticate(teamName=TeamName, password=password)
         
         if team is not None :
-            if team.is_loggedin:
-                messages.error(request, "Already logged in from other browser!")
-                return redirect('/login')
+            # if team.is_loggedin:
+            #     messages.error(request, "Already logged in from other browser!")
+            #     return redirect('/login')
             auth.login(request, team)
-            team.is_loggedin = True
-            team.save()
+            # team.is_loggedin = True
+            # team.save()
             return redirect('/start')
         
         else:
@@ -38,37 +38,31 @@ def logout(request):
     if request.user.is_anonymous:
         return redirect('/login')
     team = request.user
-    team.is_loggedin = False
-    team.save()
+    # team.is_loggedin = False
+    # team.save()
     auth.logout(request)
     return redirect('/login')
 
 def getRandomQuestion(team, prev_ques_id):
     level = 1 if team.position<16 else 2 if team.position<33 else 3 if team.position<57 else 4
-    ques_str = team.level1 if level==1 else team.level2 if level==2 else team.level3 if level==3 else team.level4
-    if len(ques_str)==0:
+    ques_lst = team.level1 if level==1 else team.level2 if level==2 else team.level3 if level==3 else team.level4
+    if len(ques_lst)==0:
         ques_bank = Question.objects.filter(level=level)
         ques = random.choice(ques_bank)
         while ques.id==prev_ques_id:
             ques = random.choice(ques_bank)
         return ques
+    
+    ques_id = random.choice(ques_lst)
+    ques_lst.remove(ques_id)
     if level==1:
-        idx = random.randrange(0, len(team.level1), 2)
-        ques_id = team.level1[idx: idx+2]
-        team.level1 = ques_str.replace(ques_id, '')
+        team.level1 = ques_lst
     elif level==2:
-        idx = random.randrange(0, len(team.level2), 2)
-        ques_id = team.level2[idx: idx+2]
-        team.level2 = ques_str.replace(ques_id, '')
+        team.level2 = ques_lst
     elif level==3:
-        idx = random.randrange(0, len(team.level3), 2)
-        ques_id = team.level3[idx: idx+2]
-        team.level3 = ques_str.replace(ques_id, '')
+        team.level3 = ques_lst
     else:
-        idx = random.randrange(0, len(team.level4), 2)
-        ques_id = team.level4[idx: idx+2]
-        team.level4 = ques_str.replace(ques_id, '')
-    ques_id = int(ques_id)
+        team.level4 = ques_lst
     ques = Question.objects.get(id=ques_id)
     return ques
 
@@ -85,8 +79,8 @@ def play(request):
         if answer!=team.current_ques.ans:
             messages.error(request, "wrongAnswer", 'wrong')
             return redirect('/play')
-        ques_str = team.level1 if team.position<16 else team.level2 if team.position<33 else team.level3 if team.position<57 else team.level4
-        if len(ques_str):
+        ques_lst = team.level1 if team.position<16 else team.level2 if team.position<33 else team.level3 if team.position<57 else team.level4
+        if len(ques_lst):
             team.points += 10
         team.position += team.dice_value
         if team.position>80:

@@ -8,7 +8,7 @@ Portal for Escalade held on July 16-17, 2022. There is a board (same as snakes a
 
 **Server:** Python, Django
 
-**Database:** SQLite
+**Database:** PostgreSQL
 
 ## Run Locally
 
@@ -27,7 +27,7 @@ Go to the project directory
 We recommend you to use virtual environment
 
 ```bash
-  python -m venv env
+  python -m venv venv
 ```
 
 Activate virtual environment
@@ -46,11 +46,37 @@ Activate virtual environment
 
 Install dependencies
 
+Note: For Windows users, replace psycopg2-binary with psycopg2 in requirements.txt
+
 ```bash
   pip install -r requirements.txt
 ```
 
-Create ```.env``` file in project's root directory(base directory), and add _SECURITY_KEY_, _EMAIL_HOST_USER_, and _EMAIL_HOST_PASSWORD_
+Make sure you have installed PostgreSQL
+
+Run the following commands in psql shell:  
+```
+psql postgres
+```
+Create a new database for your Django project:
+```
+CREATE DATABASE escalade;
+```
+Create a new user with a password:
+```
+CREATE USER username WITH PASSWORD 'your_pass';
+```
+Grant all privileges on the database to the user:
+
+```
+GRANT ALL PRIVILEGES ON DATABASE escalade TO username;
+```
+Exit the Postgres shell:
+```
+\q
+```
+
+Create `.env` file in base directory and place Secret-Key, Email credentials and Database credentials, as per the format given in `sample_creds.txt`
 
 Run Migrations
 
@@ -68,16 +94,19 @@ Start the server
   python manage.py runserver
 ```
 
+To add data such as questions and boards information to database, open *Admin Panel*, first go to *Questions* section, and Click on the *Import* button at top-right corner, select Format as *xlsx*, and upload file name *Question.xlsx* from *data* folder, and proceed. Repeat steps for Booster and Opposer tables.
+
 ## Endpoints
 
-- / - Landing page
-- register/ - For registration of team
-- start/ - Start the game
-- play/ - Main gameplay page
-- leaderboard/ - Leaderboard
-- rulebook/ - Rulebook
-- login/ - Login
-- logout/ - Logout
+- `/` - Landing page
+- `register/` - For registration of team
+- `start/` - Start the game
+- `play/` - Main gameplay page
+- `leaderboard/` - Leaderboard
+- `rulebook/` - Rulebook
+- `login/` - Login
+- `logout/` - Logout
+- `admin/` - Admin Panel
 
 ## Team
 

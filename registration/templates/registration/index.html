@@ -43,69 +43,64 @@
     setTimeout(popout, 10000);
     {% endif %}
   ">
-    <section class="section-hero">
-      <div class="big-flex-container">
-        <img src="{% static 'registration/img/escaladeLogo.png' %}" class="logo" />
-        <div class="flex-container">
-          <div class="register">
-            <a id="loginButton" href="/login" class="btn btn-register hidden">LOGIN</a>
-          </div>
-          <div class="login">
-            <a href="#sponsors"  class="btn btn-login">SPONSORS</a>
-          </div>
+  <section class="section-hero">
+    <div class="big-flex-container">
+      <img src="{% static 'registration/img/escaladeLogo.png' %}" class="logo" />
+      <div class="flex-container">
+        <div class="register">
+          <a id="loginButton" href="/login" class="btn btn-register hidden">LOGIN</a>
+        </div>
+        <div class="login">
+          <a href="#sponsors"  class="btn btn-login">SPONSORS</a>
         </div>
       </div>
+    </div>
 
-      <div class="heading-container">
-        <div class="popup-container hidden">
-          <p class="para">
-            Registration Successful<br />
-            Join <a href="https://discord.gg/4QPjvKavAZ" target="_blank">Discord Server</a>
-          </p>
-          <p class="para hidden">
-            Registration Failed <br />
-            Please try again
-          </p>
-          <p class="loginError hidden">You can login once the event is online.</p>
-        </div>
-        <h1 class="heading-primary">GAME OVER</h1>
+    <div class="heading-container">
+      <div class="popup-container hidden">
+        <p class="para">
+          Registration Successful<br />
+          Join <a href="https://discord.gg/4QPjvKavAZ" target="_blank">Discord Server</a>
+        </p>
+        <p class="para hidden">
+          Registration Failed <br />
+          Please try again
+        </p>
+        <p class="loginError hidden">You can login once the event is online.</p>
       </div>
-      <div id="timer" class="flex-container-placeholder hidden">
-        <div class="flex-container-holder">
-          <div class="placeholder" id="first-placeholder"></div>
-          <div class="placeholder" id="second-placeholder"></div>
-        </div>
-        <div class="flex-container-holder">
-          <div class="placeholder" id="third-placeholder"></div>
-          <div class="placeholder" id="fourth-placeholder"></div>
-        </div>
+      <h1 class="heading-primary">ESCALADE</h1>
+    </div>
+    <div id="timer" class="flex-container-placeholder ">
+      <div class="flex-container-holder">
+        <div class="placeholder" id="first-placeholder"></div>
+        <div class="placeholder" id="second-placeholder"></div>
       </div>
-      <div id="after-timer-play" class="flex-container-placeholder hidden">
-        <div class="flex-container-text-placeholder">
-          <div class="flex-container-text-holder">
-            <div class="text-placeholder" id="first-placeholder">
-              <a class="remove-decoration" href="/login">P</a>
-            </div>
-            <div class="text-placeholder" id="second-placeholder">
-              <a class="remove-decoration" href="/login">L</a>
-            </div>
+      <div class="flex-container-holder">
+        <div class="placeholder" id="third-placeholder"></div>
+        <div class="placeholder" id="fourth-placeholder"></div>
+      </div>
+    </div>
+    <div id="after-timer-play" class="flex-container-placeholder hidden">
+      <div class="flex-container-text-placeholder">
+        <div class="flex-container-text-holder">
+          <div class="text-placeholder" id="first-placeholder">
+            <a class="remove-decoration" href="/login">P</a>
           </div>
-          <div class="flex-container-text-holder">
-            <div class="text-placeholder" id="third-placeholder">
-              <a class="remove-decoration" href="/login">A</a>
-            </div>
-            <div class="text-placeholder" id="fourth-placeholder">
-              <a class="remove-decoration" href="/login">Y</a>
-            </div>
+          <div class="text-placeholder" id="second-placeholder">
+            <a class="remove-decoration" href="/login">L</a>
           </div>
         </div>
+        <div class="flex-container-text-holder">
+          <div class="text-placeholder" id="third-placeholder">
+            <a class="remove-decoration" href="/login">A</a>
+          </div>
+          <div class="text-placeholder" id="fourth-placeholder">
+            <a class="remove-decoration" href="/login">Y</a>
+          </div>
+        </div>
       </div>
-      <div class="popup-block">
-        <p>The event has ended</p>
-        <p>We thank you for your healthy participation!</p>
-        <p>Results have been announced on <a href="https://www.instagram.com/p/CgKLtDbrb-g/?igshid=YmMyMTA2M2Y=" target="_blank">CCS's Instagram page!</a></p>
-      </div>
-    </section>
+    </div>
+  </section>
 
     <section id="sponsors">
       <h1 class="sponsor-heading">SPONSORS</h1>

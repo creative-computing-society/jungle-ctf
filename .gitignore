@@ -31,8 +31,21 @@
 *.out
 *.app
 
+#VS Code Cache files
 *.vscode
 
+#Environment Variables
 .env
+
+#Python Cache Files
 __pycache__
+
+#virtual environment
 venv
+
+#Folder for static files root in production
+static
+
+#SSL Certificate files for HTTPS
+cert.pem
+privkey.pem

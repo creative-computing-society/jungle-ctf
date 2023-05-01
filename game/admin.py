@@ -13,7 +13,7 @@ class QuestionAdmin(ImportExportModelAdmin):
     resource_class = QuestionResource
     list_display = ['id', 'body', 'level', 'ans', 'hint']
     list_filter = ['level',]
-    list_per_page = 40
+    list_per_page = 80
     search_fields = ['body', 'ans', 'hint']
 admin.site.register(Question, QuestionAdmin)
 

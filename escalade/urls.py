@@ -24,4 +24,4 @@ urlpatterns = [
 ]
 
 # to be implemented when the project is done
-# handler404 = "escalade.views.page_not_found_view"
+handler404 = "escalade.views.page_not_found_view"

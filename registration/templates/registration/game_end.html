@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+  {% load static %}
+  
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/x-icon" href="{% static 'game/img/escaladeLogowhite.png' %}">
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+        rel="stylesheet"
+      />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+        rel="stylesheet"
+      />
+  
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="{% static 'registration/css/sponsors.css' %}" />
+  
+      <link rel="stylesheet" href="{% static 'registration/css/style3.css' %}" />
+      <link rel="stylesheet" href="{% static 'registration/css/general2.css' %}" />
+  
+      <script defer src="{% static 'registration/js/homeScript.js' %}"></script>
+  
+      <title>Escalade</title>
+    </head>
+    <body onload="
+      {% if error %}
+      popConvert();
+      {% endif %}
+      {% if msg %}
+      popout();
+      setTimeout(popout, 10000);
+      {% endif %}
+    ">
+      <section class="section-hero">
+        <div class="big-flex-container">
+          <img src="{% static 'registration/img/escaladeLogo.png' %}" class="logo" />
+          <div class="flex-container">
+            <div class="register">
+              <a id="loginButton" href="/login" class="btn btn-register hidden">LOGIN</a>
+            </div>
+            <div class="login">
+              <a href="#sponsors"  class="btn btn-login">SPONSORS</a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="heading-container">
+          <div class="popup-container hidden">
+            <p class="para">
+              Registration Successful<br />
+              Join <a href="https://discord.gg/4QPjvKavAZ" target="_blank">Discord Server</a>
+            </p>
+            <p class="para hidden">
+              Registration Failed <br />
+              Please try again
+            </p>
+            <p class="loginError hidden">You can login once the event is online.</p>
+          </div>
+          <h1 class="heading-primary">GAME OVER</h1>
+        </div>
+        <div id="timer" class="flex-container-placeholder hidden">
+          <div class="flex-container-holder">
+            <div class="placeholder" id="first-placeholder"></div>
+            <div class="placeholder" id="second-placeholder"></div>
+          </div>
+          <div class="flex-container-holder">
+            <div class="placeholder" id="third-placeholder"></div>
+            <div class="placeholder" id="fourth-placeholder"></div>
+          </div>
+        </div>
+        <div id="after-timer-play" class="flex-container-placeholder hidden">
+          <div class="flex-container-text-placeholder">
+            <div class="flex-container-text-holder">
+              <div class="text-placeholder" id="first-placeholder">
+                <a class="remove-decoration" href="/login">P</a>
+              </div>
+              <div class="text-placeholder" id="second-placeholder">
+                <a class="remove-decoration" href="/login">L</a>
+              </div>
+            </div>
+            <div class="flex-container-text-holder">
+              <div class="text-placeholder" id="third-placeholder">
+                <a class="remove-decoration" href="/login">A</a>
+              </div>
+              <div class="text-placeholder" id="fourth-placeholder">
+                <a class="remove-decoration" href="/login">Y</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-block">
+          <p>The event has ended</p>
+          <p>We thank you for your healthy participation!</p>
+          <p>Results have been announced on <a href="https://www.instagram.com/p/CgKLtDbrb-g/?igshid=YmMyMTA2M2Y=" target="_blank">CCS's Instagram page!</a></p>
+        </div>
+      </section>
+  
+      <section id="sponsors">
+        <h1 class="sponsor-heading">SPONSORS</h1>
+        <section class="Sponsors">
+          <div class="main-flex">
+            <div class="secondary-flex">
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="first-sponsor"></div>
+                    <p class="logo-text">Streamyard</p>
+                  </div>
+                  <div class="card__back">
+                    Streamyard is a live streaming studio on your browser where we
+                    can stream directly on Facebook, LinkedIn, Youtube, and major
+                    platforms. Not only that, we can live stream our performance on
+                    multiple platforms too.Easy live video production and
+                    professional streams set Streamyard apart from the others.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="second-sponsor"></div>
+                    <p class="logo-text">Geeksforgeeks</p>
+                  </div>
+                  <div class="card__back">
+                    GeeksforGeeks.org is an online portal for learning and tech
+                    skill development. Whether you want to learn algorithms or data
+                    structures or it is the programming language on its own that
+                    interests you, GeeksforGeeks has covered everything! . It has
+                    become an ‘all-in-one’ site for Tech lovers and a perfect place
+                    for coders to interact and discuss their ideas and knowledge
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="third-sponsor"></div>
+                    <p class="logo-text">InterviewBuddy</p>
+                  </div>
+                  <div class="card__back">
+                    InterviewBuddy offers virtual face-to-face mock interviews with
+                    industry veterans. It helps students and job seekers prepare for
+                    interviews that simulate a real-life job interview to develop
+                    their skills. Learn the nitty-gritty of how to succeed in
+                    interviews, feedback and tips to polish your answers.
+                    InterviewBuddy also provides you with resources to make you
+                    comfortable with A-Z of interview etiquette.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="secondary-flex">
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="fifth-sponsor"></div>
+                    <p class="logo-text">Balsamiq</p>
+                  </div>
+                  <div class="card__back">
+                    Balsamiq is the industry-leading rapid wireframing software
+                    that combines the comfort and simplicity of paper sketching with
+                    the power of a digital tool, so your work is easier to share,
+                    modify, and get honest feedback on. So what are you waiting for?
+                    Go design great user interfaces, websites, web apps, mobile apps
+                    and much more with Balsamiq.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="sixth-sponsor"></div>
+                    <p class="logo-text">Taskade</p>
+                  </div>
+                  <div class="card__back">
+                    Taskade is an all-in-one productivity app that you need to have.
+                    With Taskade, you can organize , plan projects, manage tasks
+                    ,track progress, take notes, collaborate and much more. Taskade
+                    currently supports 14 languages and works on all leading
+                    operating systems. It is extremely customizable and . It sets
+                    tasks for each team member. Taskade is reimagining the future of
+                    team productivity.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="sixteenth-sponsor"></div>
+                    <p class="logo-text">LetsGrowMore</p>
+                  </div>
+                  <div class="card__back">
+                    LetsGrowMore is a ground-based organisation with the goal of
+                    teaching skills in the area of technological development. They
+                    focus on learning project management, event planning and
+                    fundraising. They help us explore the untouched world of
+                    technology and tremendous growth-making fields. They provide a
+                    plethora of internship opportunities in a diversity of fields.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="secondary-flex">
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="seventh-sponsor"></div>
+                    <p class="logo-text">HoverRobotix</p>
+                  </div>
+                  <div class="card__back">
+                    HoverRobotix is the first
+                    company that brought the concept of hoverboards to India and
+                    gave birth to the epoch of personal mobility space for the
+                    Indian Market. HoverRobotix is an industry leader in its domain
+                    and truly brings the vision of futuristic and personalized
+                    transport to the masses.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="eighth-sponsor"></div>
+                    <p class="logo-text">Certopus</p>
+                  </div>
+                  <div class="card__back">
+                    Certopus helps streamline the process of certificate issuance
+                    through its user-friendly platform that has served over 50
+                    companies. Certopus allows its users to generate high-quality,
+                    vectorized certificates backed by industry standards protocols
+                    to make them tamper-resistant. These affordable, secure and
+                    easy-to-use certificates have redefined the industry trend and
+                    paved the way for digital certificates.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="ninth-sponsor"></div>
+                    <p class="logo-text">1password</p>
+                  </div>
+                  <div class="card__back">
+                    1Password remembers all your passwords for you and keeps them
+                    safe and secure. 1Password is the password manager that's as
+                    beautiful and simple as it is secure. The easiest and safest way
+                    to share logins, passwords, credit cards and more, with the
+                    people that matter most. all for you.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="secondary-flex">
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="tenth-sponsor"></div>
+                    <p class="logo-text">.xyz</p>
+                  </div>
+                  <div class="card__back">
+                    For the people from Generations X, Y, and Z, .xyz doesn't leave
+                    anyone behind. Do you feel your website is ready to be launched
+                    on a public stage? Are you just starting out and lack the
+                    resources to afford a highly paid domain? Don't worry! .xyz is
+                    here to provide you with a good domain name at an affordable
+                    price, providing its users with an innovative new platform to
+                    connect with the world.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="eleventh-sponsor"></div>
+                    <p class="logo-text">HackClub</p>
+                  </div>
+                  <div class="card__back">
+                    Hack Club is a global network of high school computer hackers,
+                    makers, and coders worldwide. Hack Clubs run hackathons and have
+                    400 high school groups and 14,000 students involved across the
+                    globe. Founded in 2014, it has conducted several thriving events
+                    and programs worthwhile for students. They have been profiled in
+                    Wall Street Journal and various other publications.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="seventeenth-sponsor"></div>
+                    <p class="logo-text">Rosenfeld</p>
+                  </div>
+                  <div class="card__back">
+                    Rosenfeld Media publishes short and practical books and webinars
+                    on user experience design. They provide unequalled user
+                    experience expertise, in print and person. They connect people
+                    interested in designing better user experiences with the best
+                    expertise available user experience. They help people all over
+                    the world create better user experiences
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="secondary-flex">
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="thirteenth-sponsor"></div>
+                    <p class="logo-text">Sybgen Learning</p>
+                  </div>
+                  <div class="card__back">
+                    Sybgen Learning is a global publisher with excellent content
+                    which is constantly revised to keep up with the dynamic
+                    industry. The lucid language and explanation of all topics in
+                    detail help the students and faculty members to understand the
+                    topic thoroughly.
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="fourteenth-sponsor"></div>
+                    <p class="logo-text">Digicosmic Studio</p>
+                  </div>
+                  <div class="card__back">
+                    Digicosmic Studio is a propitious graphic designing brand that
+                    offers you astounding and ingenious custom designs. Be it a
+                    Company Logo, Template, Digital art, etc. You name it- they can
+                    do it! Their attention to detail and innovative designs are
+                    going to amaze you. So what are you waiting for? Check out
+                    Digicosmic Studio for custom designs and get ready to be wowed!
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card__container">
+                  <div class="card__front">
+                    <div class="logo-container" id="fifteenth-sponsor"></div>
+                    <p class="logo-text">Cybrancee</p>
+                  </div>
+                  <div class="card__back">
+                    Cybrancee makes web-hosting fast, affordable and reliable. From
+                    having total control over your WordPress website, to running
+                    real-time security scans, they have it all! It allows launching
+                    your website with hundreds of applications ready to install
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="secondary-flex">
+              <!-- <div class="card">
+                <div class="card__container">
+                  <div class="card__front" id="eighteenth-sponsor">
+                    Sponsor Title
+                  </div>
+                  <div class="card__back">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Consectetur minima enim provident quis inventore delectus
+                    debitis explicabo illo. Sit eveniet quaerat architecto assumenda
+                    provident voluptatem fugiat sapiente a perspiciatis distinctio!
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </section>
+      </section>
+    </body>
+  </html>
+  
